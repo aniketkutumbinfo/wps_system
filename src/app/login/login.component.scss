@@ -1,0 +1,22 @@
+.login-container{width:100%; float:left; padding:10px; }
+.login-container .container{width:100%; max-width:1050px;}
+.login-container .left-block{width:100%; float:left; background: url(/assets/images/businessman-using-product.png) no-repeat top center; background-size:cover; height:100%; border-radius:6px; overflow: hidden;}
+.login-container .left-block .img-fluid{width:100%; float:left;}
+.login-container .right-block{width:100%; display:block; margin:15px auto; max-width: 460px; text-align: center;}
+.login-container .right-block .logo{width:100%; float:left; margin-bottom:40px;}
+.login-container .right-block h2{width:100%; float:left; font-size:50px; font-weight:700;}
+.login-container .right-block p{width:100%; float:left; font-size:18px; font-weight:400; color:#707070;}
+
+.login-container .right-block .field-block{width:100%; float:left;}
+.login-container .right-block .input-block{width:100%; float:left; margin-bottom:25px;}
+.login-container .right-block .input-block .fieldtitle{width:100%; float:left; margin-bottom:5px; font-size:20px; color:#000000; font-weight: 600; text-align: left;}
+.login-container .right-block .input-block input[type=text],
+.login-container .right-block .input-block input[type=email],
+.login-container .right-block .input-block input[type=password]{width:100%; float:left; background:#F5F7FA; border-radius: 6px; font-size:16px; color:#000; font-weight:500; border:0; height:50px; padding:10px; line-height: 30px;}
+.login-container .right-block .input-block .rememberme{float:left; font-size:13px; color:#000; font-weight:400; width:50%;}
+.login-container .right-block .input-block .forgotpass{float:right; font-size:13px; color:#000; font-weight:400; width:50%; text-align: right;}
+.login-container .right-block .signin-btn{width:100%; float:left; border-radius:6px; background:#7218CB; height:50px; text-align:center; font-size:18px; color:#fff; border:0; font-weight:600;}
+.login-container .right-block .or-divider{width:100%; float:left; margin:20px 0; font-size:20px; font-weight:700; color:#000;}
+.login-container .right-block .google-btn{width:100%; float:left; border-radius:6px; background:#fff; height:50px; text-align:center; font-size:18px; color:#000; border:0; font-weight:600; box-shadow: 0 0 6px rgba(0,0,0,0.2);}
+.login-container .right-block .noaccount{width:100%; float:left; text-align: center; margin-top:50px; font-size:14px; color:#000; }
+.login-container .right-block .noaccount a{font-size:14px; font-weight:600; color:#000; }

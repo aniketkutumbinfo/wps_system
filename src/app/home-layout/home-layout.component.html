@@ -1,5 +1,33 @@
-<p>home-layout works!</p>
+<div class="wrapper">
+  <div class="left-sidebar">
+    <div class="logo">
+      <img src="/assets/images/dummy-logo.png"/>
+    </div>
+    <div class="user-detail">
+      <div class="user-pic"><img src="/assets/images/profile-pic.png"/></div>
+      <div class="user-name">Adam Atkins</div>
+    </div>
+    <div class="left-menu">
+      <ul>
+        <li><a href=""><img src="/assets/images/sif-ico.png" class="ico"/>Salary Information File</a></li>
+        <li><a href=""><img src="/assets/images/pif-ico.png" class="ico"/>Personal Information File</a></li>
+        <li><a href=""><img src="/assets/images/prf-ico.png" class="ico"/>Personal Relationship File</a></li>
+        <li><a href=""><img src="/assets/images/pfa-ico.png" class="ico"/>Personal Filteration File</a></li>
+        <li><a href=""><img src="/assets/images/dif-ico.png" class="ico"/>Department Information File</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="right-panel">
+    <div class="header">
+      <div class="profile-detail">
+        <span class="user-name">Hello Adam!</span>
+        <span class="user-pic"><img src="/assets/images/profile-pic.png"/></span>
+      </div>
+    </div>
+    <div class="mid-container">
 
-<div>
-  <router-outlet></router-outlet>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
+

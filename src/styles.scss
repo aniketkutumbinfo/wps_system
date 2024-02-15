@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+body{font-family: 'Open Sans', sans-serif;}
+*{list-style: none; text-decoration: none;}
+a{text-decoration: none;}
+
+.wrapper{width:100%; float:left;}
+
+.left-sidebar{width:100%; float:left; height:100vh;  max-width:320px; background:#F5F7FA; padding:15px 0;}
+.left-sidebar .logo{width:100%; float:left; margin-bottom:30px; padding:0 15px;}
+.left-sidebar .user-detail{width:100%; float:left; position:relative; padding:0 15px 20px; border-bottom:1px solid #E4EAF2;}
+.left-sidebar .user-detail .user-pic{width:50px; height:50px; float:left; border:2px solid #fff; margin-right:10px; border-radius:6px; background:#ccc; overflow: hidden;}
+.left-sidebar .user-detail .user-pic img{width:50px; height:50px; float: left; }
+.left-sidebar .user-detail .user-name{width:calc(100% - 60px); float:left; line-height: 50px; height:50px; font-size:20px; font-weight:600; color:#202020;}
+.left-sidebar .left-menu{width:100%; float:left; padding:15px;}
+.left-sidebar .left-menu ul{width:100%; float:left; margin:0; padding: 0;}
+.left-sidebar .left-menu ul li{width:100%; float:left; margin-bottom:5px;}
+.left-sidebar .left-menu ul li a{width:100%; float:left; padding:10px; height:45px; line-height:25px; font-size:18px; color:#000; }
+.left-sidebar .left-menu ul li a:hover{background:#E4EAF2;}
+.left-sidebar .left-menu ul li a .ico{margin-right:10px; float:left;}
+
+.right-panel{width: calc(100% - 320px); float: right; padding:0 20px}
+.right-panel .header{width:100%; float: left; padding:15px 0; border-bottom:2px solid #E4EAF2; margin-bottom:20px;}
+.right-panel .header .profile-detail{float:right; width:auto;}
+.right-panel .header .profile-detail .user-name{float:left; line-height:50px; font-size:16px; font-weight:600; color:#000; margin-right:5px;}
+.right-panel .header .profile-detail .user-pic{float: left; width:50px; height:50px; border-radius:360px; overflow: hidden;}
+.right-panel .header .profile-detail .user-pic img{width:50px; height:50px;}
