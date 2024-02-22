@@ -1,24 +1,12 @@
-<!-- <div>
-    <p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Code</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Quantity</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-product>
-            <tr>
-                <td>{{ product.code }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.category }}</td>
-                <td>{{ product.quantity }}</td>
-            </tr>
-        </ng-template>
-    </p-table>
-</div> -->
-
+<div>
+    <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input type="text" placeholder="Search" pInputText [(ngModel)]="value" />
+    </span>
+    <span>
+        <p-button (click)="addSFI()" label="Create SFI" icon="pi pi-plus"></p-button>
+    </span>
+</div>
 <div class="card">
     <p-table [value]="products" [(selection)]="selectedProducts" dataKey="code" [paginator]="true" [rows]="5" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header">
