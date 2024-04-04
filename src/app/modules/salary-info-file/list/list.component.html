@@ -4,20 +4,28 @@
         <input type="text" placeholder="Search" pInputText [(ngModel)]="value" />
     </span>
     <span>
-        <p-button (click)="addSFI()" label="Create SFI" icon="pi pi-plus"></p-button>
+        <!-- accept=".xlsx"  -->
+        <input id="selectedFile" type="file" name="files[]" multiple id="jsonFile" (change)="selectedFileChange($event)" />
+        <!-- <p-button (click)="addSFI()" label="Create SFI" icon="pi pi-plus"></p-button> -->
+        <!-- <p-fileUpload #fubauto mode="basic" name="myfile[]" (onUpload)="onBasicUploadAuto($event)" [auto]="true"
+            chooseLabel="Upload"></p-fileUpload> -->
     </span>
 </div>
 <div class="card">
-    <p-table [value]="products" [(selection)]="selectedProducts" dataKey="code" [paginator]="true" [rows]="5" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
+    <p-table [value]="products?.sifEdrBean" [(selection)]="selectedProducts" dataKey="code" [paginator]="true" [rows]="5"
+        [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header">
             <tr>
                 <th style="width: 4rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th style="min-width:200px">Code</th>
-                <th style="min-width:200px">Name</th>
-                <th style="min-width:200px">Category</th>
-                <th style="min-width:200px">Quantity</th>
+                <th style="min-width:200px">Employee Id</th>
+                <th style="min-width:200px">Pay Start Date</th>
+                <th style="min-width:200px">Pay End Date</th>
+                <th style="min-width:200px">Load Amount</th>
+                <th style="min-width:200px">Inc Load Amount</th>
+                <th style="min-width:200px">Emp Leave Days</th>
+                <th style="min-width:200px">Currency</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
@@ -25,10 +33,13 @@
                 <td>
                     <p-tableCheckbox [value]="product"></p-tableCheckbox>
                 </td>
-                <td>{{product.code}}</td>
-                <td>{{product.name}}</td>
-                <td>{{product.category}}</td>
-                <td>{{product.quantity}}</td>
+                <td>{{product.empid}}</td>
+                <td>{{product.paystartdate}}</td>
+                <td>{{product.payenddate}}</td>
+                <td>{{product.incomefixcomp}}</td>
+                <td>{{product.incomevarcomp}}</td>
+                <td>{{product.daysleaveprd}}</td>
+                <td>{{product.recordtype}}</td>
             </tr>
         </ng-template>
     </p-table>
