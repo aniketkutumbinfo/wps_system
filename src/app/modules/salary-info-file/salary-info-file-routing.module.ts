@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './list/list.component';
-import { AddFileComponent } from './add-file/add-file.component';
 
 const routes: Routes = [
   {
@@ -9,9 +8,6 @@ const routes: Routes = [
   },
   {
     path: 'list', component: ListComponent
-  },
-  {
-    path: 'add', component: AddFileComponent
   }
 ];
 

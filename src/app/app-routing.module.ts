@@ -12,7 +12,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'wps',
+    path: '',
     component: HomeLayoutComponent,
     children: [
       {

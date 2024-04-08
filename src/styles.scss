@@ -21,6 +21,7 @@ a{text-decoration: none;}
 .left-sidebar .left-menu ul li a{width:100%; float:left; padding:10px; height:45px; line-height:25px; font-size:18px; color:#000; }
 .left-sidebar .left-menu ul li a:hover{background:#E4EAF2;}
 .left-sidebar .left-menu ul li a .ico{margin-right:10px; float:left;}
+.left-sidebar .left-menu ul li a.active{color: red;}
 
 .right-panel{width: calc(100% - 320px); float: right; padding:0 20px}
 .right-panel .header{width:100%; float: left; padding:15px 0; border-bottom:2px solid #E4EAF2; margin-bottom:20px;}

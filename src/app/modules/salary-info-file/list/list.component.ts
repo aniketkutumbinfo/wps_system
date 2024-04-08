@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Observable, ReplaySubject } from 'rxjs';
-import { CommonService } from 'src/app/shared/services/common.service';
-import { SifServiceService } from 'src/app/shared/services/sif-service.service';
+import { SifServiceService } from 'src/app/modules/salary-info-file/sif-service.service';
 
 @Component({
   selector: 'app-list',
@@ -10,36 +9,50 @@ import { SifServiceService } from 'src/app/shared/services/sif-service.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  products!: any;
-  selectedProducts!: any;
+  sifRecords = [
+    {
+      empid: 123,
+      paystartdate: new Date(),
+      payenddate: new Date(),
+      incomefixcomp: 1223,
+      incomevarcomp: 1223,
+      daysleaveprd: 'dasdasd',
+      recordtype: 'New'
+    }
+  ];
   value!: any
   selectedFile: any;
-  constructor(private commonService: CommonService,
-    private router: Router,
-    private sfiSerive: SifServiceService) { }
+  showEditSIF = false;
+  selectedRecord: any;
+
+  constructor(private sfiSerive: SifServiceService,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService) { }
 
   ngOnInit() {
   }
 
-  base64Output: any
   selectedFileChange(event: any) {
     this.selectedFile = event.target.files[0];
     this.convertFile(event.target.files[0]).subscribe(base64 => {
-      this.base64Output = base64;
-      console.log(this.base64Output)
       let item = {
         wpsFileType: "SIF",
         fileName: this.selectedFile.name,
         base64: "TW9pbCBJZCxFbXBsb3llciBJZCxSb3V0aW5nIENvZGUsSWJhbiBObyxJbmNvbWUgZml4IENvbXBvbmVudCxJbmNvbWUgVmFyaWFibGUgQ29tcG9uZW50LExlYXZlIFBlcmlvZCxQYXkgU3RhcnQgRGF0ZSxQYXkgRW5kIERhdGUsU2FsYXJ5IE1vbnRoDQowMDAwMDAwMDAwNjE3LDIwMDAxMDE4ODA4Nzk3LDc0MTMxMDEwMSxBRTc4NDEzMDAwMDAwMDAwMDAxMDQwMiwxMTAxLDIxMCwxLDIwMjQtMDEtMDEsMjAyNC0wMS0zMSwwMjIwMjQNCjAwMDAwMDAwMDA2MTcsMTAwMjcwNDY3NzgzNzIsNzQxMzEwMTAxLEFFNzU0MTMwMDAwMDAwMDAwMDA4ODA3LDExMDEsMjEwLDAsMjAyNC0wMS0wMSwyMDI0LTAxLTMxLDAyMjAyNA0KMDAwMDAwMDAwMDYxNywxMDAyMjEyOTE3MTQyOCw2MDAzMTAxMDEsQUUxNDAwMzAwMTI4NzA4MzI5MTAwMDEsNTAwMCwwLDAsMjAyNC0wMS0wMSwyMDI0LTAxLTMxLDAyMjAyNA=="
       }
-      console.log(item)
       this.sfiSerive.createExcelTable(item).subscribe(res => {
         console.log(res)
-        if(res){
-          this.products = res
+        if (res) {
+          this.getData('0000000000617', '2024-03-09');
         }
       })
     });
+  }
+
+  getData(id: string, date: any) {
+    this.sfiSerive.getRecords(id, date).subscribe(res => {
+      this.sifRecords = res;
+    })
   }
 
   convertFile(file: File): Observable<string> {
@@ -48,5 +61,31 @@ export class ListComponent implements OnInit {
     reader.readAsBinaryString(file);
     reader.onload = (event: any) => result.next(btoa(event.target.result.toString()));
     return result;
+  }
+
+  onEdit(data: any) {
+    this.showEditSIF = true;
+    this.selectedRecord = data;
+  }
+
+  onDelete(data: any) {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to delete?',
+      accept: () => {
+        this.sfiSerive.deleteRecord(data.id).subscribe(res => {
+          if (res) {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success', detail: 'Entry successfully deleted'
+            });
+            this.getData('0000000000617', '2024-03-09');
+          }
+        });
+      }
+    });
+  }
+
+  onCloseShowEditSIF() {
+    this.showEditSIF = false;
   }
 }
