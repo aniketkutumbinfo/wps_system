@@ -8,6 +8,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { SidebarModule } from 'primeng/sidebar';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { CalendarModule } from 'primeng/calendar';
 
 const modules = [
   TableModule,
@@ -16,7 +17,8 @@ const modules = [
   FileUploadModule,
   ConfirmDialogModule,
   ToastModule,
-  SidebarModule
+  SidebarModule,
+  CalendarModule
 ]
 
 @NgModule({

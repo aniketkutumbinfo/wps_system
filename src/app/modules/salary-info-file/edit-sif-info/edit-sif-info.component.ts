@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class EditSifInfoComponent implements OnInit {
   @Input() isVisible: boolean = false;
   @Output() closeFlyout = new EventEmitter<any>(undefined);
+  @Output() update = new EventEmitter<any>(undefined);
   @Input() data: any;
   editForm!: FormGroup;
 
@@ -20,17 +21,17 @@ export class EditSifInfoComponent implements OnInit {
       payenddate: [null],
       incomefixcomp: [null],
       incomevarcomp: [null],
-      daysleaveprd: [null],
-      recordtype: [null],
+      daysleaveprd: [null]
     });
 
+    this.editForm.patchValue(this.data);
   }
 
   onCloseFlyout() {
     this.closeFlyout.emit(false);
   }
 
-  onSave() {
-
+  onUpdate() {
+    this.update.emit(this.editForm.value);
   }
 }

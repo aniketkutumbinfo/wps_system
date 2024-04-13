@@ -1,14 +1,8 @@
-<div class="">
-    <span class="p-input-icon-left">
+<div class="card" *ngIf="sifRecords.length">
+    <div class="p-input-icon-left m-2">
         <i class="pi pi-search"></i>
-        <input type="text" placeholder="Search" pInputText [(ngModel)]="value" />
-    </span>
-    <span class="flex-end">
-        <input id="selectedFile" type="file" name="files[]" multiple id="jsonFile"
-            (change)="selectedFileChange($event)" />
-    </span>
-</div>
-<div class="card">
+        <input type="text" placeholder="Search for employee Id" pInputText [(ngModel)]="value" />
+    </div>
     <p-table #dt1 dataKey="code" [value]="sifRecords" [scrollable]="true" [paginator]="true" [rows]="10"
         [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header">
@@ -19,7 +13,6 @@
                 <th style="min-width:200px">Load Amount</th>
                 <th style="min-width:200px">Inc Load Amount</th>
                 <th style="min-width:200px">Emp Leave Days</th>
-                <th style="min-width:200px">Currency</th>
                 <th style="min-width:200px">Action</th>
             </tr>
         </ng-template>
@@ -31,29 +24,36 @@
                 <td>{{data.incomefixcomp}}</td>
                 <td>{{data.incomevarcomp}}</td>
                 <td>{{data.daysleaveprd}}</td>
-                <td>{{data.recordtype}}</td>
                 <td>
-                    <button class="action-btns table-delete-ico"
-                    (click)="onEdit(data)"> <img src="/assets/images/edit-ico.png" />
+                    <button class="action-btns table-delete-ico" (click)="onEdit(data)"> <img
+                            src="/assets/images/edit-ico.png" />
                     </button>
-                    <button class="action-btns table-delete-ico"
-                    (click)="onDelete(data)"> <img src="/assets/images/delete-ico.png" />
+                    <button class="action-btns table-delete-ico" (click)="onDelete(data)"> <img
+                            src="/assets/images/delete-ico.png" />
                     </button>
                 </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
             <tr>
-                <td class="text-center" [attr.colspan]="8">
+                <td class="text-center" [attr.colspan]="7">
                     No records found
                 </td>
             </tr>
         </ng-template>
     </p-table>
 </div>
+<div class="card">
+    <div *ngIf="!sifRecords.length" class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop
+        (onFileDropped)="selectedFileChange($event, 'drop')">
+        <p>Drag and drop or click here to upload your .xslx file</p>
+        <input hidden type="file" #fileInput (change)="selectedFileChange($event, 'select')" />
+    </div>
+</div>
 
 <ng-container *ngIf="showEditSIF">
-    <app-edit-sif-info [isVisible]="showEditSIF" [data]="selectedRecord" (closeFlyout)="onCloseShowEditSIF()"></app-edit-sif-info>
+    <app-edit-sif-info [isVisible]="showEditSIF" [data]="selectedRecord"
+        (closeFlyout)="onCloseShowEditSIF()" (update)="onUpdate($event)"></app-edit-sif-info>
 </ng-container>
 
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
