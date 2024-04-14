@@ -9,56 +9,13 @@ import { SifServiceService } from 'src/app/modules/salary-info-file/sif-service.
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  // sifRecords = [{
-  //   "id": 1,
-  //   "recordtype": "EDR",
-  //   "sifrecoredid": 1,
-  //   "empid": "20001018808797",
-  //   "agentroutingcode": "741310101",
-  //   "empacctwithagent": "AE784130000000000010402",
-  //   "paystartdate": "2024-01-01",
-  //   "payenddate": "2024-01-31",
-  //   "daysInPeriod": 30,
-  //   "incomefixcomp": "1101",
-  //   "incomevarcomp": "210",
-  //   "daysleaveprd": "1",
-  //   "makerdate": "2024-04-13"
-  // },
-  // {
-  //   "id": 2,
-  //   "recordtype": "EDR",
-  //   "sifrecoredid": 2,
-  //   "empid": "10027046778372",
-  //   "agentroutingcode": "741310101",
-  //   "empacctwithagent": "AE754130000000000008807",
-  //   "paystartdate": "2024-01-31",
-  //   "payenddate": "2024-01-31",
-  //   "daysInPeriod": 30,
-  //   "incomefixcomp": "1101",
-  //   "incomevarcomp": "210",
-  //   "daysleaveprd": "0",
-  //   "makerdate": "2024-04-13"
-  // },
-  // {
-  //   "id": 3,
-  //   "recordtype": "EDR",
-  //   "sifrecoredid": 3,
-  //   "empid": "10022129171428",
-  //   "agentroutingcode": "600310101",
-  //   "empacctwithagent": "AE140030012870832910001",
-  //   "paystartdate": "2024-01-01",
-  //   "payenddate": "2024-01-31",
-  //   "daysInPeriod": 30,
-  //   "incomefixcomp": "5000",
-  //   "incomevarcomp": "0",
-  //   "daysleaveprd": "0",
-  //   "makerdate": "2024-04-13"
-  // }];
   sifRecords: any = [];
   value!: any
   uploadObj: any;
   showEditSIF = false;
   selectedRecord: any;
+  sifedrrecoreds: any = [];
+  sifscrrecored: any = [];
 
   constructor(private sfiSerive: SifServiceService,
     private confirmationService: ConfirmationService,
@@ -93,7 +50,7 @@ export class ListComponent implements OnInit {
 
   getData(id?: string, date?: any) {
     this.sfiSerive.getRecords(id, date).subscribe(res => {
-      this.sifRecords = res.sifEdrBean;
+      this.sifRecords = res;
     })
   }
 
@@ -110,11 +67,11 @@ export class ListComponent implements OnInit {
     this.selectedRecord = data;
   }
 
-  onDelete(data: any) {
+  onDelete(data: any, item: any) {
     this.confirmationService.confirm({
       message: 'Are you sure that you want to delete?',
       accept: () => {
-        this.sfiSerive.deleteRecord(data.sifrecoredid).subscribe(res => {
+        this.sfiSerive.deleteRecord(data.sifEdrFileId, item.sifScrFileId).subscribe(res => {
           if (res) {
             this.messageService.add({
               severity: 'success',
@@ -132,9 +89,24 @@ export class ListComponent implements OnInit {
   }
 
   onUpdate(event: any) {
+    let item = {
+      "sifEdrFileId": this.selectedRecord.sifEdrFileId,
+      "recordtype": this.selectedRecord.recordtype,
+      "sifrecoredid": this.selectedRecord.sifrecoredid,
+      "empid": this.selectedRecord.empid,
+      "agentroutingcode": this.selectedRecord.agentroutingcode,
+      "empacctwithagent": this.selectedRecord.empacctwithagent,
+      "paystartdate": event.paystartdate,
+      "payenddate": event.payenddate,
+      "daysInPeriod": this.selectedRecord.daysInPeriod,
+      "incomefixcomp": event.incomefixcomp,
+      "incomevarcomp": event.incomevarcomp,
+      "daysleaveprd": event.daysleaveprd,
+      "makerdate": this.selectedRecord.makerdate
+    }
     if (event) {
-      const payload = { ...this.uploadObj, ...event };
-      this.sfiSerive.updateRecord(this.uploadObj.sifrecoredid, payload).subscribe(res => {
+      const payload = { ...this.uploadObj, ...item };
+      this.sfiSerive.updateRecord(payload).subscribe(res => {
         if (res) {
           this.messageService.add({
             severity: 'success',
@@ -146,5 +118,35 @@ export class ListComponent implements OnInit {
         }
       })
     }
+  }
+
+  onTabClose(event: any) {
+  }
+
+  onTabOpen(event: any) {
+  }
+
+  createZipFile() {
+    for (let i = 0; i < this.sifRecords.length; i++) {
+      this.sifscrrecored = Array.from(new Set(this.sifRecords.map((item: { employeruniqueid: any; }) => item.employeruniqueid)))
+        .map(employeruniqueid => this.sifRecords.find((item: { employeruniqueid: any; }) => item.employeruniqueid === employeruniqueid));
+      for (let j = 0; j < this.sifRecords[i]?.sifEdrBean?.length; j++) {
+        this.sifedrrecoreds.push(this.sifRecords[i]?.sifEdrBean[j])
+      }
+    }
+    let payload = {
+      "sifextension": "SIF",
+      "croprateid": "0000000000617",
+      "sifedrrecoreds": this.sifedrrecoreds,
+      "sifscrrecored": this.sifscrrecored
+    }
+    this.sfiSerive.createZipFile(payload).subscribe(res => {
+      if (res) {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success', detail: 'Successfully created'
+        });
+      }
+    })
   }
 }

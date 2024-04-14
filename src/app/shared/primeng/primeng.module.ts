@@ -9,6 +9,7 @@ import { ToastModule } from 'primeng/toast';
 import { SidebarModule } from 'primeng/sidebar';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CalendarModule } from 'primeng/calendar';
+import { AccordionModule } from 'primeng/accordion';
 
 const modules = [
   TableModule,
@@ -18,7 +19,8 @@ const modules = [
   ConfirmDialogModule,
   ToastModule,
   SidebarModule,
-  CalendarModule
+  CalendarModule,
+  AccordionModule
 ]
 
 @NgModule({
