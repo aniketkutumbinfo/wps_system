@@ -21,7 +21,7 @@ export class SifServiceService {
   }
 
   updateRecord(data: any) {
-    return this.httpService.post(`store/sif/edr/update`, data);
+    return this.httpService.put(`store/sif/edr/update`, data);
   }
 
   createZipFile(data: any) {

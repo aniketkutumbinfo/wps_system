@@ -61,10 +61,11 @@ export class ListComponent implements OnInit {
     reader.onload = (event: any) => result.next(btoa(event.target.result.toString()));
     return result;
   }
-
-  onEdit(data: any) {
+  sifScrFileId: any
+  onEdit(data: any, item: any) {
     this.showEditSIF = true;
     this.selectedRecord = data;
+    this.sifScrFileId = item.sifScrFileId;
   }
 
   onDelete(data: any, item: any) {
@@ -89,7 +90,10 @@ export class ListComponent implements OnInit {
   }
 
   onUpdate(event: any) {
+    console.log(event)
+    console.log(this.selectedRecord)
     let item = {
+      "sifScrFileId": this.sifScrFileId,
       "sifEdrFileId": this.selectedRecord.sifEdrFileId,
       "recordtype": this.selectedRecord.recordtype,
       "sifrecoredid": this.selectedRecord.sifrecoredid,
@@ -105,7 +109,7 @@ export class ListComponent implements OnInit {
       "makerdate": this.selectedRecord.makerdate
     }
     if (event) {
-      const payload = { ...this.uploadObj, ...item };
+      const payload = { ...item };
       this.sfiSerive.updateRecord(payload).subscribe(res => {
         if (res) {
           this.messageService.add({
