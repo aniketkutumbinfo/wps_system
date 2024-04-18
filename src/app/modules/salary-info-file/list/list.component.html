@@ -9,6 +9,8 @@
                 <span class="flex align-items-center gap-2 w-full">
                     {{item.employeruniqueid}} ({{item.filecreationdate}})
                 </span>
+                <p-button label="Submit" (click)="createZipFile(item)">
+                </p-button>
             </ng-template>
             <p-table #dt1 dataKey="code" [value]="item.sifEdrBean" [scrollable]="true" [paginator]="true" [rows]="10"
                 [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
@@ -66,7 +68,7 @@
         (update)="onUpdate($event)"></app-edit-sif-info>
 </ng-container>
 
-<p-button label="Submit" (click)="createZipFile()">
-</p-button>
+<!-- <p-button label="Submit" (click)="createZipFile()">
+</p-button> -->
 
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

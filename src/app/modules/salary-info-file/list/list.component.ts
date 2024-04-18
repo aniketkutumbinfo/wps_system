@@ -15,7 +15,7 @@ export class ListComponent implements OnInit {
   showEditSIF = false;
   selectedRecord: any;
   sifedrrecoreds: any = [];
-  sifscrrecored: any = [];
+  sifscrrecored: any = {};
 
   constructor(private sfiSerive: SifServiceService,
     private confirmationService: ConfirmationService,
@@ -72,7 +72,7 @@ export class ListComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'Are you sure that you want to delete?',
       accept: () => {
-        this.sfiSerive.deleteRecord(data.sifEdrFileId, item.sifScrFileId).subscribe(res => {
+        this.sfiSerive.deleteRecord(data.sifedrfileid, item.sifscrfileid).subscribe(res => {
           if (res) {
             this.messageService.add({
               severity: 'success',
@@ -90,8 +90,6 @@ export class ListComponent implements OnInit {
   }
 
   onUpdate(event: any) {
-    console.log(event)
-    console.log(this.selectedRecord)
     let item = {
       "sifScrFileId": this.sifScrFileId,
       "sifEdrFileId": this.selectedRecord.sifEdrFileId,
@@ -130,14 +128,14 @@ export class ListComponent implements OnInit {
   onTabOpen(event: any) {
   }
 
-  createZipFile() {
-    for (let i = 0; i < this.sifRecords.length; i++) {
-      this.sifscrrecored = Array.from(new Set(this.sifRecords.map((item: { employeruniqueid: any; }) => item.employeruniqueid)))
-        .map(employeruniqueid => this.sifRecords.find((item: { employeruniqueid: any; }) => item.employeruniqueid === employeruniqueid));
-      for (let j = 0; j < this.sifRecords[i]?.sifEdrBean?.length; j++) {
-        this.sifedrrecoreds.push(this.sifRecords[i]?.sifEdrBean[j])
-      }
+  createZipFile(item: any) {
+    for (let j = 0; j < item?.sifEdrBean?.length; j++) {
+      delete item?.sifEdrBean[j]?.sifedrfileid
+      this.sifedrrecoreds.push(item?.sifEdrBean[j])
     }
+    delete item?.sifEdrBean
+    delete item?.sifscrfileid
+    this.sifscrrecored = item;
     let payload = {
       "sifextension": "SIF",
       "croprateid": "0000000000617",
@@ -150,6 +148,7 @@ export class ListComponent implements OnInit {
           severity: 'success',
           summary: 'Success', detail: 'Successfully created'
         });
+        this.getData(this.uploadObj?.employeruniqueid, this.uploadObj?.makerdate);
       }
     })
   }

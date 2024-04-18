@@ -6,13 +6,15 @@ import { ListComponent } from './list/list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EditSifInfoComponent } from './edit-sif-info/edit-sif-info.component';
 import { DragDropDirective } from './list/drag-drop.directive';
+import { SifListComponent } from './sif-list/sif-list.component';
 
 
 @NgModule({
   declarations: [
     ListComponent,
     EditSifInfoComponent,
-    DragDropDirective
+    DragDropDirective,
+    SifListComponent
   ],
   imports: [
     CommonModule,

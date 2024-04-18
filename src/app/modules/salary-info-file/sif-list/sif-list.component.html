@@ -1,0 +1,31 @@
+<div class="card">
+
+    <p-table #dt1 dataKey="code" [value]="listSIFFiles" [scrollable]="true" [paginator]="true" [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="min-width:200px">Corporate Id</th>
+                <th style="min-width:200px">File Name</th>
+                <th style="min-width:200px">File Remarks</th>
+                <th style="min-width:200px">File Status</th>
+                <th style="min-width:200px">File Creation Day</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+            <tr>
+                <td>{{data.croprateid}}</td>
+                <td>{{data.filename}}</td>
+                <td>{{data.fileRemarks}}</td>
+                <td>{{data.filestatus}}</td>
+                <td>{{data.filecreationdate}}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td class="text-center" [attr.colspan]="7">
+                    No records found
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

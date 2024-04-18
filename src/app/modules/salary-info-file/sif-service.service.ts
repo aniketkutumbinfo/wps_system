@@ -17,7 +17,7 @@ export class SifServiceService {
   }
 
   deleteRecord(sifEdrFileId: any,sifScrFileId:any) {
-    return this.httpService.delete(`store/sif/edr/delete?sifScrFileId=${sifScrFileId}&sifEdrFileId=${sifEdrFileId}`);
+    return this.httpService.delete(`store/sif/edr/delete?sifscrfileid=${sifScrFileId}&sifedrfileid=${sifEdrFileId}`);
   }
 
   updateRecord(data: any) {
@@ -26,5 +26,9 @@ export class SifServiceService {
 
   createZipFile(data: any) {
     return this.httpService.post('sif/create', data)
+  }
+
+  getSIFFiles() {
+    return this.httpService.get(`sif/getsiffiles`);
   }
 }
