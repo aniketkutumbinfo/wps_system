@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { EditSifInfoComponent } from './edit-sif-info/edit-sif-info.component';
 import { DragDropDirective } from './list/drag-drop.directive';
 import { SifListComponent } from './sif-list/sif-list.component';
+import { SifDetailsComponent } from './sif-details/sif-details.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SifListComponent } from './sif-list/sif-list.component';
     ListComponent,
     EditSifInfoComponent,
     DragDropDirective,
-    SifListComponent
+    SifListComponent,
+    SifDetailsComponent
   ],
   imports: [
     CommonModule,

@@ -16,7 +16,7 @@ export class SifServiceService {
     return this.httpService.get(`store/sif/getData?CorporateId=${CorporateId}&makkerDate=${makkerDate}`);
   }
 
-  deleteRecord(sifEdrFileId: any,sifScrFileId:any) {
+  deleteRecord(sifEdrFileId: any, sifScrFileId: any) {
     return this.httpService.delete(`store/sif/edr/delete?sifscrfileid=${sifScrFileId}&sifedrfileid=${sifEdrFileId}`);
   }
 
@@ -30,5 +30,9 @@ export class SifServiceService {
 
   getSIFFiles() {
     return this.httpService.get(`sif/getsiffiles`);
+  }
+
+  getSIFFileDetail(fileName: any) {
+    return this.httpService.get(`sif/getSifonfilename/` + fileName);
   }
 }

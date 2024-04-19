@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SifServiceService } from '../sif-service.service';
+import { SifServiceService } from '../sif-service.service'; 
 
 @Component({
   selector: 'app-sif-list',
@@ -8,16 +8,17 @@ import { SifServiceService } from '../sif-service.service';
 })
 export class SifListComponent {
   listSIFFiles = []
-  constructor(private sfiSerive: SifServiceService) { }
+  constructor(private sfiSerive: SifServiceService, 
+  ) { }
 
   ngOnInit() {
     this.getData();
   }
 
 
-  getData(id?: string, date?: any) {
+  getData() {
     this.sfiSerive.getSIFFiles().subscribe(res => {
       this.listSIFFiles = res;
     })
-  }
+  } 
 }

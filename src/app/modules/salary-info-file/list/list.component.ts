@@ -87,6 +87,7 @@ export class ListComponent implements OnInit {
 
   onCloseShowEditSIF() {
     this.showEditSIF = false;
+    this.getData(this.uploadObj?.employeruniqueid, this.uploadObj?.makerdate);
   }
 
   onUpdate(event: any) {
