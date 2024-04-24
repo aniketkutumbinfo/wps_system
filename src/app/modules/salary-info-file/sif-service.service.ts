@@ -35,4 +35,8 @@ export class SifServiceService {
   getSIFFileDetail(fileName: any) {
     return this.httpService.get(`sif/getSifonfilename/` + fileName);
   }
+
+  uploadSIFSftp(fileName: any) {
+    return this.httpService.post(`sif/upload`, fileName);
+  }
 }

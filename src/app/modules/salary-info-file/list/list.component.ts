@@ -135,11 +135,12 @@ export class ListComponent implements OnInit {
       this.sifedrrecoreds.push(item?.sifEdrBean[j])
     }
     delete item?.sifEdrBean
-    delete item?.sifscrfileid
-    this.sifscrrecored = item;
+    // delete item?.sifscrfileid
+    // this.sifscrrecored = item;
     let payload = {
       "sifextension": "SIF",
       "croprateid": "0000000000617",
+      "sifscrfileid": item?.sifscrfileid,
       "sifedrrecoreds": this.sifedrrecoreds,
       "sifscrrecored": this.sifscrrecored
     }
