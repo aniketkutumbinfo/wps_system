@@ -39,4 +39,8 @@ export class SifServiceService {
   uploadSIFSftp(fileName: any) {
     return this.httpService.post(`sif/upload`, fileName);
   }
+
+  deleteSIFRecord(data: any) {
+    return this.httpService.delete(`sif/deletesiffile/` + data.siffileid);
+  }
 }

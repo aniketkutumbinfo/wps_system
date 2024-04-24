@@ -9,6 +9,7 @@
                 <th style="min-width:200px">File Remarks</th>
                 <th style="min-width:200px">File Status</th>
                 <th style="min-width:200px">File Creation Day</th>
+                <th style="min-width:200px">Action</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-data>
@@ -18,6 +19,11 @@
                 <td>{{data.fileRemarks}}</td>
                 <td>{{data.filestatus}}</td>
                 <td>{{data.filecreationdate}}</td>
+                <td>
+                    <button class="action-btns table-delete-ico" (click)="onDelete(data)"> <img
+                            src="/assets/images/delete-ico.png" />
+                    </button>
+                </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
@@ -31,3 +37,5 @@
 </div>
 <p-button label="Submit" (click)="uploadSIF()">
 </p-button>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SifServiceService } from '../sif-service.service';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-sif-list',
@@ -10,7 +10,8 @@ import { MessageService } from 'primeng/api';
 export class SifListComponent {
   listSIFFiles: any = []
   constructor(private sfiSerive: SifServiceService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService,
   ) { }
 
   ngOnInit() {
@@ -38,5 +39,22 @@ export class SifListComponent {
         this.getData();
       }
     })
+  }
+
+  onDelete(data: any) {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to delete?',
+      accept: () => {
+        this.sfiSerive.deleteSIFRecord(data).subscribe(res => {
+          if (res) {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success', detail: 'Entry successfully deleted'
+            });
+            this.getData();
+          }
+        });
+      }
+    });
   }
 }
