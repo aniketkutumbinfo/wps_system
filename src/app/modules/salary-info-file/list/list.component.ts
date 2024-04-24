@@ -139,10 +139,10 @@ export class ListComponent implements OnInit {
     this.sifscrrecored = item;
     let payload = {
       "sifextension": "SIF",
-      "croprateid": "0000000000617",
+      "corporateid": "0000000000617",
       "sifscrfileid": item?.sifscrfileid,
-      "sifedrrecoreds": this.sifedrrecoreds,
-      "sifscrrecored": this.sifscrrecored
+      "sifedrrecords": this.sifedrrecoreds,
+      "sifscrrecord": this.sifscrrecored
     }
     this.sfiSerive.createZipFile(payload).subscribe(res => {
       if (res) {
