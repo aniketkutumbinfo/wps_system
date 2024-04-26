@@ -10,7 +10,8 @@ import { SifServiceService } from '../sif-service.service';
 
 export class SifDetailsComponent {
   fileName: any;
-  sifFileDetail: any
+  sifFileDetail: any;
+  value: any;
   constructor(private route: ActivatedRoute,
     private sfiSerive: SifServiceService,
   ) {
@@ -24,8 +25,7 @@ export class SifDetailsComponent {
 
   getData(fileName: any) {
     this.sfiSerive.getSIFFileDetail(fileName).subscribe(res => {
-      this.sifFileDetail = res;
-      console.log(this.sifFileDetail)
+      this.sifFileDetail = res[0];
     })
   }
 

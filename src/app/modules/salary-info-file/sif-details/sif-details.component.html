@@ -1,1 +1,161 @@
-<p>sif-details works!</p>
+<div class="row">
+    <div class="col-3">
+        <label for="location" class="form-label">
+            Corporate Id
+        </label>
+        <input id="location" class="form-control" readonly type="text" [ngModel]="this.sifFileDetail?.croprateid"
+            pInputText>
+    </div>
+    <div class="col-3">
+        <label for="location" class="form-label">
+            File Remarks
+        </label>
+        <input id="location" class="form-control" readonly type="text" [ngModel]="this.sifFileDetail?.fileRemarks"
+            pInputText>
+    </div>
+    <div class="col-3">
+        <label for="location" class="form-label">
+            File Creation Date
+        </label>
+        <input id="location" class="form-control" readonly type="text" [ngModel]="this.sifFileDetail?.filecreationdate"
+            pInputText>
+    </div>
+    <div class="col-3">
+        <label for="location" class="form-label">
+            File Name
+        </label>
+        <input id="location" class="form-control" readonly type="text" [ngModel]="this.sifFileDetail?.filename"
+            pInputText>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-3">
+        <label for="location" class="form-label">
+            File Status
+        </label>
+        <input id="location" class="form-control" readonly type="text" [ngModel]="this.sifFileDetail?.filestatus"
+            pInputText>
+    </div>
+    <div class="col-3">
+        <label for="location" class="form-label">
+            Makker Date
+        </label>
+        <input id="location" class="form-control" readonly type="text" [ngModel]="this.sifFileDetail?.makkerdate"
+            pInputText>
+    </div>
+</div>
+<br>
+<hr>
+<div>
+    <h6>SIF SCR Record
+    </h6>
+    <div class="row">
+        <div class="col-3">
+            <label for="location" class="form-label">
+                Employer Reference
+            </label>
+            <input id="location" class="form-control" readonly type="text"
+                [ngModel]="this.sifFileDetail?.sifscrrecords[0]?.employerreference" pInputText>
+        </div>
+        <div class="col-3">
+            <label for="location" class="form-label">
+                Employer Qnique Id
+            </label>
+            <input id="location" class="form-control" readonly type="text"
+                [ngModel]="this.sifFileDetail?.sifscrrecords[0]?.employeruniqueid" pInputText>
+        </div>
+        <div class="col-3">
+            <label for="location" class="form-label">
+                File Creation Date
+            </label>
+            <input id="location" class="form-control" readonly type="text"
+                [ngModel]="this.sifFileDetail?.sifscrrecords[0]?.filecreationdate" pInputText>
+        </div>
+        <div class="col-3">
+            <label for="location" class="form-label">
+                Maker Date
+            </label>
+            <input id="location" class="form-control" readonly type="text"
+                [ngModel]="this.sifFileDetail?.sifscrrecords[0]?.makerdate" pInputText>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-3">
+            <label for="location" class="form-label">
+                Payment Currency
+            </label>
+            <input id="location" class="form-control" readonly type="text"
+                [ngModel]="this.sifFileDetail?.sifscrrecords[0]?.paymentcurrency" pInputText>
+        </div>
+        <div class="col-3">
+            <label for="location" class="form-label">
+                Record Type
+            </label>
+            <input id="location" class="form-control" readonly type="text"
+                [ngModel]="this.sifFileDetail?.sifscrrecords[0]?.recordtype" pInputText>
+        </div>
+        <div class="col-3">
+            <label for="location" class="form-label">
+                Routing Code Employers Bank
+            </label>
+            <input id="location" class="form-control" readonly type="text"
+                [ngModel]="this.sifFileDetail?.sifscrrecords[0]?.routingcodeemployersbank" pInputText>
+        </div>
+        <div class="col-3">
+            <label for="location" class="form-label">
+                Salary Month
+            </label>
+            <input id="location" class="form-control" readonly type="text"
+                [ngModel]="this.sifFileDetail?.sifscrrecords[0]?.salarymonth" pInputText>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-3">
+            <label for="location" class="form-label">
+                Total Salary
+            </label>
+            <input id="location" class="form-control" readonly type="text" [ngModel]="this.sifFileDetail?.sifscrrecords[0]?.totalsalary
+            " pInputText>
+        </div>
+    </div>
+</div>
+<br>
+<hr>
+<div>
+    <h6>SIF EDR Records
+    </h6>
+    <p-table #dt1 dataKey="code" [value]="this.sifFileDetail?.sifedrrecords" [scrollable]="true" [paginator]="true"
+        [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true"
+        [tableStyle]="{'min-width': '50rem'}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="min-width:200px">Employee Id</th>
+                <th style="min-width:200px">Pay Start Date</th>
+                <th style="min-width:200px">Pay End Date</th>
+                <th style="min-width:200px">Load Amount</th>
+                <th style="min-width:200px">Inc Load Amount</th>
+                <th style="min-width:200px">Emp Leave Days</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+            <tr>
+                <td>{{data.empid}}</td>
+                <td>{{data.paystartdate}}</td>
+                <td>{{data.payenddate}}</td>
+                <td>{{data.incomefixcomp}}</td>
+                <td>{{data.incomevarcomp}}</td>
+                <td>{{data.daysleaveprd}}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td class="text-center" [attr.colspan]="7">
+                    No records found
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

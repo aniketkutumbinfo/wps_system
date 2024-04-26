@@ -16,6 +16,10 @@ export class SifServiceService {
     return this.httpService.get(`store/sif/getData?CorporateId=${CorporateId}&makkerDate=${makkerDate}`);
   }
 
+  getRecordsEmployeeIds(CorporateId: any) {
+    return this.httpService.get(`store/sif/getwkrecbycorpid/` + CorporateId);
+  }
+
   deleteRecord(sifEdrFileId: any, sifScrFileId: any) {
     return this.httpService.delete(`store/sif/edr/delete?sifscrfileid=${sifScrFileId}&sifedrfileid=${sifEdrFileId}`);
   }

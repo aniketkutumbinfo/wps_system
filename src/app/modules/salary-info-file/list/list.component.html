@@ -3,6 +3,13 @@
         <i class="pi pi-search"></i>
         <input type="text" placeholder="Search for employee Id" pInputText [(ngModel)]="value" />
     </div>
+    <div class="card">
+        <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop
+            (onFileDropped)="selectedFileChange($event, 'drop')">
+            <p>Drag and drop or click here to upload your .xslx file</p>
+            <input hidden type="file" #fileInput (change)="selectedFileChange($event, 'select')" />
+        </div>
+    </div>
     <p-accordion (onClose)="onTabClose($event)" (onOpen)="onTabOpen($event)">
         <p-accordionTab *ngFor="let item of sifRecords">
             <ng-template pTemplate="header">
@@ -55,13 +62,7 @@
     </p-accordion>
 </div>
 <!-- *ngIf="!sifRecords.length"  -->
-<div class="card">
-    <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop
-        (onFileDropped)="selectedFileChange($event, 'drop')">
-        <p>Drag and drop or click here to upload your .xslx file</p>
-        <input hidden type="file" #fileInput (change)="selectedFileChange($event, 'select')" />
-    </div>
-</div>
+
 
 <ng-container *ngIf="showEditSIF">
     <app-edit-sif-info [isVisible]="showEditSIF" [data]="selectedRecord" (closeFlyout)="onCloseShowEditSIF()"

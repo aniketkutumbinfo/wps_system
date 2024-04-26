@@ -23,6 +23,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+    this.getDataEmployee();
   }
 
   selectedFileChange(event: any, type: string) {
@@ -152,6 +153,12 @@ export class ListComponent implements OnInit {
         });
         this.getData(this.uploadObj?.employeruniqueid, this.uploadObj?.makerdate);
       }
+    })
+  }
+
+  getDataEmployee(id?: string) {
+    this.sfiSerive.getRecordsEmployeeIds("0000000000617").subscribe(res => {
+      // this.sifRecords = res;
     })
   }
 }
