@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonService } from '../shared/services/common.service';
 
 @Component({
   selector: 'app-home-layout',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-layout.component.scss']
 })
 export class HomeLayoutComponent {
+
+  constructor(public commonService: CommonService){}
 
 }

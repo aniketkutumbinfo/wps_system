@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    baseUrl: "https://iriswebapidev.azurewebsites.net/api/",
+    baseUrl: "http://172.31.0.33:8085/",
 };

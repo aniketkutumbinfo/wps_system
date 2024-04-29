@@ -1,0 +1,13 @@
+.homepage-loader .gif-holder {
+  width: 260px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.homepage-loader .gif-holder img {
+  width: 70px;
+}
