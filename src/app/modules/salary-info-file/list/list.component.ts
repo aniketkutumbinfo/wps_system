@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Observable, ReplaySubject } from 'rxjs';
 import { SifServiceService } from 'src/app/modules/salary-info-file/sif-service.service';
@@ -19,7 +20,8 @@ export class ListComponent implements OnInit {
 
   constructor(private sfiSerive: SifServiceService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getData();
@@ -151,7 +153,8 @@ export class ListComponent implements OnInit {
           severity: 'success',
           summary: 'Success', detail: 'Successfully created'
         });
-        this.getData(this.uploadObj?.employeruniqueid, this.uploadObj?.makerdate);
+        // this.getData(this.uploadObj?.employeruniqueid, this.uploadObj?.makerdate);
+        this.router.navigate(['sif/files']);
       }
     })
   }

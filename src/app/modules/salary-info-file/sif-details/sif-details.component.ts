@@ -20,7 +20,7 @@ export class SifDetailsComponent {
   ngOnInit() {
     // 'fileName' is the name of the route parameter
     this.fileName = this.route.snapshot.params['fileName'];
-    this.getData(this.fileName)
+    this.getData(this.fileName);
   }
 
   getData(fileName: any) {

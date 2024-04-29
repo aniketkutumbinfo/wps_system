@@ -12,10 +12,10 @@ const routes: Routes = [
     path: 'list', component: ListComponent
   },
   {
-    path: 'sifFiles', component: SifListComponent
+    path: 'files', component: SifListComponent
   },
   {
-    path: 'sifFile-detail/:fileName', component: SifDetailsComponent
+    path: 'details/:fileName', component: SifDetailsComponent
   }
 ];
 

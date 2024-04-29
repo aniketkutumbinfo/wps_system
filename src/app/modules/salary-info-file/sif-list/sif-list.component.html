@@ -15,7 +15,7 @@
         <ng-template pTemplate="body" let-data>
             <tr>
                 <td>{{data.croprateid}}</td>
-                <td><a [routerLink]="['../sifFile-detail', data.filename]">{{data.filename}}</a></td>
+                <td><a [routerLink]="['../details', data.filename]">{{data.filename}}</a></td>
                 <td>{{data.fileRemarks}}</td>
                 <td>{{data.filestatus}}</td>
                 <td>{{data.filecreationdate}}</td>

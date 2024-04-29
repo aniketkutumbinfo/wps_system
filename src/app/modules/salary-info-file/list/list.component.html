@@ -1,9 +1,9 @@
-<div class="card" *ngIf="sifRecords.length">
+<div class="card">
     <div class="p-input-icon-left m-2">
         <i class="pi pi-search"></i>
         <input type="text" placeholder="Search for employee Id" pInputText [(ngModel)]="value" />
     </div>
-    <div class="card">
+    <div class="card" *ngIf="!sifRecords.length">
         <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop
             (onFileDropped)="selectedFileChange($event, 'drop')">
             <p>Drag and drop or click here to upload your .xslx file</p>

@@ -8,7 +8,9 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   styleUrls: ['./sif-list.component.scss']
 })
 export class SifListComponent {
-  listSIFFiles: any = []
+  listSIFFiles: any = [];
+  fileNameList: any = [];
+
   constructor(private sfiSerive: SifServiceService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
@@ -18,14 +20,12 @@ export class SifListComponent {
     this.getData();
   }
 
-
   getData() {
     this.sfiSerive.getSIFFiles().subscribe(res => {
       this.listSIFFiles = res;
     })
   }
 
-  fileNameList: any = []
   uploadSIF() {
     for (let i = 0; i < this.listSIFFiles.length; i++) {
       this.fileNameList.push(this.listSIFFiles[i].filename)
