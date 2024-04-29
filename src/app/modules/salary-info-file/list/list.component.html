@@ -61,15 +61,12 @@
         </p-accordionTab>
     </p-accordion>
 </div>
-<!-- *ngIf="!sifRecords.length"  -->
-
 
 <ng-container *ngIf="showEditSIF">
     <app-edit-sif-info [isVisible]="showEditSIF" [data]="selectedRecord" (closeFlyout)="onCloseShowEditSIF()"
         (update)="onUpdate($event)"></app-edit-sif-info>
 </ng-container>
 
-<!-- <p-button label="Submit" (click)="createZipFile()">
-</p-button> -->
+<p-toast></p-toast>
 
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

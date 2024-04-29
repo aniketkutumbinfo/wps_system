@@ -153,7 +153,6 @@ export class ListComponent implements OnInit {
           severity: 'success',
           summary: 'Success', detail: 'Successfully created'
         });
-        // this.getData(this.uploadObj?.employeruniqueid, this.uploadObj?.makerdate);
         this.router.navigate(['sif/files']);
       }
     })
