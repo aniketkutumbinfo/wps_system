@@ -9,23 +9,19 @@ export class SifServiceService {
   constructor(private httpService: HttpService) { }
 
   createExcelTable(data: any) {
-    return this.httpService.post('store/sif/send/csv', data)
+    return this.httpService.post('uplaod/csv', data)
   }
 
-  getRecords(CorporateId = '0000000000617', makkerDate = new Date().toISOString().slice(0, 10)) {
-    return this.httpService.get(`store/sif/getData?CorporateId=${CorporateId}&makkerDate=${makkerDate}`);
+  getRecords(csvfilename = 'example.xlsx') {
+    return this.httpService.get(`get/csv?csvfilename=${csvfilename}`);
   }
 
-  getRecordsEmployeeIds(CorporateId: any) {
-    return this.httpService.get(`store/sif/getwkrecbycorpid/` + CorporateId);
-  }
-
-  deleteRecord(sifEdrFileId: any, sifScrFileId: any) {
-    return this.httpService.delete(`store/sif/edr/delete?sifscrfileid=${sifScrFileId}&sifedrfileid=${sifEdrFileId}`);
+  deleteRecord(sifscrfileid: number, sifedrfileid:number) {
+    return this.httpService.delete(`sif/edr/delete?sifscrfileid=${sifscrfileid}&sifedrfileid=${sifedrfileid}`);
   }
 
   updateRecord(data: any) {
-    return this.httpService.put(`store/sif/edr/update`, data);
+    return this.httpService.put(`sif/edr/update`, data);
   }
 
   createZipFile(data: any) {
@@ -41,7 +37,7 @@ export class SifServiceService {
   }
 
   uploadSIFSftp(fileName: any) {
-    return this.httpService.post(`sif/upload`, fileName);
+    return this.httpService.post(`uplaod/sif`, fileName);
   }
 
   deleteSIFRecord(data: any) {

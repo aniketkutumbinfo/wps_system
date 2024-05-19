@@ -17,6 +17,7 @@ export class ListComponent implements OnInit {
   selectedRecord: any;
   sifedrrecoreds: any = [];
   sifscrrecored: any = {};
+  sifscrfileid: any;
 
   constructor(private sfiSerive: SifServiceService,
     private confirmationService: ConfirmationService,
@@ -25,7 +26,6 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
-    this.getDataEmployee();
   }
 
   selectedFileChange(event: any, type: string) {
@@ -44,16 +44,18 @@ export class ListComponent implements OnInit {
       }
       this.sfiSerive.createExcelTable(item).subscribe(res => {
         if (res) {
+          this.messageService.add({ severity: 'success', summary: res.responsemassage });
           this.uploadObj = res;
-          this.getData(res.employeruniqueid, res.makerdate);
+          this.getData(uploadedFiles.name);
         }
-      })
+      }, err => this.messageService.add({ severity: 'error', summary: err }))
     });
   }
 
-  getData(id?: string, date?: any) {
-    this.sfiSerive.getRecords(id, date).subscribe(res => {
-      this.sifRecords = res;
+  getData(fileName?: string) {
+    this.sfiSerive.getRecords(fileName).subscribe(res => {
+      this.sifRecords = res[0].sifScrBean;
+
     })
   }
 
@@ -64,24 +66,23 @@ export class ListComponent implements OnInit {
     reader.onload = (event: any) => result.next(btoa(event.target.result.toString()));
     return result;
   }
-  sifScrFileId: any
+
   onEdit(data: any, item: any) {
     this.showEditSIF = true;
     this.selectedRecord = data;
-    this.sifScrFileId = item.sifScrFileId;
+    this.sifscrfileid = item.sifscrfileid;
   }
 
   onDelete(data: any, item: any) {
     this.confirmationService.confirm({
       message: 'Are you sure that you want to delete?',
       accept: () => {
-        this.sfiSerive.deleteRecord(data.sifedrfileid, item.sifscrfileid).subscribe(res => {
+        this.sfiSerive.deleteRecord(item.sifscrfileid, data.sifedrfileid).subscribe(res => {
           if (res) {
             this.messageService.add({
-              severity: 'success',
-              summary: 'Success', detail: 'Entry successfully deleted'
+              severity: 'success', detail: res.responsemassage
             });
-            this.getData(this.uploadObj?.employeruniqueid, this.uploadObj?.makerdate);
+            this.getData(this.uploadObj?.sifcsvfilename);
           }
         });
       }
@@ -90,37 +91,25 @@ export class ListComponent implements OnInit {
 
   onCloseShowEditSIF() {
     this.showEditSIF = false;
-    this.getData(this.uploadObj?.employeruniqueid, this.uploadObj?.makerdate);
+    this.getData(this.uploadObj?.sifcsvfilename);
   }
 
   onUpdate(event: any) {
-    let item = {
-      "sifScrFileId": this.sifScrFileId,
-      "sifEdrFileId": this.selectedRecord.sifEdrFileId,
-      "recordtype": this.selectedRecord.recordtype,
-      "sifrecoredid": this.selectedRecord.sifrecoredid,
-      "empid": this.selectedRecord.empid,
-      "agentroutingcode": this.selectedRecord.agentroutingcode,
-      "empacctwithagent": this.selectedRecord.empacctwithagent,
-      "paystartdate": event.paystartdate,
-      "payenddate": event.payenddate,
-      "daysInPeriod": this.selectedRecord.daysInPeriod,
-      "incomefixcomp": event.incomefixcomp,
-      "incomevarcomp": event.incomevarcomp,
-      "daysleaveprd": event.daysleaveprd,
-      "makerdate": this.selectedRecord.makerdate
+    const payload = {
+      "sifscrfileid": this.sifscrfileid,
+      ...this.selectedRecord,
+      ...event
     }
     if (event) {
-      const payload = { ...item };
       this.sfiSerive.updateRecord(payload).subscribe(res => {
         if (res) {
           this.messageService.add({
             severity: 'success',
-            summary: 'Success', detail: 'Successfully updated'
+            summary: res.responsemassage
           });
           this.showEditSIF = false;
           this.selectedRecord = undefined;
-          this.getData(this.uploadObj?.employeruniqueid, this.uploadObj?.makerdate);
+          this.getData(this.uploadObj?.sifcsvfilename);
         }
       })
     }
@@ -158,9 +147,4 @@ export class ListComponent implements OnInit {
     })
   }
 
-  getDataEmployee(id?: string) {
-    this.sfiSerive.getRecordsEmployeeIds("0000000000617").subscribe(res => {
-      // this.sifRecords = res;
-    })
-  }
 }
