@@ -8,8 +8,12 @@ export class SifServiceService {
 
   constructor(private httpService: HttpService) { }
 
-  createExcelTable(data: any) {
-    return this.httpService.post('uplaod/csv', data)
+  uploadCSVFile(data: any) {
+    return this.httpService.post('uplaod/csv', data);
+  }
+
+  getAllPendingSif() {
+    return this.httpService.get(`pending/sif`);
   }
 
   getRecords(csvfilename = 'example.xlsx') {
@@ -18,6 +22,10 @@ export class SifServiceService {
 
   deleteRecord(sifscrfileid: number, sifedrfileid:number) {
     return this.httpService.delete(`sif/edr/delete?sifscrfileid=${sifscrfileid}&sifedrfileid=${sifedrfileid}`);
+  }
+
+  deleteSifFile(siffilename: string) {
+    return this.httpService.delete(`delete/sif?siffilename=${siffilename}`);
   }
 
   updateRecord(data: any) {

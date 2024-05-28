@@ -14,12 +14,14 @@
         <p-accordionTab *ngFor="let item of sifRecords">
             <ng-template pTemplate="header">
                 <span class="flex align-items-center gap-2 w-full">
-                    {{item.employeruniqueid}} ({{item.filecreationdate}})
+                    {{item.sifcsvfilename}} ({{item.sifdeliverydate}})
                 </span>
-                <p-button label="Submit" (click)="createZipFile(item)">
+                <p-button severity="success" label="Submit" (click)="createZipFile(item)">
+                </p-button>
+                <p-button severity="danger" label="Delete File" (click)="deleteSifFile(item)">
                 </p-button>
             </ng-template>
-            <p-table #dt1 dataKey="code" [value]="item.sifEdrBean" [scrollable]="true" [paginator]="true" [rows]="10"
+            <p-table #dt1 dataKey="code" [value]="item?.sifScrBean[0]?.sifEdrBean" [scrollable]="true" [paginator]="true" [rows]="10"
                 [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
                 <ng-template pTemplate="header">
                     <tr>

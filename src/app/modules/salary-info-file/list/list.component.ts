@@ -12,7 +12,7 @@ import { SifServiceService } from 'src/app/modules/salary-info-file/sif-service.
 export class ListComponent implements OnInit {
   sifRecords: any = [];
   value!: any
-  uploadObj: any;
+  uploadedFileName: any;
   showEditSIF = false;
   selectedRecord: any;
   sifedrrecoreds: any = [];
@@ -25,7 +25,13 @@ export class ListComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.getData();
+    this.getAllPendingSif();
+  }
+
+  getAllPendingSif() {
+    this.sfiSerive.getAllPendingSif().subscribe(res => {
+      this.sifRecords = res;
+    });
   }
 
   selectedFileChange(event: any, type: string) {
@@ -42,20 +48,22 @@ export class ListComponent implements OnInit {
         fileName: uploadedFiles.name,
         base64: "TW9pbCBJZCxFbXBsb3llciBJZCxSb3V0aW5nIENvZGUsSWJhbiBObyxJbmNvbWUgZml4IENvbXBvbmVudCxJbmNvbWUgVmFyaWFibGUgQ29tcG9uZW50LExlYXZlIFBlcmlvZCxQYXkgU3RhcnQgRGF0ZSxQYXkgRW5kIERhdGUsU2FsYXJ5IE1vbnRoDQowMDAwMDAwMDAwNjE3LDIwMDAxMDE4ODA4Nzk3LDc0MTMxMDEwMSxBRTc4NDEzMDAwMDAwMDAwMDAxMDQwMiwxMTAxLDIxMCwxLDIwMjQtMDEtMDEsMjAyNC0wMS0zMSwwMjIwMjQNCjAwMDAwMDAwMDA2MTcsMTAwMjcwNDY3NzgzNzIsNzQxMzEwMTAxLEFFNzU0MTMwMDAwMDAwMDAwMDA4ODA3LDExMDEsMjEwLDAsMjAyNC0wMS0wMSwyMDI0LTAxLTMxLDAyMjAyNA0KMDAwMDAwMDAwMDYxNywxMDAyMjEyOTE3MTQyOCw2MDAzMTAxMDEsQUUxNDAwMzAwMTI4NzA4MzI5MTAwMDEsNTAwMCwwLDAsMjAyNC0wMS0wMSwyMDI0LTAxLTMxLDAyMjAyNA=="
       }
-      this.sfiSerive.createExcelTable(item).subscribe(res => {
+      this.sfiSerive.uploadCSVFile(item).subscribe(res => {
         if (res) {
           this.messageService.add({ severity: 'success', summary: res.responsemassage });
-          this.uploadObj = res;
-          this.getData(uploadedFiles.name);
+          this.uploadedFileName = res.fileName;
+          this.getData(res.fileName);
         }
-      }, err => this.messageService.add({ severity: 'error', summary: err }))
+      }, err => {
+        const error = err.error;
+        this.messageService.add({ severity: 'error', summary: `${error.fileName} ${error.responsemassage}` })
+      })
     });
   }
 
   getData(fileName?: string) {
     this.sfiSerive.getRecords(fileName).subscribe(res => {
-      this.sifRecords = res[0].sifScrBean;
-
+      this.sifRecords = res;
     })
   }
 
@@ -70,19 +78,35 @@ export class ListComponent implements OnInit {
   onEdit(data: any, item: any) {
     this.showEditSIF = true;
     this.selectedRecord = data;
-    this.sifscrfileid = item.sifscrfileid;
+    this.sifscrfileid = item.sifScrBean[0].sifscrfileid;
   }
 
   onDelete(data: any, item: any) {
     this.confirmationService.confirm({
       message: 'Are you sure that you want to delete?',
       accept: () => {
-        this.sfiSerive.deleteRecord(item.sifscrfileid, data.sifedrfileid).subscribe(res => {
+        this.sfiSerive.deleteRecord(item.sifScrBean[0].sifscrfileid, data.sifedrfileid).subscribe(res => {
           if (res) {
             this.messageService.add({
               severity: 'success', detail: res.responsemassage
             });
-            this.getData(this.uploadObj?.sifcsvfilename);
+            this.getAllPendingSif();
+          }
+        });
+      }
+    });
+  }
+
+  deleteSifFile(item: any) {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to delete?',
+      accept: () => {
+        this.sfiSerive.deleteSifFile(item.siffileName).subscribe(res => {
+          if (res) {
+            this.messageService.add({
+              severity: 'success', detail: res.responsemassage
+            });
+            this.getAllPendingSif();
           }
         });
       }
@@ -91,7 +115,7 @@ export class ListComponent implements OnInit {
 
   onCloseShowEditSIF() {
     this.showEditSIF = false;
-    this.getData(this.uploadObj?.sifcsvfilename);
+    this.getData(this.uploadedFileName);
   }
 
   onUpdate(event: any) {
@@ -109,7 +133,7 @@ export class ListComponent implements OnInit {
           });
           this.showEditSIF = false;
           this.selectedRecord = undefined;
-          this.getData(this.uploadObj?.sifcsvfilename);
+          this.getAllPendingSif();
         }
       })
     }
