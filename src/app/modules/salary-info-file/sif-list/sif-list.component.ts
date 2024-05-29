@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { SifServiceService } from '../sif-service.service';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-sif-list',
@@ -10,51 +12,30 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 export class SifListComponent {
   listSIFFiles: any = [];
   fileNameList: any = [];
+  form!: FormGroup;
 
   constructor(private sfiSerive: SifServiceService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService,
+    private fb: FormBuilder,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      startDate: [new Date(), Validators.required],
+      endDate: [new Date(), Validators.required]
+    });
+
     this.getData();
   }
 
   getData() {
-    this.sfiSerive.getSIFFiles().subscribe(res => {
+    const { startDate, endDate } = this.form.value;
+    const sDate = this.datePipe.transform(startDate, 'yyyy-MM-dd');
+    const eDate = this.datePipe.transform(endDate, 'yyyy-MM-dd');
+    this.sfiSerive.getSIFFiles(sDate, eDate).subscribe(res => {
       this.listSIFFiles = res;
     })
   }
 
-  uploadSIF() {
-    for (let i = 0; i < this.listSIFFiles.length; i++) {
-      this.fileNameList.push(this.listSIFFiles[i].filename)
-    }
-    this.sfiSerive.uploadSIFSftp({ filenames: this.fileNameList }).subscribe(res => {
-      if (res) {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success', detail: 'Successfully uploaded'
-        });
-        this.getData();
-      }
-    })
-  }
-
-  onDelete(data: any) {
-    this.confirmationService.confirm({
-      message: 'Are you sure that you want to delete?',
-      accept: () => {
-        this.sfiSerive.deleteSIFRecord(data).subscribe(res => {
-          if (res) {
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Success', detail: 'Entry successfully deleted'
-            });
-            this.getData();
-          }
-        });
-      }
-    });
-  }
 }

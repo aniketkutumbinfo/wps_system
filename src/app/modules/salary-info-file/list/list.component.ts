@@ -146,29 +146,14 @@ export class ListComponent implements OnInit {
   }
 
   createZipFile(item: any) {
-    for (let j = 0; j < item?.sifEdrBean?.length; j++) {
-      delete item?.sifEdrBean[j]?.sifedrfileid
-      this.sifedrrecoreds.push(item?.sifEdrBean[j])
-    }
-    delete item?.sifEdrBean
-    // delete item?.sifscrfileid
-    this.sifscrrecored = item;
-    let payload = {
-      "sifextension": "SIF",
-      "corporateid": "0000000000617",
-      "sifscrfileid": item?.sifscrfileid,
-      "sifedrrecords": this.sifedrrecoreds,
-      "sifscrrecord": this.sifscrrecored
-    }
-    this.sfiSerive.createZipFile(payload).subscribe(res => {
-      if (res) {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success', detail: 'Successfully created'
-        });
-        this.router.navigate(['sif/files']);
-      }
+    this.sfiSerive.uploadSIFSftp(item.siffileName).subscribe(res => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success', detail: res.responsemassage
+      });
+      this.getAllPendingSif();
     })
+    
   }
 
 }

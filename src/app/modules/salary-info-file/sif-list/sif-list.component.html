@@ -1,42 +1,54 @@
-<div class="card">
+<div class="row" [formGroup]="form">
+    <div class="col-4">
+        <label for="eDate" class="form-label">
+            Start Date
+        </label>
+        <p-calendar id="eDate" formControlName="startDate" dateFormat="yy-mm-dd" [showIcon]="true"
+            [readonlyInput]="true"></p-calendar>
+    </div>
+    <div class="col-4">
+        <label for="eDate" class="form-label">
+            End Date
+        </label>
+        <p-calendar id="eDate" formControlName="endDate" dateFormat="yy-mm-dd" [showIcon]="true"
+            [readonlyInput]="true"></p-calendar>
+    </div>
+    <p-button class="col-2" severity="success" label="Filter" [disabled]="form.invalid" (click)="getData()">
+    </p-button>
+</div>
 
+<div class="card">
     <p-table #dt1 dataKey="code" [value]="listSIFFiles" [scrollable]="true" [paginator]="true" [rows]="10"
         [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header">
             <tr>
                 <th style="min-width:200px">Corporate Id</th>
-                <th style="min-width:200px">File Name</th>
+                <th style="min-width:200px">CSV File Name</th>
+                <th style="min-width:200px">SIF File Name</th>
                 <th style="min-width:200px">File Remarks</th>
                 <th style="min-width:200px">File Status</th>
-                <th style="min-width:200px">File Creation Day</th>
-                <th style="min-width:200px">Action</th>
+                <th style="min-width:200px">File Uploaded Date</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-data>
             <tr>
-                <td>{{data.croprateid}}</td>
-                <td><a [routerLink]="['../details', data.filename]">{{data.filename}}</a></td>
-                <td>{{data.fileRemarks}}</td>
-                <td>{{data.filestatus}}</td>
-                <td>{{data.filecreationdate}}</td>
-                <td>
-                    <button class="action-btns table-delete-ico" (click)="onDelete(data)"> <img
-                            src="/assets/images/delete-ico.png" />
-                    </button>
-                </td>
+                <td>{{data.sifcorporteid}}</td>
+                <td>{{data.sifcsvfilename}}</td>
+                <td>{{data.siffileName}}</td>
+                <td>{{data.remarks}}</td>
+                <td>{{data.siffilestatus === 'U' ? 'Uploaded': ''}}</td>
+                <td>{{data.sifuploaddate}}</td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
             <tr>
-                <td class="text-center" [attr.colspan]="7">
+                <td class="text-center" [attr.colspan]="6">
                     No records found
                 </td>
             </tr>
         </ng-template>
     </p-table>
 </div>
-<p-button label="Submit" (click)="uploadSIF()">
-</p-button>
 
 <p-toast></p-toast>
 

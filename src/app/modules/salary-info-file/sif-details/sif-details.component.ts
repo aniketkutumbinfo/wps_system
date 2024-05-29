@@ -24,9 +24,9 @@ export class SifDetailsComponent {
   }
 
   getData(fileName: any) {
-    this.sfiSerive.getSIFFileDetail(fileName).subscribe(res => {
-      this.sifFileDetail = res[0];
-    })
+    // this.sfiSerive.getSIFFileDetail(fileName).subscribe(res => {
+    //   this.sifFileDetail = res[0];
+    // })
   }
 
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { SalaryInfoFileRoutingModule } from './salary-info-file-routing.module';
 import { ListComponent } from './list/list.component';
@@ -22,6 +22,9 @@ import { SifDetailsComponent } from './sif-details/sif-details.component';
     CommonModule,
     SalaryInfoFileRoutingModule,
     SharedModule
+  ],
+  providers: [
+    DatePipe
   ]
 })
 export class SalaryInfoFileModule { }

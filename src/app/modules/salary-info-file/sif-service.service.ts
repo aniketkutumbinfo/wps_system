@@ -32,23 +32,12 @@ export class SifServiceService {
     return this.httpService.put(`sif/edr/update`, data);
   }
 
-  createZipFile(data: any) {
-    return this.httpService.post('sif/create', data)
+  uploadSIFSftp(siffilename: any) {
+    return this.httpService.get(`uplaod/sif?siffilename=${siffilename}`);
   }
 
-  getSIFFiles() {
-    return this.httpService.get(`sif/getsiffiles`);
+  getSIFFiles(startdate:any, endDate:any) {
+    return this.httpService.get(`get/sif/uplaod/bydate?startdate=${startdate}&enddate=${endDate}`);
   }
 
-  getSIFFileDetail(fileName: any) {
-    return this.httpService.get(`sif/getSifonfilename/` + fileName);
-  }
-
-  uploadSIFSftp(fileName: any) {
-    return this.httpService.post(`uplaod/sif`, fileName);
-  }
-
-  deleteSIFRecord(data: any) {
-    return this.httpService.delete(`sif/deletesiffile/` + data.siffileid);
-  }
 }
