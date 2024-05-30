@@ -52,7 +52,7 @@ export class ListComponent implements OnInit {
         if (res) {
           this.messageService.add({ severity: 'success', summary: res.responsemassage });
           this.uploadedFileName = res.fileName;
-          this.getData(res.fileName);
+          this.getAllPendingSif();
         }
       }, err => {
         const error = err.error;
