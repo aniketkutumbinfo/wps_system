@@ -9,12 +9,15 @@
     </div>
     <div class="left-menu">
       <ul>
-        <li><a class="nav-link" routerLink="/sif" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }">
+        <li><a class="nav-link" routerLink="/sif" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <img src="/assets/images/sif-ico.png" class="ico" />Salary Information File
           </a></li>
-        <li><a href=""><img src="/assets/images/pif-ico.png" class="ico" />Personal Information File</a></li>
-        <li><a href=""><img src="/assets/images/prf-ico.png" class="ico" />Personal Relationship File</a></li>
+        <li><a class="nav-link" routerLink="/pif" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"><img src="/assets/images/pif-ico.png" class="ico" />Personal
+            Information File</a></li>
+        <li><a class="nav-link" routerLink="/prf" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"><img src="/assets/images/prf-ico.png" class="ico" />Personal
+            Relationship File</a></li>
         <li><a href=""><img src="/assets/images/pfa-ico.png" class="ico" />Personal Filteration File</a></li>
         <li><a href=""><img src="/assets/images/dif-ico.png" class="ico" />Department Information File</a></li>
       </ul>

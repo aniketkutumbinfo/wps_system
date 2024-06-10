@@ -21,6 +21,14 @@ const routes: Routes = [
       {
         path: 'sif',
         loadChildren: () => import('./modules/salary-info-file/salary-info-file.module').then(m => m.SalaryInfoFileModule)
+      },
+      {
+        path: 'pif',
+        loadChildren: () => import('./modules/personal-information-file/personal-information-file.module').then(m => m.PersonalInformationFileModule)
+      },
+      {
+        path: 'prf',
+        loadChildren: () => import('./modules/personal-relationship-file/personal-relationship-file.module').then(m => m.PersonalRelationshipFileModule)
       }
     ]
   }
