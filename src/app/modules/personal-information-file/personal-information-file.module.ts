@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PersonalInformationFileRoutingModule } from './personal-information-file-routing.module';
 import { ListComponent } from './list/list.component';
 import { ViewComponent } from './view/view.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ViewComponent } from './view/view.component';
   ],
   imports: [
     CommonModule,
-    PersonalInformationFileRoutingModule
+    PersonalInformationFileRoutingModule,
+    SharedModule
   ]
 })
 export class PersonalInformationFileModule { }
