@@ -12,7 +12,7 @@ export class PersonalInformationService {
     return this.httpService.get(`paf/getAllPafFiles`);
   }
 
-  getRecById(id: any) {
+  getPafFileById(id: any) {
     return this.httpService.get(`paf/getRecById/` + id);
   }
 }
