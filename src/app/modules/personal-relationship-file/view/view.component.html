@@ -1,1 +1,140 @@
-<p>view works!</p>
+<div class="card">
+    <div class="row m-2">
+        <div class="col-3">
+            <label for="location" class="form-label">
+                File Name
+            </label>
+            <input id="location" class="form-control" readonly type="text" [ngModel]="this.prcDetail?.fileName"
+                pInputText>
+        </div>
+        <div class="col-3">
+            <label for="location" class="form-label">
+                File Reason
+            </label>
+            <input id="location" class="form-control" readonly type="text" [ngModel]="this.prcDetail?.fileReason"
+                pInputText>
+        </div>
+        <div class="col-3">
+            <label for="location" class="form-label">
+                File Creation Date
+            </label>
+            <input id="location" class="form-control" readonly type="text" [ngModel]="this.prcDetail?.fileCreationDate"
+                pInputText>
+        </div>
+        <div class="col-3">
+            <label for="location" class="form-label">
+                File Status
+            </label>
+            <input id="location" class="form-control" readonly type="text" [ngModel]="this.prcDetail?.fileStatus"
+                pInputText>
+        </div>
+    </div>
+    <br>
+    <div class="row m-2">
+        <div class="col-3">
+            <label for="location" class="form-label">
+                Optional 1
+            </label>
+            <input id="location" class="form-control" readonly type="text" [ngModel]="this.prcDetail?.optional1"
+                pInputText>
+        </div>
+        <div class="col-3">
+            <label for="location" class="form-label">
+                Makker Date
+            </label>
+            <input id="location" class="form-control" readonly type="text" [ngModel]="this.prcDetail?.makerDate"
+                pInputText>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <div class="m-2">
+        <h6>
+            Prc Rcr Records
+        </h6>
+        <div class="row m-2">
+            <div class="col-3">
+                <label for="location" class="form-label">
+                    Agent Reference
+                </label>
+                <input id="location" class="form-control" readonly type="text"
+                    [ngModel]="this.prcDetail?.prcrcrrecords[0]?.agentReference" pInputText>
+            </div>
+            <div class="col-3">
+                <label for="location" class="form-label">
+                    Record Type
+                </label>
+                <input id="location" class="form-control" readonly type="text"
+                    [ngModel]="this.prcDetail?.prcrcrrecords[0]?.recordType" pInputText>
+            </div>
+            <div class="col-3">
+                <label for="location" class="form-label">
+                    Total Fix Pay
+                </label>
+                <input id="location" class="form-control" readonly type="text"
+                    [ngModel]="this.prcDetail?.prcrcrrecords[0]?.totalFixPay" pInputText>
+            </div>
+            <div class="col-3">
+                <label for="location" class="form-label">
+                    Total Pay
+                </label>
+                <input id="location" class="form-control" readonly type="text"
+                    [ngModel]="this.prcDetail?.prcrcrrecords[0]?.totalPay" pInputText>
+            </div>
+        </div>
+        <br>
+        <div class="row m-2">
+            <div class="col-3">
+                <label for="location" class="form-label">
+                    Total Var Pay
+                </label>
+                <input id="location" class="form-control" readonly type="text"
+                    [ngModel]="this.prcDetail?.prcrcrrecords[0]?.totalVarPay" pInputText>
+            </div>
+            <div class="col-3">
+                <label for="location" class="form-label">
+                    File Creation Date
+                </label>
+                <input id="location" class="form-control" readonly type="text"
+                    [ngModel]="this.prcDetail?.prcrcrrecords[0]?.fileCreationDate" pInputText>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <div class="m-2">
+            <h6>
+                Prc Rdr Records
+            </h6>
+            <div class="m-2">
+                <p-table #dt1 dataKey="code" [value]="this.prcDetail?.prcrdrrecords" [scrollable]="true"
+                    [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true"
+                    [tableStyle]="{'min-width': '50rem'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="min-width:200px">Pif File Name</th>
+                            <th style="min-width:200px">Record Type</th>
+                            <th style="min-width:200px">Total Fix Pay</th>
+                            <th style="min-width:200px">Total Pay</th>
+                            <th style="min-width:200px">Total Var Pay</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-data>
+                        <tr>
+                            <td>{{data.pifFileName}}</td>
+                            <td>{{data.recordType}}</td>
+                            <td>{{data.totalFixPay}}</td>
+                            <td>{{data.totalPay}}</td>
+                            <td>{{data.totalVarPay}}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td class="text-center" [attr.colspan]="7">
+                                No records found
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>

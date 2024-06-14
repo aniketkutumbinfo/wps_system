@@ -9,6 +9,7 @@ import { PersonalRelationshipService } from '../personal-relationship.service';
 })
 export class ViewComponent implements OnInit {
   itemId: any;
+  prcDetail: any;
   constructor(private prcService: PersonalRelationshipService,
     private route: ActivatedRoute) { }
   ngOnInit() {
@@ -24,6 +25,7 @@ export class ViewComponent implements OnInit {
   getPrcDetail(id: any) {
     this.prcService.getPrcFileById(id)
       .subscribe(res => {
+        this.prcDetail = res;
         console.log(res)
       })
   }

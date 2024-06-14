@@ -9,6 +9,7 @@ import { PersonalInformationService } from '../personal-information.service';
 })
 export class ViewComponent implements OnInit {
   itemId: any;
+  pafDetail: any;
   constructor(private pifService: PersonalInformationService,
     private route: ActivatedRoute) { }
 
@@ -17,14 +18,15 @@ export class ViewComponent implements OnInit {
       this.itemId = params.get('id'); // The '+' operator converts the string to a number
       // Fetch and display the item details using this.itemId
       if (this.itemId) {
-        this.getPrcDetail(this.itemId)
+        this.getPafDetail(this.itemId)
       }
     });
   }
 
-  getPrcDetail(id: any) {
+  getPafDetail(id: any) {
     this.pifService.getPafFileById(id)
       .subscribe(res => {
+        this.pafDetail = res[0];
         console.log(res)
       })
   }
