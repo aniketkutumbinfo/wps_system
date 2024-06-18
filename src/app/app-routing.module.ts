@@ -29,6 +29,10 @@ const routes: Routes = [
       {
         path: 'prf',
         loadChildren: () => import('./modules/personal-relationship-file/personal-relationship-file.module').then(m => m.PersonalRelationshipFileModule)
+      },
+      {
+        path: 'dif',
+        loadChildren: () => import('./modules/department-information-file/deparment-file.module').then(m => m.DeparmentFileModule)
       }
     ]
   }
