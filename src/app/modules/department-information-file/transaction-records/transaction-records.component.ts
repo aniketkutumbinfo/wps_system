@@ -7,16 +7,33 @@ import { DepartmentService } from '../department.service';
   styleUrls: ['./transaction-records.component.scss']
 })
 export class TransactionRecordsComponent implements OnInit {
-  getAllDifFilesList: any = []
-  constructor(private difService: DepartmentService) { }
-
-  ngOnInit() {
-    this.getAllRecirdsOfPendingTxOfDif();
+  getAllDifFilesList: any = [];
+  selectedStatus: any;
+  statusList: any
+  constructor(private difService: DepartmentService) {
+    this.statusList = [
+      { label: "All", value: "All" },
+      { label: "P", value: "P" },
+      { label: "C", value: "C" },
+      { label: "R", value: "R" }
+    ]
   }
 
-  getAllRecirdsOfPendingTxOfDif() {
-    this.difService.getAllRecirdsOfPendingTxOfDif('C').subscribe(res => {
+  ngOnInit() {
+    this.getAllRecirdsOfPendingTxOfDif('C');
+  }
+
+  getAllRecirdsOfPendingTxOfDif(data: any) {
+    this.difService.getAllRecirdsOfPendingTxOfDif(data).subscribe(res => {
       this.getAllDifFilesList = res;
     });
+  }
+
+  onItemSelect(event: any) {
+    if (event.value.value === 'All') {
+      this.getAllRecirdsOfPendingTxOfDif('');
+    } else {
+      this.getAllRecirdsOfPendingTxOfDif(event.value.value);
+    }
   }
 }

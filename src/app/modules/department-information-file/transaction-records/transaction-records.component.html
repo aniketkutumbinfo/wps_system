@@ -1,4 +1,8 @@
 <div class="card">
+    <div>
+        <p-dropdown [ngModel]="selectedStatus" [options]="statusList" (onChange)="onItemSelect($event)" [showClear]="true" optionLabel="value"
+                    placeholder="Select" />
+    </div>
     <p-table #dt1 dataKey="code" [value]="this.getAllDifFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
         [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header">
