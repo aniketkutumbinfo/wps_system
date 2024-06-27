@@ -2,9 +2,9 @@
     <div class="row m-2">
         <div class="col-3">
             <label for="location" class="form-label">
-                File Name
+                Dif File Name
             </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.difDetail?.fileName"
+            <input id="location" class="form-control" readonly type="text" [ngModel]="this.difDetail?.difFileName"
                 pInputText>
         </div>
         <div class="col-3">
@@ -54,13 +54,6 @@
         <div class="row m-2">
             <div class="col-3">
                 <label for="location" class="form-label">
-                    Employee ID
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.difDetail?.difdcrrecords[0]?.empId" pInputText>
-            </div>
-            <div class="col-3">
-                <label for="location" class="form-label">
                     Record Type
                 </label>
                 <input id="location" class="form-control" readonly type="text"
@@ -75,43 +68,41 @@
             </div>
             <div class="col-3">
                 <label for="location" class="form-label">
-                    Agent Routing Code With Bank
+                    Agent Disbus Ref For File
                 </label>
                 <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.difDetail?.difdcrrecords[0]?.agentroutingCodewithBank" pInputText>
+                    [ngModel]="this.difDetail?.difdcrrecords[0]?.agentDisbusRefForFile" pInputText>
+            </div>
+            <div class="col-3">
+                <label for="location" class="form-label">
+                    Agent Routing Code
+                </label>
+                <input id="location" class="form-control" readonly type="text"
+                    [ngModel]="this.difDetail?.difdcrrecords[0]?.agentroutingCode" pInputText>
             </div>
         </div>
         <br>
         <div class="row m-2">
+
             <div class="col-3">
                 <label for="location" class="form-label">
-                    Salary Month
+                    Cash Dispensed
                 </label>
                 <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.difDetail?.difdcrrecords[0]?.salaryMonth" pInputText>
+                    [ngModel]="this.difDetail?.difdcrrecords[0]?.cashDispensed" pInputText>
             </div>
             <div class="col-3">
                 <label for="location" class="form-label">
-                    Total Salary
+                    Remmited Out
                 </label>
                 <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.difDetail?.difdcrrecords[0]?.totalSalry" pInputText>
+                    [ngModel]="this.difDetail?.difdcrrecords[0]?.remmitedOut" pInputText>
             </div>
             <div class="col-3">
                 <label for="location" class="form-label">
-                    Total Varibale Pay
+                    Total Disbursed
                 </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.difDetail?.difdcrrecords[0]?.totalVarPay" pInputText>
-            </div>
-        </div>
-        <br>
-        <div class="row m-2">
-            <div class="col-3">
-                <label for="location" class="form-label">
-                    Total Fix Pay
-                </label>
-                <input id="location" class="form-control" readonly type="text" [ngModel]="this.difDetail?.difdcrrecords[0]?.totalfixpay
+                <input id="location" class="form-control" readonly type="text" [ngModel]="this.difDetail?.difdcrrecords[0]?.totalDisbursed
             " pInputText>
             </div>
         </div>
@@ -127,7 +118,7 @@
                 [tableStyle]="{'min-width': '50rem'}">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="min-width:200px">Employee Id</th>
+                        <th style="min-width:200px">fileCreationDate</th>
                         <th style="min-width:200px">Record Type</th>
                         <th style="min-width:200px">Remmit Amt</th>
                         <th style="min-width:200px">Withdrawal Amt</th>

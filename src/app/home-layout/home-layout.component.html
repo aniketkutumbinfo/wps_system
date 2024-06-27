@@ -4,24 +4,43 @@
       <img src="/assets/images/dummy-logo.png" />
     </div>
     <div class="user-detail">
-      <div class="user-pic"><img src="/assets/images/profile-pic.png" /></div>
+      <div class="user-pic"><img src="/assets/images/profile-pic.png" alt="Profile Picture" /></div>
       <div class="user-name">Adam Atkins</div>
     </div>
     <div class="left-menu">
       <ul>
         <li><a class="nav-link" routerLink="/sif" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <img src="/assets/images/sif-ico.png" class="ico" />Salary Information File
+            <img src="/assets/images/sif-ico.png" class="ico" alt="Salary Information Icon" />Salary Information File
           </a></li>
         <li><a class="nav-link" routerLink="/pif" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"><img src="/assets/images/pif-ico.png" class="ico" />Personal
+            [routerLinkActiveOptions]="{ exact: true }"><img src="/assets/images/pif-ico.png" class="ico"
+              alt="Personal Information Icon" />Personal
             Information File</a></li>
         <li><a class="nav-link" routerLink="/prf" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"><img src="/assets/images/prf-ico.png" class="ico" />Personal
+            [routerLinkActiveOptions]="{ exact: true }"><img src="/assets/images/prf-ico.png" class="ico"
+              alt="Personal Relationship Icon" />Personal
             Relationship File</a></li>
-        <li><a href=""><img src="/assets/images/pfa-ico.png" class="ico" />Personal Filteration File</a></li>
+        <li><a href=""><img src="/assets/images/pfa-ico.png" class="ico" alt="Personal Filteration Icon" />Personal
+            Filteration File</a></li>
         <li><a class="nav-link" routerLink="/dif" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"><img src="/assets/images/dif-ico.png" class="ico" />Department
-            Information File</a></li>
+            [routerLinkActiveOptions]="{ exact: true }"><img src="/assets/images/dif-ico.png" class="ico"
+              alt="Department Information Icon" />Department
+            Information File</a>
+          <ul class="submenu">
+            <li>
+              <a class="nav-link" routerLink="/dif/config" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">
+                Dif Config
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" routerLink="/dif/transaction" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">
+                Transactions
+              </a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

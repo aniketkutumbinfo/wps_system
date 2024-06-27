@@ -15,4 +15,28 @@ export class DepartmentService {
   getRecDifById(id: any) {
     return this.httpService.get(`dif/getRecById?DifFileId=` + id);
   }
+
+  getAllRecirdsOfPendingTxOfDif(status: any) {
+    return this.httpService.get(`dif/getRecByStatus?pafStatusForFile=` + status);
+  }
+
+  difConfigSetup(data: any) {
+    return this.httpService.post(`dif/configretion`, data);
+  }
+
+  difConfigDisplay() {
+    return this.httpService.get(`dif/config/show`);
+  }
+
+  getDifFilesOnPafFilesName(pafFileName: any) {
+    return this.httpService.get(`dif/get/diffiles/paf?pafFileName=` + pafFileName);
+  }
+
+  getPafFilesOnDifFileName(difFileName: any) {
+    return this.httpService.get(`dif/get/paffiles/dif?difFileName=` + difFileName);
+  }
+
+  getAllDifPafTxnFiles() {
+    return this.httpService.get(`dif/get/alldifpaf/txnfiles`);
+  }
 }

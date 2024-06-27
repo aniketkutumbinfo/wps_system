@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './list/list.component';
 import { ViewComponent } from './view/view.component';
+import { DifConfigComponent } from './dif-config/dif-config.component';
+import { TransactionRecordsComponent } from './transaction-records/transaction-records.component';
 
 const routes: Routes = [
   {
@@ -11,10 +13,16 @@ const routes: Routes = [
     path: 'view/:id', component: ViewComponent
   },
   {
+    path: 'config', component: DifConfigComponent
+  },
+  {
+    path: 'transaction', component: TransactionRecordsComponent
+  },
+  {
     path: '', redirectTo: 'list', pathMatch: 'full'
   },
-  { 
-    path: '**', redirectTo: '/list' 
+  {
+    path: '**', redirectTo: '/list'
   }
 ];
 

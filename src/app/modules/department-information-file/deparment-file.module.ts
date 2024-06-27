@@ -6,13 +6,17 @@ import { ListComponent } from './list/list.component';
 import { ViewComponent } from './view/view.component';
 import { CreateComponent } from './create/create.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { DifConfigComponent } from './dif-config/dif-config.component';
+import { TransactionRecordsComponent } from './transaction-records/transaction-records.component';
 
 
 @NgModule({
   declarations: [
     ListComponent,
     ViewComponent,
-    CreateComponent
+    CreateComponent,
+    DifConfigComponent,
+    TransactionRecordsComponent
   ],
   imports: [
     CommonModule,
