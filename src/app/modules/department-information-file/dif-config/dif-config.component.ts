@@ -63,4 +63,8 @@ export class DifConfigComponent implements OnInit {
         })
     }
   }
+
+  backToList(){
+    this.edit = false
+  }
 }
