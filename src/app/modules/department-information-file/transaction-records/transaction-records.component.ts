@@ -13,9 +13,9 @@ export class TransactionRecordsComponent implements OnInit {
   constructor(private difService: DepartmentService) {
     this.statusList = [
       { label: "All", value: "All" },
-      { label: "P", value: "P" },
-      { label: "C", value: "C" },
-      { label: "R", value: "R" }
+      { label: "Pending", value: "Pending" },
+      { label: "Send", value: "Send" },
+      { label: "Reversal", value: "Reversal" }
     ]
   }
 
@@ -32,8 +32,12 @@ export class TransactionRecordsComponent implements OnInit {
   onItemSelect(event: any) {
     if (event.value.value === 'All') {
       this.getAllRecirdsOfPendingTxOfDif('');
-    } else {
-      this.getAllRecirdsOfPendingTxOfDif(event.value.value);
+    } else if (event.value.value === 'Pending') {
+      this.getAllRecirdsOfPendingTxOfDif('P');
+    } else if (event.value.value === 'Send') {
+      this.getAllRecirdsOfPendingTxOfDif('S');
+    } else if (event.value.value === 'Reversal') {
+      this.getAllRecirdsOfPendingTxOfDif('R');
     }
   }
 }
