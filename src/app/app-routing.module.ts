@@ -33,6 +33,10 @@ const routes: Routes = [
       {
         path: 'dif',
         loadChildren: () => import('./modules/department-information-file/deparment-file.module').then(m => m.DeparmentFileModule)
+      },
+      {
+        path: 'ack-nck',
+        loadChildren: () => import('./modules/ack-nck/ack-nck.module').then(m => m.AckNckModule)
       }
     ]
   }
