@@ -24,7 +24,8 @@
                     <td>{{data.shedularTime}}</td>
                     <td>{{data.updatedDate}}</td>
                     <td>
-                        <p-button (click)="editConfig(data)" icon="pi pi-pencil" />
+                        <p-button pRipple icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true"
+                            severity="success" (click)="editConfig(data)" />
                     </td>
                 </tr>
             </ng-template>
@@ -66,11 +67,11 @@
             </div>
             <div class="flex flex-column gap-2">
                 <label>Updated Date</label>
-                <input pInputText type="text" formControlName="updatedDate" readonly/>
+                <input pInputText type="text" formControlName="updatedDate" readonly />
             </div>
             <div>
                 <p-button label="Submit" type="Submit" />
-                <p-button label="Secondary" severity="secondary"  label="Cancel" (onClick)="backToList()" />
+                <p-button label="Secondary" severity="secondary" label="Cancel" (onClick)="backToList()" />
             </div>
         </form>
     </div>

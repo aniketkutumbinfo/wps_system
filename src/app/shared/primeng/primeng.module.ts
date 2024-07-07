@@ -11,6 +11,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { CalendarModule } from 'primeng/calendar';
 import { AccordionModule } from 'primeng/accordion';
 import { DropdownModule } from 'primeng/dropdown';
+import { RippleModule } from 'primeng/ripple';
 
 const modules = [
   TableModule,
@@ -22,7 +23,8 @@ const modules = [
   SidebarModule,
   CalendarModule,
   AccordionModule,
-  DropdownModule
+  DropdownModule,
+  RippleModule
 ]
 
 @NgModule({

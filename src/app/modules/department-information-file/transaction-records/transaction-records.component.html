@@ -1,7 +1,7 @@
 <div class="card">
     <div>
-        <p-dropdown [ngModel]="selectedStatus" [options]="statusList" (onChange)="onItemSelect($event)" [showClear]="true" optionLabel="value"
-                    placeholder="Select" />
+        <p-dropdown [ngModel]="selectedStatus" [options]="statusList" (onChange)="onItemSelect($event)"
+            [showClear]="true" optionLabel="value" placeholder="Select" />
     </div>
     <p-table #dt1 dataKey="code" [value]="this.getAllDifFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
         [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
@@ -22,6 +22,7 @@
                 <th style="min-width:200px">Txn Amt</th>
                 <th style="min-width:200px">Txn Date</th>
                 <th style="min-width:200px">Txn Ref No</th>
+                <th style="min-width:200px">Action</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-data>
@@ -41,6 +42,10 @@
                 <td>{{data.txnAmt}}</td>
                 <td>{{data.txnDate}}</td>
                 <td>{{data.txnRefNo}}</td>
+                <td>
+                    <p-button pRipple icon="pi pi-eye" [rounded]="true" [outlined]="true"
+                        severity="info" (click)="viewTranscation(data)" />
+                </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">

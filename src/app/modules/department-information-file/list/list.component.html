@@ -19,7 +19,8 @@
                 <td>{{data.fileCreationDate}}</td>
                 <td>{{data.makerDate}}</td>
                 <td>
-                    <p-button (click)="viewDifDetail(data)" icon="pi pi-eye" />
+                    <p-button pRipple icon="pi pi-eye" [rounded]="true" [outlined]="true" severity="info"
+                        (click)="viewDifDetail(data)" />
                 </td>
             </tr>
         </ng-template>

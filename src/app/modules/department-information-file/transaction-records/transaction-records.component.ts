@@ -40,4 +40,8 @@ export class TransactionRecordsComponent implements OnInit {
       this.getAllRecirdsOfPendingTxOfDif('R');
     }
   }
+
+  viewTranscation(data: any) {
+    console.log(data)
+  }
 }
