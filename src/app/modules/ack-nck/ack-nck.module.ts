@@ -1,17 +1,33 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
-import { AckNckRoutingModule } from './ack-nck-routing.module';
 import { ListComponent } from './list/list.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { RouterModule, Routes } from '@angular/router';
+import { ViewAhrAtrComponent } from './view-ahr-atr/view-ahr-atr.component';
 
+const routes: Routes = [
+  {
+    path: '', redirectTo: 'all', pathMatch:'full'
+  },
+  {
+    path: 'all',
+    component: ListComponent
+  }
+];
 
 @NgModule({
   declarations: [
-    ListComponent
+    ListComponent,
+    ViewAhrAtrComponent
   ],
   imports: [
     CommonModule,
-    AckNckRoutingModule
+    SharedModule,
+    RouterModule.forChild(routes)
+  ],
+  providers: [
+    DatePipe
   ]
 })
 export class AckNckModule { }

@@ -1,1 +1,65 @@
-<p>list works!</p>
+<div class="row">
+  <div class="row mb-4">
+    <div class="col-3">
+      <p-dropdown [options]="allTypes" optionLabel="label" optionValue="id" placeholder="Filter By"
+        [(ngModel)]="selectedTypeId" (onChange)="onTypeChange($event)"></p-dropdown>
+    </div>
+    <div class="col-8" [formGroup]="form">
+      <input *ngIf="selectedTypeId === 'file'" formControlName="fileName" type="text" style="width: 500px;">
+
+      <ng-container *ngIf="selectedTypeId === 'date'">
+        <label for="eDate" class="form-label">
+          Start Date
+        </label>
+        <p-calendar id="eDate" formControlName="startDate" dateFormat="yy-mm-dd" [showIcon]="true"
+          [readonlyInput]="true"></p-calendar>
+        <label for="eDate" class="form-label">
+          End Date
+        </label>
+        <p-calendar id="eDate" formControlName="endDate" dateFormat="yy-mm-dd" [showIcon]="true"
+          [readonlyInput]="true"></p-calendar>
+      </ng-container>
+
+      <p-button class="ms-4" severity="success" label="Search" (click)="fetchData()">
+      </p-button>
+    </div>
+  </div>
+
+  <p-table dataKey="ackNakFileName" [value]="allRecords" [scrollable]="true" [paginator]="true" [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="min-width:200px">Action</th>
+        <th style="min-width:200px">Ack Nak FileName</th>
+        <th style="min-width:200px">SIF File Name</th>
+        <th style="min-width:200px">File Date</th>
+        <th style="min-width:200px">Status</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data>
+      <tr>
+        <td>
+          <button (click)="openDialog(data?.acknakAhrRecoreds)">View AHR</button>
+          <button (click)="openDialog(data?.acknakAtrRecoreds)">View ATR</button>
+        </td>
+        <td>{{data?.ackNakFileName}}</td>
+        <td>{{data?.acknakForFileName}}</td>
+        <td>{{data?.acknakFileDate}}</td>
+        <td>{{data?.ackNakFileStatus}}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td class="text-center" [attr.colspan]="5">
+          No records found
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-toast></p-toast>
+
+<ng-container *ngIf="openFlyout">
+  <app-view-ahr-atr [isVisible]="openFlyout" (closeFlyout)="onCloseFlyout()" [data]="selectedData"></app-view-ahr-atr>
+</ng-container>
