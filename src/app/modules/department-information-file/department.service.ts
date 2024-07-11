@@ -39,4 +39,8 @@ export class DepartmentService {
   getAllDifPafTxnFiles() {
     return this.httpService.get(`dif/get/alldifpaf/txnfiles`);
   }
+
+  deleteByDifId(id: any) {
+    return this.httpService.delete(`dif/deletebydifid?DifFileId=` + id);
+  }
 }

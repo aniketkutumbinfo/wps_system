@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from '../department.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transaction-records',
@@ -10,7 +11,9 @@ export class TransactionRecordsComponent implements OnInit {
   getAllDifFilesList: any = [];
   selectedStatus: any;
   statusList: any
-  constructor(private difService: DepartmentService) {
+  constructor(private difService: DepartmentService,
+    private router: Router
+  ) {
     this.statusList = [
       { label: "All", value: "All" },
       { label: "Pending", value: "Pending" },
@@ -42,6 +45,6 @@ export class TransactionRecordsComponent implements OnInit {
   }
 
   viewTranscation(data: any) {
-    console.log(data)
+    this.router.navigate(['/pif/view', data.pafFileId]);
   }
 }
