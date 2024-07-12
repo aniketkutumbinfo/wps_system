@@ -12,6 +12,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { AccordionModule } from 'primeng/accordion';
 import { DropdownModule } from 'primeng/dropdown';
 import { RippleModule } from 'primeng/ripple';
+import { ToolbarModule } from 'primeng/toolbar';
 
 const modules = [
   TableModule,
@@ -24,7 +25,8 @@ const modules = [
   CalendarModule,
   AccordionModule,
   DropdownModule,
-  RippleModule
+  RippleModule,
+  ToolbarModule
 ]
 
 @NgModule({

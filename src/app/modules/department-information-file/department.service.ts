@@ -40,7 +40,11 @@ export class DepartmentService {
     return this.httpService.get(`dif/get/alldifpaf/txnfiles`);
   }
 
-  deleteByDifId(id: any) {
-    return this.httpService.delete(`dif/deletebydifid?DifFileId=` + id);
+  deleteByDifId(data: any) {
+    return this.httpService.post(`dif/delete`, data);
+  }
+
+  getAckNckList() {
+    return this.httpService.delete(`get/all/acknck/for/dif?acknakForFileType=DIF`);
   }
 }

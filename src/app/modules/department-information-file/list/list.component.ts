@@ -10,8 +10,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class ListComponent implements OnInit {
 
-  getAllDifFilesList: any;
-
+  getAllDifFilesList!: any[];
+  selectedProducts!: any[];
   constructor(private difService: DepartmentService,
     private router: Router,
     private confirmationService: ConfirmationService,
@@ -32,12 +32,38 @@ export class ListComponent implements OnInit {
     this.router.navigate(['/dif/view', data.difFileId]);
   }
 
-  onDelete(data: any) {
-    console.log(data)
+  // onDelete(data: any) {
+  //   let item =
+  //   {
+  //     "diffilenames": this.selectedProducts
+  //   }
+  //   console.log(data)
+  //   console.log(item)
+  //   this.confirmationService.confirm({
+  //     message: 'Are you sure that you want to delete?',
+  //     accept: () => {
+  //       this.difService.deleteByDifId(item).subscribe(res => {
+  //         if (res) {
+  //           this.messageService.add({
+  //             severity: 'success', detail: res.responsemassage
+  //           });
+  //           this.getAllDifFiles();
+  //         }
+  //       });
+  //     }
+  //   });
+  // }
+
+  allDelete() {
+    let item =
+    {
+      "diffilenames": this.selectedProducts.map(a => a.difFileName)
+    }
+    console.log(item)
     this.confirmationService.confirm({
       message: 'Are you sure that you want to delete?',
       accept: () => {
-        this.difService.deleteByDifId(data.difFileId).subscribe(res => {
+        this.difService.deleteByDifId(item).subscribe(res => {
           if (res) {
             this.messageService.add({
               severity: 'success', detail: res.responsemassage

@@ -1,8 +1,20 @@
 <div class="card">
+    <p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="left">
+            <p-button pRipple severity="danger" label="Delete" icon="pi pi-trash" (click)="allDelete()"
+                [disabled]="!selectedProducts || !selectedProducts.length" />
+        </ng-template>
+        <ng-template pTemplate="right">
+            <p-button pRipple severity="info" label="ALL ACK/NAK" badgeClass="p-badge-contrast" [outlined]="true"
+                routerLink="/dif/ack-nck" />
+        </ng-template>
+    </p-toolbar>
     <p-table #dt1 dataKey="code" [value]="this.getAllDifFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
-        [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
+        [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}"
+        [(selection)]="selectedProducts" dataKey="difFileName">
         <ng-template pTemplate="header">
             <tr>
+                <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
                 <th style="min-width:200px">File Name</th>
                 <th style="min-width:200px">File Reason</th>
                 <th style="min-width:200px">File Status</th>
@@ -13,15 +25,21 @@
         </ng-template>
         <ng-template pTemplate="body" let-data>
             <tr>
+                <td>
+                    <p-tableCheckbox [value]="data" />
+                </td>
                 <td>{{data.difFileName}}</td>
                 <td>{{data.fileReason}}</td>
                 <td>{{data.fileStatus}}</td>
                 <td>{{data.fileCreationDate}}</td>
                 <td>{{data.makerDate}}</td>
                 <td>
-                    <p-button pRipple class="m-2" icon="pi pi-eye" [rounded]="true" [outlined]="true" severity="info"
-                        (click)="viewDifDetail(data)" />
-                    <p-button icon="pi pi-trash" [rounded]="true" severity="danger" [outlined]="true" (click)="onDelete(data)" />
+                    <p-button pRipple class="m-2" icon="pi pi-eye" severity="info" label="DIF"
+                        badgeClass="p-badge-contrast" [outlined]="true" (click)="viewDifDetail(data)" />
+                    <p-button pRipple class="m-2" icon="pi pi-eye" severity="info" label="ACK/NAK"
+                        badgeClass="p-badge-contrast" [outlined]="true" (click)="viewDifDetail(data)" />
+                    <!-- <p-button icon="pi pi-trash" severity="danger" (click)="onDelete(data)" label="Delete"
+                        badgeClass="p-badge-contrast" [outlined]="true" /> -->
                 </td>
             </tr>
         </ng-template>

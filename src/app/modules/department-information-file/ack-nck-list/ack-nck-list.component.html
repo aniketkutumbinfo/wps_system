@@ -1,0 +1,30 @@
+<div class="card">
+    <p-table #dt1 dataKey="code" [value]="this.getAllAckNckFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="min-width:200px">File Name</th>
+                <th style="min-width:200px">File Reason</th>
+                <th style="min-width:200px">File Status</th>
+                <th style="min-width:200px">File Creation Date</th>
+                <th style="min-width:200px">Maker Date</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+            <tr>
+                <td>{{data.difFileName}}</td>
+                <td>{{data.fileReason}}</td>
+                <td>{{data.fileStatus}}</td>
+                <td>{{data.fileCreationDate}}</td>
+                <td>{{data.makerDate}}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td class="text-center" [attr.colspan]="7">
+                    No records found
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
