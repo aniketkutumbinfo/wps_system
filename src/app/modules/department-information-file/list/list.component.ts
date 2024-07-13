@@ -32,6 +32,10 @@ export class ListComponent implements OnInit {
     this.router.navigate(['/dif/view', data.difFileId]);
   }
 
+  viewAckNakDetail(data: any) {
+    this.router.navigate(['/dif/ack-nak', data.difFileName]);
+  }
+
   // onDelete(data: any) {
   //   let item =
   //   {

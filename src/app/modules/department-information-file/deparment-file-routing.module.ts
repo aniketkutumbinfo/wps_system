@@ -5,6 +5,7 @@ import { ViewComponent } from './view/view.component';
 import { DifConfigComponent } from './dif-config/dif-config.component';
 import { TransactionRecordsComponent } from './transaction-records/transaction-records.component';
 import { AckNckListComponent } from './ack-nck-list/ack-nck-list.component';
+import { AckNckDetailComponent } from './ack-nck-detail/ack-nck-detail.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,9 @@ const routes: Routes = [
   },
   {
     path: 'ack-nck', component: AckNckListComponent
+  },
+  {
+    path: 'ack-nak/:id', component: AckNckDetailComponent
   },
   {
     path: '', redirectTo: 'list', pathMatch: 'full'

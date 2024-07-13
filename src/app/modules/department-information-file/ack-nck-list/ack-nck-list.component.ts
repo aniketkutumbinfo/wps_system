@@ -10,6 +10,7 @@ import { DepartmentService } from '../department.service';
 export class AckNckListComponent implements OnInit {
   getAllAckNckFilesList: any
   constructor(private difService: DepartmentService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -20,5 +21,10 @@ export class AckNckListComponent implements OnInit {
     this.difService.getAckNckList().subscribe(res => {
       this.getAllAckNckFilesList = res;
     });
+  }
+
+  viewAckNakDetail(data: any) {
+    console.log(data)
+    this.router.navigate(['/dif/ack-nak', data.ackNakFileName]);
   }
 }

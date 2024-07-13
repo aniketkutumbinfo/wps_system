@@ -3,20 +3,29 @@
         [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header">
             <tr>
-                <th style="min-width:200px">File Name</th>
-                <th style="min-width:200px">File Reason</th>
-                <th style="min-width:200px">File Status</th>
-                <th style="min-width:200px">File Creation Date</th>
-                <th style="min-width:200px">Maker Date</th>
+                <th style="min-width:200px">Ack Nak File Name</th>
+                <th style="min-width:200px">Ack Nak For File Name</th>
+                <th style="min-width:200px">Ack Nak For File Type</th>
+                <th style="min-width:200px">Ack Nak File Status</th>
+                <th style="min-width:200px">Ack Nak File Remarks</th>
+                <th style="min-width:200px">Ack Nak File Date</th>
+                <th style="min-width:200px">Ack Nak File Type</th>
+                <th style="min-width:200px">Action</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-data>
             <tr>
-                <td>{{data.difFileName}}</td>
-                <td>{{data.fileReason}}</td>
-                <td>{{data.fileStatus}}</td>
-                <td>{{data.fileCreationDate}}</td>
-                <td>{{data.makerDate}}</td>
+                <td>{{data.ackNakFileName}}</td>
+                <td>{{data.acknakForFileName}}</td>
+                <td>{{data.acknakForFileType}}</td>
+                <td>{{data.ackNakFileStatus}}</td>
+                <td>{{data.ackNakfileRemarks}}</td>
+                <td>{{data.acknakFileDate}}</td>
+                <td>{{data.acknakFileType}}</td>
+                <td>
+                    <p-button pRipple class="m-2" icon="pi pi-eye" severity="info" label="ACK/NAK"
+                        badgeClass="p-badge-contrast" [outlined]="true" (click)="viewAckNakDetail(data)" />
+                </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">

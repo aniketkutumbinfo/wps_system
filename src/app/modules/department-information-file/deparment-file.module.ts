@@ -9,6 +9,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { DifConfigComponent } from './dif-config/dif-config.component';
 import { TransactionRecordsComponent } from './transaction-records/transaction-records.component';
 import { AckNckListComponent } from './ack-nck-list/ack-nck-list.component';
+import { AckNckDetailComponent } from './ack-nck-detail/ack-nck-detail.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { AckNckListComponent } from './ack-nck-list/ack-nck-list.component';
     CreateComponent,
     DifConfigComponent,
     TransactionRecordsComponent,
-    AckNckListComponent
+    AckNckListComponent,
+    AckNckDetailComponent
   ],
   imports: [
     CommonModule,
