@@ -37,6 +37,10 @@ const routes: Routes = [
       {
         path: 'ack-nck',
         loadChildren: () => import('./modules/ack-nck/ack-nck.module').then(m => m.AckNckModule)
+      },
+      {
+        path: 'dcr',
+        loadChildren: () => import('./modules/dcr/dcr.module').then(m => m.DcrModule)
       }
     ]
   }
