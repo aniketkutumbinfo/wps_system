@@ -1,1 +1,78 @@
-<p>dcr-config works!</p>
+<div class="card">
+    <div *ngIf="!edit">
+        <p-table #dt1 dataKey="code" [value]="this.getConfigDetail" [scrollable]="true" [paginator]="true" [rows]="10"
+            [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="min-width:200px">Api Enable Disable</th>
+                    <th style="min-width:200px">Count Days</th>
+                    <th style="min-width:200px">Count In Day</th>
+                    <th style="min-width:200px">Date For Days Count</th>
+                    <th style="min-width:200px">Record Count</th>
+                    <th style="min-width:200px">Shedular Time</th>
+                    <th style="min-width:200px">Updated Date</th>
+                    <th style="min-width:200px">Action</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-data>
+                <tr>
+                    <td>{{data.apiEnableDisable}}</td>
+                    <td>{{data.countDays}}</td>
+                    <td>{{data.countInDay}}</td>
+                    <td>{{data.dateForDaysCount}}</td>
+                    <td>{{data.recordCount}}</td>
+                    <td>{{data.shedularTime}}</td>
+                    <td>{{data.updatedDate}}</td>
+                    <td>
+                        <p-button pRipple icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true"
+                            severity="success" (click)="editConfig(data)" />
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td class="text-center" [attr.colspan]="7">
+                        No records found
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div *ngIf="edit">
+        <form [formGroup]="difConfigForm" (ngSubmit)="onSubmit()">
+            <div class="flex flex-column gap-2">
+                <label>Api Enable Disable</label>
+                <p-dropdown formControlName="apiEnableDisable" [options]="apiList" [showClear]="true"
+                    placeholder="Select" />
+            </div>
+            <div class="flex flex-column gap-2">
+                <label>Count Days</label>
+                <input pInputText type="number" formControlName="countDays" />
+            </div>
+            <div class="flex flex-column gap-2">
+                <label>Count In Day</label>
+                <input pInputText type="number" formControlName="countInDay" />
+            </div>
+            <div class="flex flex-column gap-2">
+                <label>Date For Days Count</label>
+                <input pInputText type="date" formControlName="dateForDaysCount" />
+            </div>
+            <div class="flex flex-column gap-2">
+                <label>Record Count</label>
+                <input pInputText type="number" formControlName="recordCount" />
+            </div>
+            <div class="flex flex-column gap-2">
+                <label>Shedular Time</label>
+                <input pInputText type="text" formControlName="shedularTime" />
+            </div>
+            <div class="flex flex-column gap-2">
+                <label>Updated Date</label>
+                <input pInputText type="text" formControlName="updatedDate" readonly />
+            </div>
+            <div>
+                <p-button label="Submit" type="Submit" />
+                <p-button label="Secondary" severity="secondary" label="Cancel" (onClick)="backToList()" />
+            </div>
+        </form>
+    </div>
+</div>

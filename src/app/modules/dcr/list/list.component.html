@@ -6,7 +6,7 @@
         </ng-template>
         <ng-template pTemplate="right">
             <p-button pRipple severity="info" label="ALL ACK/NAK" badgeClass="p-badge-contrast" [outlined]="true"
-                routerLink="/dif/ack-nck" />
+                routerLink="/dcr/ack-nck" />
         </ng-template>
     </p-toolbar>
     <p-table #dt1 dataKey="code" [value]="this.getAllDcrFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
@@ -34,8 +34,8 @@
                 <td>{{data.fileCreationDate}}</td>
                 <td>{{data.makerDate}}</td>
                 <td>
-                    <p-button pRipple class="m-2" icon="pi pi-eye" severity="info" label="DIF"
-                        badgeClass="p-badge-contrast" [outlined]="true" (click)="viewDifDetail(data)" />
+                    <p-button pRipple class="m-2" icon="pi pi-eye" severity="info" label="DCR"
+                        badgeClass="p-badge-contrast" [outlined]="true" (click)="viewDcrDetail(data)" />
                     <p-button pRipple class="m-2" icon="pi pi-eye" severity="info" label="ACK/NAK"
                         badgeClass="p-badge-contrast" [outlined]="true" (click)="viewAckNakDetail(data)" />
                     <!-- <p-button icon="pi pi-trash" severity="danger" (click)="onDelete(data)" label="Delete"

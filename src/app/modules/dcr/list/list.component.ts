@@ -28,12 +28,12 @@ export class ListComponent implements OnInit {
     });
   }
 
-  viewDifDetail(data: any) {
-    this.router.navigate(['/dif/view', data.difFileId]);
+  viewDcrDetail(data: any) {
+    this.router.navigate(['/dcr/view', data.difFileId]);
   }
 
   viewAckNakDetail(data: any) {
-    this.router.navigate(['/dif/ack-nak', data.difFileName]);
+    this.router.navigate(['/dcr/ack-nak', data.difFileName]);
   }
 
   // onDelete(data: any) {

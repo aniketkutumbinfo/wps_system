@@ -13,44 +13,44 @@ export class DcrService {
     return this.httpService.get(`dcr/get/all/files`);
   }
 
-  getRecDifById(id: any) {
-    return this.httpService.get(`dif/getRecById?DifFileId=` + id);
+  getRecDcrById(id: any) {
+    return this.httpService.get(`dcr/getRecById?DcrFileId=` + id);
   }
 
   getAllRecirdsOfPendingTxOfDif(status: any) {
-    return this.httpService.get(`dif/getRecByStatus?pafStatusForFile=` + status);
+    return this.httpService.get(`dcr/getRecByStatus?pafStatusForFile=` + status);
   }
 
-  difConfigSetup(data: any) {
-    return this.httpService.post(`dif/configretion`, data);
+  dcrConfigSetup(data: any) {
+    return this.httpService.post(`dcr/configretion`, data);
   }
 
-  difConfigDisplay() {
-    return this.httpService.get(`dif/config/show`);
+  dcrConfigDisplay() {
+    return this.httpService.get(`dcr/config/show`);
   }
 
   getDifFilesOnPafFilesName(pafFileName: any) {
-    return this.httpService.get(`dif/get/diffiles/paf?pafFileName=` + pafFileName);
+    return this.httpService.get(`dcr/get/diffiles/paf?pafFileName=` + pafFileName);
   }
 
   getPafFilesOnDifFileName(difFileName: any) {
-    return this.httpService.get(`dif/get/paffiles/dif?difFileName=` + difFileName);
+    return this.httpService.get(`dcr/get/paffiles/dcr?difFileName=` + difFileName);
   }
 
   getAllDifPafTxnFiles() {
-    return this.httpService.get(`dif/get/alldifpaf/txnfiles`);
+    return this.httpService.get(`dcr/get/alldifpaf/txnfiles`);
   }
 
   deleteByDifId(data: any) {
-    return this.httpService.post(`dif/delete`, data);
+    return this.httpService.post(`dcr/delete`, data);
   }
 
   getAckNckList() {
-    return this.httpService.get(`get/all/acknck/for/dif?acknakForFileType=DIF`);
+    return this.httpService.get(`get/all/acknck/for/dcr?acknakForFileType=DCR`);
   } 
   
   getAckNakForFileName(acknakForFileName: any, acknakForFileId: any) {
-    return this.httpService.get(`find/acnck/by/dif?acknakForFileName=${acknakForFileName}&acknakForFileId=` + acknakForFileId);
+    return this.httpService.get(`find/acnck/by/dcr?acknakForFileName=${acknakForFileName}&acknakForFileId=` + acknakForFileId);
   }
 
 }
