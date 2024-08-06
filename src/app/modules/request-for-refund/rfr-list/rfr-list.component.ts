@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { SifServiceService } from '../sif-service.service';
-import { MessageService } from 'primeng/api';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RfrService } from '../rfr.service';
+import { MessageService } from 'primeng/api';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-sif-list',
-  templateUrl: './sif-list.component.html',
-  styleUrls: ['./sif-list.component.scss']
+  selector: 'app-rfr-list',
+  templateUrl: './rfr-list.component.html',
+  styleUrls: ['./rfr-list.component.scss']
 })
-export class SifListComponent implements OnInit {
-  listSIFFiles: any = [];
+export class RfrListComponent implements OnInit {
+
+  listRFRFiles: any = [];
   fileNameList: any = [];
   form!: FormGroup;
 
-  constructor(private sfiSerive: SifServiceService,
+  constructor(private rfrService: RfrService,
     private messageService: MessageService,
     private fb: FormBuilder,
     private datePipe: DatePipe
@@ -30,11 +31,17 @@ export class SifListComponent implements OnInit {
   }
 
   getData() {
+    this.rfrService.getALLProceesedFiles().subscribe(res => {
+      this.listRFRFiles = res;
+    });
+  }
+
+  onFilter() {
     const { startDate, endDate } = this.form.value;
     const sDate = this.datePipe.transform(startDate, 'yyyy-MM-dd');
     const eDate = this.datePipe.transform(endDate, 'yyyy-MM-dd');
-    this.sfiSerive.getSIFFiles(sDate, eDate).subscribe(res => {
-      this.listSIFFiles = res;
+    this.rfrService.getRFRFiles(sDate, eDate).subscribe(res => {
+      this.listRFRFiles = res;
     })
   }
 

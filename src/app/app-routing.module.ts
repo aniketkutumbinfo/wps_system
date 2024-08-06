@@ -41,6 +41,10 @@ const routes: Routes = [
       {
         path: 'dcr',
         loadChildren: () => import('./modules/dcr/dcr.module').then(m => m.DcrModule)
+      },
+      {
+        path: 'rfr',
+        loadChildren: () => import('./modules/request-for-refund/request-for-refund.module').then(m => m.RequestForRefundModule)
       }
     ]
   }

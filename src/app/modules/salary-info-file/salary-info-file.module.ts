@@ -5,7 +5,6 @@ import { SalaryInfoFileRoutingModule } from './salary-info-file-routing.module';
 import { ListComponent } from './list/list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EditSifInfoComponent } from './edit-sif-info/edit-sif-info.component';
-import { DragDropDirective } from './list/drag-drop.directive';
 import { SifListComponent } from './sif-list/sif-list.component';
 import { SifDetailsComponent } from './sif-details/sif-details.component';
 
@@ -14,7 +13,6 @@ import { SifDetailsComponent } from './sif-details/sif-details.component';
   declarations: [
     ListComponent,
     EditSifInfoComponent,
-    DragDropDirective,
     SifListComponent,
     SifDetailsComponent
   ],

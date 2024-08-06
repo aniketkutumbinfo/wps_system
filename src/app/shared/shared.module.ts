@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { PrimengModule } from './primeng/primeng.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoaderComponent } from './components/loader/loader.component';
+import { DragDropDirective } from './components/drag-drop.directive';
 
 @NgModule({
   declarations: [
-    LoaderComponent
+    LoaderComponent, DragDropDirective
   ],
   imports: [
     CommonModule,
@@ -19,7 +20,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     CommonModule,
     PrimengModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DragDropDirective
   ]
 })
 export class SharedModule { }

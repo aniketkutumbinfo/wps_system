@@ -1,0 +1,55 @@
+<div class="row" [formGroup]="form">
+  <div class="col-4">
+      <label for="eDate" class="form-label">
+          Start Date
+      </label>
+      <p-calendar id="eDate" formControlName="startDate" dateFormat="yy-mm-dd" [showIcon]="true"
+          [readonlyInput]="true"></p-calendar>
+  </div>
+  <div class="col-4">
+      <label for="eDate" class="form-label">
+          End Date
+      </label>
+      <p-calendar id="eDate" formControlName="endDate" dateFormat="yy-mm-dd" [showIcon]="true"
+          [readonlyInput]="true"></p-calendar>
+  </div>
+  <p-button class="col-2" severity="success" label="Filter" [disabled]="form.invalid" (click)="onFilter()">
+  </p-button>
+</div>
+
+<div class="card">
+  <p-table #dt1 dataKey="code" [value]="listRFRFiles" [scrollable]="true" [paginator]="true" [rows]="10"
+      [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
+      <ng-template pTemplate="header">
+          <tr>
+              <th style="min-width:200px">Corporate Id</th>
+              <th style="min-width:200px">CSV File Name</th>
+              <th style="min-width:200px">RFR File Name</th>
+              <th style="min-width:200px">File Remarks</th>
+              <th style="min-width:200px">File Status</th>
+              <th style="min-width:200px">File Uploaded Date</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-data>
+          <tr>
+              <td>{{data.rfrcorporteid}}</td>
+              <td>{{data.rfrcsvfilename}}</td>
+              <td>{{data.rfrfileName}}</td>
+              <td>{{data.remarks}}</td>
+              <td>{{data.rfrfilestatus === 'U' ? 'Uploaded': ''}}</td>
+              <td>{{data.rfruploaddate}}</td>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+          <tr>
+              <td class="text-center" [attr.colspan]="6">
+                  No records found
+              </td>
+          </tr>
+      </ng-template>
+  </p-table>
+</div>
+
+<p-toast></p-toast>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
