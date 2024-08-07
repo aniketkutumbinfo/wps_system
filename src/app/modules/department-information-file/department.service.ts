@@ -9,23 +9,23 @@ export class DepartmentService {
   constructor(private httpService: HttpService) { }
 
   getAllDifFiles() {
-    return this.httpService.get(`dif/getAllDifFiles`);
+    return this.httpService.get(`get/all/dif/files`);
   }
 
   getRecDifById(id: any) {
-    return this.httpService.get(`dif/getRecById?DifFileId=` + id);
+    return this.httpService.get(`dif/record/by?difFileId=` + id);
   }
 
   getAllRecirdsOfPendingTxOfDif(status: any) {
-    return this.httpService.get(`dif/getRecByStatus?pafStatusForFile=` + status);
+    return this.httpService.get(`get/txn/by?pafStatusForFile=` + status + `&fileIdOfFilename=`);
   }
 
   difConfigSetup(data: any) {
-    return this.httpService.post(`dif/configretion`, data);
+    return this.httpService.post(`configretion`, data);
   }
 
   difConfigDisplay() {
-    return this.httpService.get(`dif/config/show`);
+    return this.httpService.get(`config/show`);
   }
 
   getDifFilesOnPafFilesName(pafFileName: any) {
@@ -46,8 +46,8 @@ export class DepartmentService {
 
   getAckNckList() {
     return this.httpService.get(`get/all/acknck/for/dif?acknakForFileType=DIF`);
-  } 
-  
+  }
+
   getAckNakForFileName(acknakForFileName: any, acknakForFileId: any) {
     return this.httpService.get(`find/acnck/by/dif?acknakForFileName=${acknakForFileName}&acknakForFileId=` + acknakForFileId);
   }
