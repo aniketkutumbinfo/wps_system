@@ -17,7 +17,7 @@ export class ListComponent implements OnInit {
   selectedRecord: any;
   sifedrrecoreds: any = [];
   sifscrrecored: any = {};
-  sifscrfileid: any;
+  rfrfcrfileid: any;
 
   constructor(
     private rfrService: RfrService,
@@ -79,7 +79,7 @@ export class ListComponent implements OnInit {
   onEdit(data: any, item: any) {
     this.showEditSIF = true;
     this.selectedRecord = data;
-    this.sifscrfileid = item.sifScrBean[0].sifscrfileid;
+    this.rfrfcrfileid = item.rfrcorporteid;
   }
 
   onDelete(data: any, item: any) {
@@ -121,8 +121,8 @@ export class ListComponent implements OnInit {
 
   onUpdate(event: any) {
     const payload = {
-      "sifscrfileid": this.sifscrfileid,
       ...this.selectedRecord,
+      "rfrfcrfileid": this.rfrfcrfileid,
       ...event
     }
     if (event) {

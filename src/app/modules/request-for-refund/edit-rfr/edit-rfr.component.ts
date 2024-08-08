@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-rfr',
@@ -14,12 +14,24 @@ export class EditRfrComponent implements OnInit {
   @Input() data: any;
   editForm!: FormGroup;
 
-  constructor() {
+  constructor(private fb: FormBuilder) {
 
   }
 
   ngOnInit(): void {
-    
+    this.editForm = this.fb.group({
+      refundAmountRequested: [null],
+    });
+
+    this.editForm.patchValue(this.data);
+  }
+
+  onCloseFlyout() {
+    this.closeFlyout.emit(false);
+  }
+
+  onUpdate() {
+    this.update.emit(this.editForm.value);
   }
 
 }

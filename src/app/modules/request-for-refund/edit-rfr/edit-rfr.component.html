@@ -1,1 +1,22 @@
-<p>edit-rfr works!</p>
+<p-sidebar [(visible)]="isVisible" position="right" [style]="{width:'40em'}" (onHide)="onCloseFlyout()"
+  [dismissible]="false">
+  <h4>Edit</h4>
+
+  <form class="row g-3 mt-4" [formGroup]="editForm">
+    <div class="col-12">
+      <label for="location" class="form-label">
+        Refund Amount Requested
+      </label>
+      <input id="location" class="form-control" type="text" pInputText formControlName="refundAmountRequested">
+    </div>
+    <div class="d-flex col-12 justify-content-between">
+      <button pButton pRipple type="button" label="Cancel" class="p-button-outlined p-button-danger"
+        (click)="onCloseFlyout()"></button>
+      <p-button label="Update" (click)="onUpdate()"></p-button>
+    </div>
+  </form>
+
+</p-sidebar>
+<div class="custom-toast">
+  <p-toast></p-toast>
+</div>
