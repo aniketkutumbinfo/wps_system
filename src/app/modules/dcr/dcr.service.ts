@@ -6,27 +6,27 @@ import { HttpService } from 'src/app/shared/services/http.service';
 })
 export class DcrService {
 
-  
+
   constructor(private httpService: HttpService) { }
 
   getAllDcrFiles() {
-    return this.httpService.get(`dcr/get/all/files`);
+    return this.httpService.get(`get/all/dcr/files`);
   }
 
   getRecDcrById(id: any) {
-    return this.httpService.get(`dcr/getRecById?DcrFileId=` + id);
+    return this.httpService.get(`dcr/record/by?dcrFileId=` + id);
   }
 
   getAllRecirdsOfPendingTxOfDif(status: any) {
-    return this.httpService.get(`dcr/getRecByStatus?pafStatusForFile=` + status);
+    return this.httpService.get(`get/txn/by?pafStatusForFile=` + status + `&fileIdOfFilename=`);
   }
 
   dcrConfigSetup(data: any) {
-    return this.httpService.post(`dcr/configretion`, data);
+    return this.httpService.post(`configretion`, data);
   }
 
   dcrConfigDisplay() {
-    return this.httpService.get(`dcr/config/show`);
+    return this.httpService.get(`config/show`);
   }
 
   getDifFilesOnPafFilesName(pafFileName: any) {
@@ -47,8 +47,8 @@ export class DcrService {
 
   getAckNckList() {
     return this.httpService.get(`get/all/acknck/for/dcr?acknakForFileType=DCR`);
-  } 
-  
+  }
+
   getAckNakForFileName(acknakForFileName: any, acknakForFileId: any) {
     return this.httpService.get(`find/acnck/by/dcr?acknakForFileName=${acknakForFileName}&acknakForFileId=` + acknakForFileId);
   }
