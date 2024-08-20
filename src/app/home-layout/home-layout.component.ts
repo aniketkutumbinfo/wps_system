@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonService } from '../shared/services/common.service';
 
 @Component({
@@ -8,6 +8,11 @@ import { CommonService } from '../shared/services/common.service';
 })
 export class HomeLayoutComponent {
 
-  constructor(public commonService: CommonService){}
-
+  constructor(public commonService: CommonService,
+    private cdr: ChangeDetectorRef
+  ) { }
+  ngAfterViewChecked() {
+    //your code to update the model
+    this.cdr.detectChanges();
+  }
 }

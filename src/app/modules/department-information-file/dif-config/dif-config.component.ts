@@ -34,8 +34,9 @@ export class DifConfigComponent implements OnInit {
   getConfigDetails() {
     this.departmentService.difConfigDisplay()
       .subscribe(res => {
-        console.log(res)
-        this.getConfigDetail = [res]
+        if (res.responseStatus === 'success') {
+          this.getConfigDetail = [res.responseData];
+        }
       })
   }
 

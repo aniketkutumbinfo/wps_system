@@ -21,7 +21,9 @@ export class ListComponent implements OnInit {
 
   getAllPafFiles() {
     this.pifService.getAllPafFiles().subscribe(res => {
-      this.getAllPafFilesList = res;
+      if (res.responseStatus === 'success') {
+        this.getAllPafFilesList = res.responseData;
+      }
     });
   }
 

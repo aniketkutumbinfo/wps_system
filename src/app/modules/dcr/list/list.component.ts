@@ -24,16 +24,18 @@ export class ListComponent implements OnInit {
 
   getAllDcrFiles() {
     this.difService.getAllDcrFiles().subscribe(res => {
-      this.getAllDcrFilesList = res;
+      if (res.responseStatus === 'success') {
+        this.getAllDcrFilesList = res.responseData;
+      }
     });
   }
 
   viewDcrDetail(data: any) {
-    this.router.navigate(['/dcr/view', data.difFileId]);
+    this.router.navigate(['/dcr/view', data.dcrFileId]);
   }
 
   viewAckNakDetail(data: any) {
-    this.router.navigate(['/dcr/ack-nak', data.difFileName]);
+    this.router.navigate(['/dcr/ack-nak', data.dcrFileName]);
   }
 
   // onDelete(data: any) {
@@ -41,8 +43,6 @@ export class ListComponent implements OnInit {
   //   {
   //     "diffilenames": this.selectedProducts
   //   }
-  //   console.log(data)
-  //   console.log(item)
   //   this.confirmationService.confirm({
   //     message: 'Are you sure that you want to delete?',
   //     accept: () => {
@@ -63,7 +63,6 @@ export class ListComponent implements OnInit {
     {
       "diffilenames": this.selectedProducts.map(a => a.dcrFileName)
     }
-    console.log(item)
     this.confirmationService.confirm({
       message: 'Are you sure that you want to delete?',
       accept: () => {

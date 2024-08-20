@@ -3,7 +3,7 @@
         <p-dropdown [ngModel]="selectedStatus" [options]="statusList" (onChange)="onItemSelect($event)"
             [showClear]="true" optionLabel="value" placeholder="Select" />
     </div>
-    <p-table #dt1 dataKey="code" [value]="this.getAllDifFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
+    <p-table #dt1 dataKey="code" [value]="this.getAllDcrFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
         [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header">
             <tr>
@@ -31,8 +31,8 @@
                 <td>{{data.txnDate}}</td>
                 <td>{{data.txnRefNo}}</td>
                 <td>
-                    <p-button pRipple icon="pi pi-eye" [rounded]="true" [outlined]="true"
-                        severity="info" (click)="viewTranscation(data)" />
+                    <p-button pRipple icon="pi pi-eye" [rounded]="true" [outlined]="true" severity="info"
+                        (click)="viewTranscation(data)" />
                 </td>
             </tr>
         </ng-template>

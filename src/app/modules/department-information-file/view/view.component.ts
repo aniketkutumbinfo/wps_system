@@ -26,8 +26,9 @@ export class ViewComponent implements OnInit {
   getPafDetail(id: any) {
     this.difService.getRecDifById(id)
       .subscribe(res => {
-        this.difDetail = res;
-        console.log(res)
+        if (res.responseStatus === 'success') {
+          this.difDetail = res.responseData;
+        }
       })
   }
 }

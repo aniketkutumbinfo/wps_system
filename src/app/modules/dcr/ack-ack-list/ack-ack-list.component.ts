@@ -25,7 +25,6 @@ export class AckAckListComponent implements OnInit {
   }
 
   viewAckNakDetail(data: any) {
-    console.log(data)
     this.router.navigate(['/dcr/ack-nak', data.ackNakFileName]);
   }
 

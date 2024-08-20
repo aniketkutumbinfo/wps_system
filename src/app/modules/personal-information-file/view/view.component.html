@@ -2,9 +2,9 @@
     <div class="row m-2">
         <div class="col-3">
             <label for="location" class="form-label">
-                File Name
+                PAF File Name
             </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.pafDetail?.fileName"
+            <input id="location" class="form-control" readonly type="text" [ngModel]="this.pafDetail?.pafFileName"
                 pInputText>
         </div>
         <div class="col-3">
@@ -46,9 +46,9 @@
                 pInputText>
         </div>
     </div>
-    <br>
-    <hr>
-    <div class="m-2">
+    <br *ngIf="this.pafDetail?.pafpcrrecords !== null">
+    <hr *ngIf="this.pafDetail?.pafpcrrecords !== null">
+    <div class="m-2" *ngIf="this.pafDetail?.pafpcrrecords !== null">
         <h6>Paf Pcr Records
         </h6>
         <div class="row m-2">

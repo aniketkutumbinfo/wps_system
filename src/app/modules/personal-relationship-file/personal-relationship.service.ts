@@ -9,10 +9,10 @@ export class PersonalRelationshipService {
   constructor(private httpService: HttpService) { }
 
   getAllPrcFiles() {
-    return this.httpService.get(`prc/getAllPrcFiles`);
+    return this.httpService.get(`get/all/prc/files`);
   }
 
   getPrcFileById(id: any) {
-    return this.httpService.get(`prc/getRecById/` + id);
+    return this.httpService.get(`get/prc/record/by?prcFileId=` + id);
   }
 }

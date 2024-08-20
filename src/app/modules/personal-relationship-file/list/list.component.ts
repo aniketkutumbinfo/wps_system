@@ -21,7 +21,9 @@ export class ListComponent implements OnInit {
 
   getAllPrcFiles() {
     this.prfService.getAllPrcFiles().subscribe(res => {
-      this.getAllPrcFilesList = res;
+      if (res.responseStatus === 'success') {
+        this.getAllPrcFilesList = res.responseData;
+      }
     });
   }
 

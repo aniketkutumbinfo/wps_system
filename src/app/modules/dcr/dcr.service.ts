@@ -46,7 +46,7 @@ export class DcrService {
   }
 
   getAckNckList() {
-    return this.httpService.get(`get/all/acknck/for/dcr?acknakForFileType=DCR`);
+    return this.httpService.get(`get/all/acknck/for?acknakForFileType=DCR`);
   }
 
   getAckNakForFileName(acknakForFileName: any, acknakForFileId: any) {

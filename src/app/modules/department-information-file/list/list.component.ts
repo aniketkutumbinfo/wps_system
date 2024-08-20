@@ -24,7 +24,9 @@ export class ListComponent implements OnInit {
 
   getAllDifFiles() {
     this.difService.getAllDifFiles().subscribe(res => {
-      this.getAllDifFilesList = res;
+      if (res.responseStatus === 'success') {
+        this.getAllDifFilesList = res.responseData;
+      }
     });
   }
 
@@ -41,8 +43,6 @@ export class ListComponent implements OnInit {
   //   {
   //     "diffilenames": this.selectedProducts
   //   }
-  //   console.log(data)
-  //   console.log(item)
   //   this.confirmationService.confirm({
   //     message: 'Are you sure that you want to delete?',
   //     accept: () => {
@@ -63,7 +63,6 @@ export class ListComponent implements OnInit {
     {
       "diffilenames": this.selectedProducts.map(a => a.difFileName)
     }
-    console.log(item)
     this.confirmationService.confirm({
       message: 'Are you sure that you want to delete?',
       accept: () => {

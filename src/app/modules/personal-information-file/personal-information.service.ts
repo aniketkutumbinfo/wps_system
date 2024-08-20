@@ -9,10 +9,10 @@ export class PersonalInformationService {
   constructor(private httpService: HttpService) { }
 
   getAllPafFiles() {
-    return this.httpService.get(`paf/getAllPafFiles`);
+    return this.httpService.get(`get/all/paf/files`);
   }
 
   getPafFileById(id: any) {
-    return this.httpService.get(`paf/getRecById/` + id);
+    return this.httpService.get(`get/paf/record/by?pafFileId=` + id);
   }
 }

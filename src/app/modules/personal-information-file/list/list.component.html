@@ -3,7 +3,7 @@
         [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header">
             <tr>
-                <th style="min-width:200px">File Name</th>
+                <th style="min-width:200px">PAF File Name</th>
                 <th style="min-width:200px">File Reason</th>
                 <th style="min-width:200px">File Status</th>
                 <th style="min-width:200px">File Creation Date</th>
@@ -14,7 +14,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-data>
             <tr>
-                <td>{{data.fileName}}</td>
+                <td>{{data.pafFileName}}</td>
                 <td>{{data.fileReason}}</td>
                 <td>{{data.fileStatus}}</td>
                 <td>{{data.fileCreationDate}}</td>

@@ -9,8 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewComponent implements OnInit {
   itemId: any;
-  difDetail: any;
-  constructor(private difService: DcrService,
+  dcrDetail: any;
+  constructor(private dcrService: DcrService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -24,10 +24,11 @@ export class ViewComponent implements OnInit {
   }
 
   getPafDetail(id: any) {
-    this.difService.getRecDcrById(id)
+    this.dcrService.getRecDcrById(id)
       .subscribe(res => {
-        this.difDetail = res;
-        console.log(res)
+        if (res.responseStatus === 'success') {
+          this.dcrDetail = res.responseData;
+        }
       })
   }
 

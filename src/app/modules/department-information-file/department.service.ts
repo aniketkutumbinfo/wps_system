@@ -45,11 +45,11 @@ export class DepartmentService {
   }
 
   getAckNckList() {
-    return this.httpService.get(`get/all/acknck/for/dif?acknakForFileType=DIF`);
+    return this.httpService.get(`get/all/acknck/for?acknakForFileType=DIF`);
   }
 
   getAckNakForFileName(acknakForFileName: any, acknakForFileId: any) {
-    return this.httpService.get(`find/acnck/by/dif?acknakForFileName=${acknakForFileName}&acknakForFileId=` + acknakForFileId);
+    return this.httpService.get(`find/acnck/by?acknakForFileName=${acknakForFileName}&acknakForFileId=${acknakForFileId}`);
   }
 
 }

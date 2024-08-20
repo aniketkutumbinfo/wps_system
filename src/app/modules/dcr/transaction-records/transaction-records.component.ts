@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 
 export class TransactionRecordsComponent implements OnInit {
-  
-  getAllDifFilesList: any = [];
+
+  getAllDcrFilesList: any = [];
   selectedStatus: any;
   statusList: any
   constructor(private dcrService: DcrService,
@@ -30,7 +30,9 @@ export class TransactionRecordsComponent implements OnInit {
 
   getAllRecirdsOfPendingTxOfDif(data: any) {
     this.dcrService.getAllRecirdsOfPendingTxOfDif(data).subscribe(res => {
-      this.getAllDifFilesList = res;
+      if (res.responseStatus === 'success') {
+        this.getAllDcrFilesList = res.responseData;
+      }
     });
   }
 

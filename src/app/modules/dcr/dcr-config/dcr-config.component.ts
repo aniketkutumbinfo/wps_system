@@ -9,7 +9,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class DcrConfigComponent implements OnInit {
   edit = false
-  
+
   difConfigForm: FormGroup;
   getConfigDetail: any;
   apiList: string[];
@@ -35,8 +35,9 @@ export class DcrConfigComponent implements OnInit {
   getConfigDetails() {
     this.dcrService.dcrConfigDisplay()
       .subscribe(res => {
-        console.log(res)
-        this.getConfigDetail = [res]
+        if (res.responseStatus === 'success') {
+          this.getConfigDetail = [res.responseData];
+        }
       })
   }
 
@@ -65,7 +66,7 @@ export class DcrConfigComponent implements OnInit {
     }
   }
 
-  backToList(){
+  backToList() {
     this.edit = false
   }
 

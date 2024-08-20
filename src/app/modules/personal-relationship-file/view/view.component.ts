@@ -25,8 +25,9 @@ export class ViewComponent implements OnInit {
   getPrcDetail(id: any) {
     this.prcService.getPrcFileById(id)
       .subscribe(res => {
-        this.prcDetail = res;
-        console.log(res)
+        if (res.responseStatus === 'success') {
+          this.prcDetail = res.responseData[0];
+        }
       })
   }
 

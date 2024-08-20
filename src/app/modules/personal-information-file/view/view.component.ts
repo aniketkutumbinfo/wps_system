@@ -26,8 +26,9 @@ export class ViewComponent implements OnInit {
   getPafDetail(id: any) {
     this.pifService.getPafFileById(id)
       .subscribe(res => {
-        this.pafDetail = res[0];
-        console.log(res)
+        if (res.responseStatus === 'success') {
+          this.pafDetail = res.responseData[0];
+        }
       })
   }
 }

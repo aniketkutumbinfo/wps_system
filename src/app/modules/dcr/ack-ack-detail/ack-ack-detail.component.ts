@@ -27,7 +27,6 @@ export class AckAckDetailComponent implements OnInit {
     this.dcrService.getAckNakForFileName(id,'')
       .subscribe(res => {
         this.ackNakDetail = res;
-        console.log(res)
       })
   }
 

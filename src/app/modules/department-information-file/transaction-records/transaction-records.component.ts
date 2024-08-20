@@ -28,7 +28,9 @@ export class TransactionRecordsComponent implements OnInit {
 
   getAllRecirdsOfPendingTxOfDif(data: any) {
     this.difService.getAllRecirdsOfPendingTxOfDif(data).subscribe(res => {
-      this.getAllDifFilesList = res;
+      if (res.responseStatus === 'success') {
+        this.getAllDifFilesList = res.responseData;
+      }
     });
   }
 
