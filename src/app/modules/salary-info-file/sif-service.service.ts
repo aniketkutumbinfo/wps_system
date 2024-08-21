@@ -39,5 +39,4 @@ export class SifServiceService {
   getSIFFiles(startdate:any, endDate:any) {
     return this.httpService.get(`get/sif/uplaod/bydate?startdate=${startdate}&enddate=${endDate}`);
   }
-
 }

@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './list/list.component';
 import { ViewComponent } from './view/view.component';
 import { DifConfigComponent } from './dif-config/dif-config.component';
-import { TransactionRecordsComponent } from './transaction-records/transaction-records.component';
+import { TransactionRecordsComponent } from './transactions/transaction-records/transaction-records.component';
 import { AckNckListComponent } from './ack-nck-list/ack-nck-list.component';
 import { AckNckDetailComponent } from './ack-nck-detail/ack-nck-detail.component';
+import { UpdateTransactionComponent } from './transactions/update-transaction/update-transaction.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,9 @@ const routes: Routes = [
   },
   {
     path: 'transaction', component: TransactionRecordsComponent
+  },
+  {
+    path: 'transaction/:id', component: UpdateTransactionComponent
   },
   {
     path: 'ack-nck', component: AckNckListComponent

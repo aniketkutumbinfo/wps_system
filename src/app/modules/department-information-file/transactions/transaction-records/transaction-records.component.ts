@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DepartmentService } from '../department.service';
+import { DepartmentService } from '../../department.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -47,6 +47,6 @@ export class TransactionRecordsComponent implements OnInit {
   }
 
   viewTranscation(data: any) {
-    this.router.navigate(['/pif/view', data.pafFileId]);
+    this.router.navigate(['/dif/transaction', data.txnRefNo]);
   }
 }
