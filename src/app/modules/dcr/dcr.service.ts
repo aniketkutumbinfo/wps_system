@@ -46,11 +46,11 @@ export class DcrService {
   }
 
   getAckNckList() {
-    return this.httpService.get(`get/all/acknck/for?acknakForFileType=DCR`);
+    return this.httpService.get(`get/all/acknck/for?acknakForFileType=DCR&ackNakFileName=`);
   }
 
-  getAckNakForFileName(acknakForFileName: any, acknakForFileId: any) {
-    return this.httpService.get(`find/acnck/by/dcr?acknakForFileName=${acknakForFileName}&acknakForFileId=` + acknakForFileId);
+  getAckNakForFileName(acknakForFileId: any) {
+    return this.httpService.get(`find/acnck/by?acknakForFileName=&acknakForFileId=${acknakForFileId}`);
   }
 
 }

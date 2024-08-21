@@ -19,11 +19,13 @@ export class AckNckListComponent implements OnInit {
 
   getAllAckNck() {
     this.difService.getAckNckList().subscribe(res => {
-      this.getAllAckNckFilesList = res;
+      if (res.responseStatus === 'success') {
+        this.getAllAckNckFilesList = res.responseData;
+      }
     });
   }
 
   viewAckNakDetail(data: any) {
-    this.router.navigate(['/dif/ack-nak', data.ackNakFileName]);
+    this.router.navigate(['/dif/ack-nak', data.acknakForFileId]);
   }
 }

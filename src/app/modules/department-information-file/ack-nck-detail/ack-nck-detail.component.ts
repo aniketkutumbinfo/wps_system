@@ -24,9 +24,11 @@ export class AckNckDetailComponent implements OnInit {
   }
 
   getPafDetail(id: any) {
-    this.departmentService.getAckNakForFileName(id,'')
+    this.departmentService.getAckNakForFileName(id)
       .subscribe(res => {
-        this.ackNakDetail = res;
+        if (res.responseStatus === 'success') {
+          this.ackNakDetail = res.responseData;
+        }
       })
   }
 

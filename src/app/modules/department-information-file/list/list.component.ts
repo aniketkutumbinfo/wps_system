@@ -35,7 +35,7 @@ export class ListComponent implements OnInit {
   }
 
   viewAckNakDetail(data: any) {
-    this.router.navigate(['/dif/ack-nak', data.difFileName]);
+    this.router.navigate(['/dif/ack-nak', data.difFileId]);
   }
 
   // onDelete(data: any) {
@@ -61,7 +61,7 @@ export class ListComponent implements OnInit {
   allDelete() {
     let item =
     {
-      "diffilenames": this.selectedProducts.map(a => a.difFileName)
+      "filenames": this.selectedProducts.map(a => a.difFileName)
     }
     this.confirmationService.confirm({
       message: 'Are you sure that you want to delete?',
