@@ -41,9 +41,7 @@ export class UpdateTransactionComponent implements OnInit {
     this.commonService.updateTranscation(this.txnDetail)
       .subscribe(res => {
         if (res.responseStatus === 'success') {
-          if (this.itemId) {
-            this.getTxnDetail(this.itemId)
-          }
+          this.router.navigate(['/dif/transaction'])
         }
       })
   }

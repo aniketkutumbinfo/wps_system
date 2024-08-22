@@ -40,38 +40,42 @@
     </div>
     <div *ngIf="edit">
         <form [formGroup]="difConfigForm" (ngSubmit)="onSubmit()">
-            <div class="flex flex-column gap-2">
-                <label>Api Enable Disable</label>
-                <p-dropdown formControlName="apiEnableDisable" [options]="apiList" [showClear]="true"
-                    placeholder="Select" />
+            <div class="row m-2">
+                <div class="col-3">
+                    <label class="form-label">Api Enable Disable</label>
+                    <p-dropdown class="form-control" formControlName="apiEnableDisable" [options]="apiList"
+                        [showClear]="true" placeholder="Select" />
+                </div>
+                <div class="col-3">
+                    <label class="form-label">Count Days</label>
+                    <input pInputText class="form-control" type="number" formControlName="countDays" />
+                </div>
+                <div class="col-3">
+                    <label class="form-label">Count In Day</label>
+                    <input pInputText class="form-control" type="number" formControlName="countInDay" />
+                </div>
+                <div class="col-3">
+                    <label class="form-label">Date For Days Count</label>
+                    <input pInputText class="form-control" type="date" formControlName="dateForDaysCount" />
+                </div>
             </div>
-            <div class="flex flex-column gap-2">
-                <label>Count Days</label>
-                <input pInputText type="number" formControlName="countDays" />
+            <div class="row m-2">
+                <div class="col-3">
+                    <label class="form-label">Record Count</label>
+                    <input pInputText class="form-control" type="number" formControlName="recordCount" />
+                </div>
+                <div class="col-3">
+                    <label class="form-label">Shedular Time</label>
+                    <input pInputText class="form-control" type="text" formControlName="shedularTime" />
+                </div>
+                <div class="col-3">
+                    <label class="form-label">Updated Date</label>
+                    <input pInputText class="form-control" type="text" formControlName="updatedDate" readonly />
+                </div>
             </div>
-            <div class="flex flex-column gap-2">
-                <label>Count In Day</label>
-                <input pInputText type="number" formControlName="countInDay" />
-            </div>
-            <div class="flex flex-column gap-2">
-                <label>Date For Days Count</label>
-                <input pInputText type="date" formControlName="dateForDaysCount" />
-            </div>
-            <div class="flex flex-column gap-2">
-                <label>Record Count</label>
-                <input pInputText type="number" formControlName="recordCount" />
-            </div>
-            <div class="flex flex-column gap-2">
-                <label>Shedular Time</label>
-                <input pInputText type="text" formControlName="shedularTime" />
-            </div>
-            <div class="flex flex-column gap-2">
-                <label>Updated Date</label>
-                <input pInputText type="text" formControlName="updatedDate" readonly />
-            </div>
-            <div>
-                <p-button label="Submit" type="Submit" />
-                <p-button label="Secondary" severity="secondary" label="Cancel" (onClick)="backToList()" />
+            <div class="col m-2">
+                <p-button label="Update" type="Submit" />
+                <p-button severity="danger" label="Cancel" (onClick)="backToList()" />
             </div>
         </form>
     </div>
