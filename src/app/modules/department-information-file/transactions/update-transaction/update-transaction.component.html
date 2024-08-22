@@ -71,7 +71,9 @@
                     [(ngModel)]="txnDetail.pafStatusForFile" name="pafStatusForFile" pInputText>
             </div>
         </div>
-        <button type="submit">Update Case</button>
+        <div class="col m-2">
+            <p-button label="Update" type="Submit" />
+            <p-button severity="danger" label="Cancel" (onClick)="router.navigate(['/dif/transaction'])" />
+        </div>
     </form>
-    <!-- <button (click)="router.navigate(['/dif/transaction'])">Cancel</button> -->
 </div>
