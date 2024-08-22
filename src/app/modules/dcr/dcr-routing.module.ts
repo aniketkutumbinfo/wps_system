@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './list/list.component';
-import { TransactionRecordsComponent } from './transaction-records/transaction-records.component';
 import { ViewComponent } from './view/view.component';
 import { DcrConfigComponent } from './dcr-config/dcr-config.component';
 import { AckAckDetailComponent } from './ack-ack-detail/ack-ack-detail.component';
 import { AckAckListComponent } from './ack-ack-list/ack-ack-list.component';
+import { TransactionRecordsComponent } from './transactions/transaction-records/transaction-records.component';
+import { UpdateTransactionComponent } from './transactions/update-transaction/update-transaction.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,9 @@ const routes: Routes = [
   },
   {
     path: 'transaction', component: TransactionRecordsComponent
+  },
+  {
+    path: 'transaction/:id', component: UpdateTransactionComponent
   },
   {
     path: 'ack-nck', component: AckAckListComponent

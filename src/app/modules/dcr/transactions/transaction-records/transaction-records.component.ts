@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DcrService } from '../dcr.service';
 import { Router } from '@angular/router';
+import { DcrService } from '../../dcr.service';
 
 @Component({
   selector: 'app-transaction-records',
@@ -49,7 +49,7 @@ export class TransactionRecordsComponent implements OnInit {
   }
 
   viewTranscation(data: any) {
-    this.router.navigate(['/pif/view', data.pafFileId]);
+    this.router.navigate(['/dcr/transaction', data.txnRefNo]);
   }
 
 }

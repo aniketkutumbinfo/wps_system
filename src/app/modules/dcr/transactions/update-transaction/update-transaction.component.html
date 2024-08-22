@@ -1,0 +1,77 @@
+<div class="card">
+    <form (ngSubmit)="updateCase()">
+        <div class="row m-2">
+            <div class="col-3">
+                <label for="empId" class="form-label">
+                    Emp Id
+                </label>
+                <input id="empId" class="form-control" readonly type="text" [(ngModel)]="txnDetail.empId" name="empId"
+                    pInputText>
+            </div>
+            <div class="col-3">
+                <label for="pafFileName" class="form-label">
+                    PAF File Name
+                </label>
+                <input id="pafFileName" class="form-control" readonly type="text" [(ngModel)]="txnDetail.pafFileName"
+                    name="pafFileName" pInputText>
+            </div>
+            <div class="col-3">
+                <label for="txnDate" class="form-label">
+                    Txn Date
+                </label>
+                <input id="txnDate" class="form-control" readonly type="text" [(ngModel)]="txnDetail.txnDate"
+                    name="txnDate" pInputText>
+            </div>
+            <div class="col-3">
+                <label for="txnRefNo" class="form-label">
+                    Txn Ref No
+                </label>
+                <input id="txnRefNo" class="form-control" readonly type="text" [(ngModel)]="txnDetail.txnRefNo"
+                    name="txnRefNo" pInputText>
+            </div>
+        </div>
+        <br>
+        <div class="row m-2">
+            <div class="col-3">
+                <label for="availableBal" class="form-label">
+                    Available Bal
+                </label>
+                <input id="availableBal" class="form-control" type="text" [(ngModel)]="txnDetail.availableBal"
+                    name="availableBal" pInputText>
+            </div>
+            <div class="col-3">
+                <label for="remmitAmt" class="form-label">
+                    Remmit Amt
+                </label>
+                <input id="remmitAmt" class="form-control" type="text" [(ngModel)]="txnDetail.remmitAmt"
+                    name="remmitAmt" pInputText>
+            </div>
+            <div class="col-3">
+                <label for="totalTxnAmt" class="form-label">
+                    Total Txn Amt
+                </label>
+                <input id="totalTxnAmt" class="form-control" type="text" [(ngModel)]="txnDetail.totalTxnAmt"
+                    name="totalTxnAmt" pInputText>
+            </div>
+            <div class="col-3">
+                <label for="txnAmt" class="form-label">
+                    Txn Amt
+                </label>
+                <input id="txnAmt" class="form-control" type="text" [(ngModel)]="txnDetail.txnAmt" name="txnAmt"
+                    pInputText>
+            </div>
+        </div>
+        <br>
+        <div class="row m-2">
+            <div class="col-3">
+                <label for="pafStatusForFile" class="form-label">
+                    Paf Status For File
+                </label>
+                <input id="pafStatusForFile" class="form-control" readonly type="text"
+                    [(ngModel)]="txnDetail.pafStatusForFile" name="pafStatusForFile" pInputText>
+            </div>
+        </div>
+        <button type="submit">Update Case</button>
+    </form>
+    <!-- <button (click)="router.navigate(['/dif/transaction'])">Cancel</button> -->
+</div>
