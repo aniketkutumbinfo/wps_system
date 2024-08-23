@@ -15,4 +15,16 @@ export class PersonalInformationService {
   getPafFileById(id: any) {
     return this.httpService.get(`get/paf/record/by?pafFileId=` + id);
   }
+
+  getAllRfaFiles() {
+    return this.httpService.get(`get/all/rfa/files`);
+  }
+
+  getRfaFileById(id: any) {
+    return this.httpService.get(`rfa/record/by?rfaFileId=` + id);
+  }
+
+  getRfaData() {
+    return this.httpService.get(`rfa/create`);
+  }
 }

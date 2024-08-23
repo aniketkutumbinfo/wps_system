@@ -5,12 +5,16 @@ import { PersonalInformationFileRoutingModule } from './personal-information-fil
 import { ListComponent } from './list/list.component';
 import { ViewComponent } from './view/view.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { RfaListComponent } from './RFA/rfa-list/rfa-list.component';
+import { RfaViewComponent } from './RFA/rfa-view/rfa-view.component';
 
 
 @NgModule({
   declarations: [
     ListComponent,
-    ViewComponent
+    ViewComponent,
+    RfaListComponent,
+    RfaViewComponent,
   ],
   imports: [
     CommonModule,
