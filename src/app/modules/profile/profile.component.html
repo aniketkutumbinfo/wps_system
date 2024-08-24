@@ -1,0 +1,59 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Corporate Profile</h3>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" formControlName="name"
+                                [readonly]="!isEditing">
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" formControlName="email"
+                                [readonly]="!isEditing">
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="phone">Phone</label>
+                            <input type="text" id="phone" class="form-control" formControlName="phone"
+                                [readonly]="!isEditing">
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="position">Position</label>
+                            <input type="text" id="position" class="form-control" formControlName="position"
+                                [readonly]="!isEditing">
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" class="form-control" formControlName="company"
+                                [readonly]="!isEditing">
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="address">Address</label>
+                            <textarea id="address" class="form-control" formControlName="address"
+                                [readonly]="!isEditing"></textarea>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <button type="button" class="btn btn-secondary" (click)="toggleEdit()">
+                                {{ isEditing ? 'Cancel' : 'Edit' }}
+                            </button>
+                            <button type="submit" class="btn btn-primary ml-2" [disabled]="!isEditing">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

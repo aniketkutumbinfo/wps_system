@@ -60,7 +60,15 @@ const routes: Routes = [
       {
         path: 'rfr',
         loadChildren: () => import('./modules/request-for-refund/request-for-refund.module').then(m => m.RequestForRefundModule)
-      }
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule)
+      },
     ]
   }
 ];
