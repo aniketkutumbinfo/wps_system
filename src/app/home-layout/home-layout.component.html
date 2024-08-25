@@ -87,19 +87,31 @@
       <div class="profile-detail">
         <!-- <span class="user-name">Hello Adam!</span> -->
         <!-- <span class="user-pic"><img src="/assets/images/profile-pic.png" /></span> -->
-        <ul class="navbar-nav ml-auto">
-          <!-- Profile Dropdown -->
+        <!-- <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="/assets/images/profile-pic.png" alt="Profile" class="rounded-circle" style="width: 30px; height: 30px;">
-              XYZ<!-- {{ userName }} Display the user's name -->
+            <a class="nav-link dropdown-toggle" (click)="toggleDropdown()" id="navbarDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="/assets/images/profile-pic.png" alt="Profile" class="rounded-circle"
+                style="width: 30px; height: 30px;">
+              {{ this.userName }}
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" [class.show]="isDropdownOpen">
               <a class="dropdown-item" href="javascript:void(0)" (click)="updateProfile()">Update Profile</a>
               <a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Logout</a>
             </div>
           </li>
-        </ul>
+        </ul> -->
+
+        <div class="dropdown" (click)="toggleDropdown()">
+          <button class="dropdown-toggle">
+            <img src="/assets/images/profile-pic.png" alt="Profile" class="rounded-circle" style="width: 30px; height: 30px;">
+            {{ this.userName }}
+          </button>
+          <div class="dropdown-menu" [class.show]="isDropdownOpen">
+            <a class="dropdown-item" (click)="updateProfile()">Update Profile</a>
+            <a class="dropdown-item" (click)="logout()">Logout</a>
+          </div>
+        </div>
       </div>
     </div>
     <div class="mid-container">

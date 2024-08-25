@@ -9,7 +9,8 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['./home-layout.component.scss']
 })
 export class HomeLayoutComponent implements OnInit {
-
+  userName: any
+  isDropdownOpen = false;
   constructor(public commonService: CommonService,
     private cdr: ChangeDetectorRef,
     private authService: AuthService,
@@ -18,6 +19,7 @@ export class HomeLayoutComponent implements OnInit {
     this.commonService.getProfileUser()
       .subscribe(res => {
         if (res.responseStatus === 'success') {
+          this.userName = res.responseData.fullName
         }
       })
   }
@@ -34,6 +36,10 @@ export class HomeLayoutComponent implements OnInit {
   logout(): void {
     this.authService.logout(); // Implement this method in AuthService
     this.router.navigate(['/login']);
+  }
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 
   ngOnInit(): void {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CommonService } from 'src/app/shared/services/common.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,28 +10,35 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   isEditing: boolean = false;
-
-  constructor(private fb: FormBuilder) {
+  profileData: any
+  constructor(private fb: FormBuilder,
+    private commonService: CommonService
+  ) {
     this.profileForm = this.fb.group({
-      name: ['', [Validators.required]],
+      fullName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required]],
-      position: ['', [Validators.required]],
-      company: ['', [Validators.required]],
-      address: ['']
+      mobile: ['', [Validators.required]],
+      role: ['', [Validators.required]],
     });
   }
 
   ngOnInit(): void {
     // Mock data for demonstration purposes
-    this.profileForm.setValue({
-      name: 'John Doe',
-      email: 'john.doe@example.com',
-      phone: '123-456-7890',
-      position: 'Software Engineer',
-      company: 'TechCorp Inc.',
-      address: '1234 Elm Street, Springfield, USA'
-    });
+    this.commonService.getProfileUser()
+      .subscribe(res => {
+        if (res.responseStatus === 'success') {
+          this.profileData = res.responseData
+          console.log(this.profileData)
+          this.profileForm.setValue(
+            {
+              fullName: this.profileData.fullName,
+              email: this.profileData.email,
+              mobile: this.profileData.mobile,
+              role: this.profileData.role,
+            }
+          );
+        }
+      })
   }
 
   toggleEdit() {
@@ -41,7 +49,12 @@ export class ProfileComponent implements OnInit {
     if (this.profileForm.valid) {
       // Handle form submission
       console.log('Profile updated:', this.profileForm.value);
-      this.toggleEdit();
+      this.commonService.updateProfile(this.profileForm.value)
+        .subscribe(res => {
+          if (res.responseStatus === 'success') {
+            this.toggleEdit();
+          }
+        })
     }
   }
 
