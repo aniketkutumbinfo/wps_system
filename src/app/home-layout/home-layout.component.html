@@ -85,8 +85,21 @@
   <div class="right-panel">
     <div class="header">
       <div class="profile-detail">
-        <span class="user-name">Hello Adam!</span>
-        <span class="user-pic"><img src="/assets/images/profile-pic.png" /></span>
+        <!-- <span class="user-name">Hello Adam!</span> -->
+        <!-- <span class="user-pic"><img src="/assets/images/profile-pic.png" /></span> -->
+        <ul class="navbar-nav ml-auto">
+          <!-- Profile Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="/assets/images/profile-pic.png" alt="Profile" class="rounded-circle" style="width: 30px; height: 30px;">
+              XYZ<!-- {{ userName }} Display the user's name -->
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="javascript:void(0)" (click)="updateProfile()">Update Profile</a>
+              <a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Logout</a>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
     <div class="mid-container">

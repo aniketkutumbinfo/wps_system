@@ -59,23 +59,51 @@ export class ListComponent implements OnInit {
   // }
 
   allDelete() {
-    let item =
-    {
-      "filenames": this.selectedProducts.map(a => a.dcrFileName)
-    }
+    // Prepare the payload with the filenames of the selected products
+    const payload = {
+      filenames: this.selectedProducts.map(product => product.dcrFileName)
+    };
+  
+    // Show a confirmation dialog to the user
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to delete?',
+      message: 'Are you sure you want to delete the selected items?',
       accept: () => {
-        this.difService.deleteByDifId(item).subscribe(res => {
-          if (res) {
-            this.messageService.add({
-              severity: 'success', detail: res.responsemassage
-            });
-            this.getAllDcrFiles();
-          }
-        });
+        // Proceed with deletion if confirmed
+        this.difService.deleteByDifId(payload)
+          .subscribe({
+            next: (res) => {
+              // Check if the response indicates success
+              if (res && res.responseStatus === 'success') {
+                // Notify the user of successful deletion
+                this.messageService.add({
+                  severity: 'success',
+                  summary: 'Success',
+                  detail: res.responseMessage || 'Items deleted successfully.'
+                });
+                // Refresh the list of DCR files
+                this.getAllDcrFiles();
+              } else {
+                // Notify the user of failure
+                this.messageService.add({
+                  severity: 'error',
+                  summary: 'Error',
+                  detail: res.responseMessage || 'Failed to delete items. Please try again.'
+                });
+              }
+            },
+            error: (err) => {
+              // Handle any server errors
+              console.error('Deletion error:', err);
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Server Error',
+                detail: 'An error occurred while deleting items. Please try again later.'
+              });
+            }
+          });
       }
     });
   }
+  
 
 }

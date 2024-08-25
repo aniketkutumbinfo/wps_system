@@ -24,11 +24,31 @@ export class CommonService {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
   }
 
-  updateTranscation(data: any) {
+  updateTransaction(data: any) {
     return this.httpService.put(`paf/txn/update`, data);
   }
 
   getTranscationsRecords(txnRefNo: any) {
     return this.httpService.get(`get/txn/record/by?txnRefNo=${txnRefNo}`);
+  }
+
+  login(data: any) {
+    return this.httpService.post(`auth/login`, data);
+  }
+
+  signup(data: any) {
+    return this.httpService.post(`auth/signup`, data);
+  }
+
+  getProfileUser() {
+    return this.httpService.get(`users/by/token`);
+  }
+
+  updateProfile(data: any) {
+    return this.httpService.post(`profile/update`, data);
+  }
+
+  forgotPassword(data: any) {
+    return this.httpService.get(`reset/link/send/to?email=${data.email}`);
   }
 }

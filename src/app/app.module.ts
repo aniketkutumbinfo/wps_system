@@ -12,6 +12,7 @@ import { TokenInterceptor } from './shared/services/http-intereceptor';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     HomeLayoutComponent,
     SignupComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

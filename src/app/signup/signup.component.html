@@ -13,11 +13,11 @@
                     <div class="field-block">
                         <form (ngSubmit)="onSubmit()" #signUpForm="ngForm">
                             <div class="input-block">
-                                <label class="fieldtitle" for="name">Name</label>
-                                <input type="text" id="name" class="form-control" placeholder="Enter your name" required
-                                    [(ngModel)]="user.name" name="name" #name="ngModel" />
-                                <div *ngIf="name.invalid && name.touched" class="text-danger">
-                                    Name is required.
+                                <label class="fieldtitle" for="fullName">Full Name</label>
+                                <input type="text" id="fullName" class="form-control" placeholder="Enter your Full Name"
+                                    required [(ngModel)]="user.fullName" name="fullName" #fullName="ngModel" />
+                                <div *ngIf="fullName.invalid && fullName.touched" class="text-danger">
+                                    Full Name is required.
                                 </div>
                             </div>
 
@@ -41,21 +41,45 @@
                             </div>
 
                             <div class="input-block">
-                                <label class="fieldtitle" for="confirmPassword">Confirm Password</label>
-                                <input type="password" id="confirmPassword" class="form-control"
-                                    placeholder="Confirm your password" required [(ngModel)]="confirmPassword"
-                                    name="confirmPassword" #confirmPasswordField="ngModel" />
+                                <label class="fieldtitle" for="confirmPass">Confirm Password</label>
+                                <input type="password" id="confirmPass" class="form-control"
+                                    placeholder="Confirm your password" required [(ngModel)]="confirmPass"
+                                    name="confirmPass" #confirmPasswordField="ngModel" />
                                 <div *ngIf="confirmPasswordField.invalid && confirmPasswordField.touched"
                                     class="text-danger">
                                     Confirm Password is required.
                                 </div>
-                                <div *ngIf="password.value !== confirmPassword" class="text-danger mt-2">
+                                <div *ngIf="password.value !== confirmPass" class="text-danger mt-2">
                                     Passwords must match.
                                 </div>
                             </div>
-                            <button type="submit" name="signup" class="signin-btn"
-                                [disabled]="signUpForm.invalid || password.value !== confirmPassword">Sign
+
+                            <div class="input-block">
+                                <label class="fieldtitle" for="role">Role</label>
+                                <select id="role" class="form-control" [(ngModel)]="user.role" name="role" required>
+                                    <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+                                </select>
+                                <div *ngIf="!user.role && signUpForm.submitted" class="text-danger">
+                                    Role is required.
+                                </div>
+                            </div>
+
+                            <div class="input-block">
+                                <label class="fieldtitle" for="mobile">Mobile Number</label>
+                                <input type="tel" id="mobile" class="form-control"
+                                    placeholder="Enter your mobile number" required [(ngModel)]="user.mobile"
+                                    name="mobile" #mobile="ngModel" pattern="[0-9]{10}" />
+                                <div *ngIf="mobile.invalid && mobile.touched" class="text-danger">
+                                    A valid mobile number is required (10 digits).
+                                </div>
+                            </div>
+
+
+                            <button type="submit" name="signup" class="signin-btn mb-2"
+                                [disabled]="signUpForm.invalid || password.value !== confirmPass">Sign
                                 Up</button>
+                            <button type="button" name="login" routerLink="/login" class="signin-btn">Back To Login
+                            </button>
                         </form>
                     </div>
                 </div>
