@@ -7,16 +7,30 @@ import { Observable, of } from 'rxjs';
 export class AuthService {
   constructor() {}
 
+  getAuthToken(): string | null {
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      try {
+        const parsedData = JSON.parse(userData);
+        return parsedData.token || null;
+      } catch (e) {
+        console.error('Failed to parse user data:', e);
+        return null;
+      }
+    }
+    return null;
+  }
   // Example method to check if a user is authenticated
   isAuthenticated(): Observable<boolean> {
     // Replace this with actual token validation logic
-    const token = localStorage.getItem('userData');
+    // const userData = localStorage.getItem('userData');
     // Simple example: token should exist and be valid
-    return of(!!token && this.validateToken(token));
+    console.log(this.getAuthToken())
+    return of(!!this.getAuthToken() && this.validateToken(this.getAuthToken()));
   }
 
   // Example method to validate the token
-  private validateToken(token: string): boolean {
+  private validateToken(token: any): boolean {
     // Implement actual token validation logic here
     // For example, decode the token and check its validity
     return true; // Placeholder

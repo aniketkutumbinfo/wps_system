@@ -7,27 +7,33 @@ export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
+  console.log('Checking authentication for URL:', state.url); // Log the URL
+
   return authService.isAuthenticated().pipe(
     map(isAuthenticated => {
       const isLoginPage = state.url === '/login';
+      console.log('Is login page:', isLoginPage); // Log whether it's the login page
 
       if (isAuthenticated) {
         // Redirect authenticated users away from the login page
         if (isLoginPage) {
-          router.navigate(['/dashboard']); // or another route
+          console.log('Redirecting authenticated user from login to dashboard');
+          router.navigate(['/dashboard']);
           return false;
         }
         return true; // Allow access to the route
       } else {
         // Redirect unauthenticated users to the login page
         if (!isLoginPage) {
-          router.navigate(['/login']); // Redirect to login if not authenticated
+          console.log('Redirecting unauthenticated user to login');
+          router.navigate(['/login']);
           return false;
         }
         return true; // Allow access to the login page
       }
     }),
-    catchError(() => {
+    catchError(err => {
+      console.error('Error in auth guard:', err); // Log errors
       router.navigate(['/login']); // Redirect to login on error
       return of(false); // Prevent access on error
     })
