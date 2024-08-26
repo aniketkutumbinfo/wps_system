@@ -1,6 +1,7 @@
 <div class="card">
-    <p-table #dt1 dataKey="code" [value]="this.getAllAckNckFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
-        [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
+    <p-table #dt1 dataKey="code" [value]="getAllAckNckFilesList" [scrollable]="true" [paginator]="true"
+        [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true"
+        [tableStyle]="{'min-width': '50rem'}" [responsive]="true">
         <ng-template pTemplate="header">
             <tr>
                 <th style="min-width:200px">Ack Nak File Name</th>
@@ -23,14 +24,14 @@
                 <td>{{data.acknakFileDate}}</td>
                 <td>{{data.acknakFileType}}</td>
                 <td>
-                    <p-button pRipple class="m-2" icon="pi pi-eye" severity="info" label="ACK/NAK"
+                    <p-button pRipple class="m-2" icon="pi pi-eye" severity="info" label="View"
                         badgeClass="p-badge-contrast" [outlined]="true" (click)="viewAckNakDetail(data)" />
                 </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
             <tr>
-                <td class="text-center" [attr.colspan]="7">
+                <td class="text-center" [attr.colspan]="8">
                     No records found
                 </td>
             </tr>

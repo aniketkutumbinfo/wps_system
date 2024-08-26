@@ -1,5 +1,5 @@
 <div class="card">
-    <form (ngSubmit)="updateCase()">
+    <form (ngSubmit)="updateCase()" #updateForm="ngForm">
         <div class="row m-2">
             <div class="col-3">
                 <label for="empId" class="form-label">
@@ -36,29 +36,41 @@
                 <label for="availableBal" class="form-label">
                     Available Bal
                 </label>
-                <input id="availableBal" class="form-control" type="text" [(ngModel)]="txnDetail.availableBal"
-                    name="availableBal" pInputText>
+                <input id="availableBal" class="form-control" type="number" [(ngModel)]="txnDetail.availableBal"
+                    name="availableBal" pInputText required>
+                <div *ngIf="updateForm.submitted && !txnDetail.availableBal" class="invalid-feedback">
+                    Available Balance is required.
+                </div>
             </div>
             <div class="col-3">
                 <label for="remmitAmt" class="form-label">
                     Remmit Amt
                 </label>
-                <input id="remmitAmt" class="form-control" type="text" [(ngModel)]="txnDetail.remmitAmt"
-                    name="remmitAmt" pInputText>
+                <input id="remmitAmt" class="form-control" type="number" [(ngModel)]="txnDetail.remmitAmt"
+                    name="remmitAmt" pInputText required>
+                <div *ngIf="updateForm.submitted && !txnDetail.remmitAmt" class="invalid-feedback">
+                    Remmit Amount is required.
+                </div>
             </div>
             <div class="col-3">
                 <label for="totalTxnAmt" class="form-label">
                     Total Txn Amt
                 </label>
-                <input id="totalTxnAmt" class="form-control" type="text" [(ngModel)]="txnDetail.totalTxnAmt"
-                    name="totalTxnAmt" pInputText>
+                <input id="totalTxnAmt" class="form-control" type="number" [(ngModel)]="txnDetail.totalTxnAmt"
+                    name="totalTxnAmt" pInputText required>
+                <div *ngIf="updateForm.submitted && !txnDetail.totalTxnAmt" class="invalid-feedback">
+                    Total Transaction Amount is required.
+                </div>
             </div>
             <div class="col-3">
                 <label for="txnAmt" class="form-label">
                     Txn Amt
                 </label>
-                <input id="txnAmt" class="form-control" type="text" [(ngModel)]="txnDetail.txnAmt" name="txnAmt"
-                    pInputText>
+                <input id="txnAmt" class="form-control" type="number" [(ngModel)]="txnDetail.txnAmt" name="txnAmt"
+                    pInputText required>
+                <div *ngIf="updateForm.submitted && !txnDetail.txnAmt" class="invalid-feedback">
+                    Transaction Amount is required.
+                </div>
             </div>
         </div>
         <br>
@@ -77,7 +89,7 @@
                     <p-button pRipple icon="pi pi-check" type="submit" [rounded]="true" [outlined]="true"
                         label="Update" styleClass="p-button-primary me-2" />
                     <p-button pRipple icon="pi pi-times" [rounded]="true" [outlined]="true" label="Cancel"
-                        styleClass="p-button-secondary" (onClick)="router.navigate(['/dif/transaction'])" />
+                        styleClass="p-button-secondary" (click)="this.router.navigate(['/dif/transaction'])" />
                 </div>
             </div>
         </div>

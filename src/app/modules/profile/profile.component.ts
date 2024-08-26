@@ -10,7 +10,7 @@ import { CommonService } from 'src/app/shared/services/common.service';
 })
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
-  isEditing: boolean = false;
+  isEditing = false;
   roles = [
     { value: 'Admin', label: 'Admin' },
     { value: 'User', label: 'User' }
@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private commonService: CommonService,
-    private messageService: MessageService // Inject MessageService
+    private messageService: MessageService
   ) {
     this.profileForm = this.fb.group({
       fullName: ['', [Validators.required]],
@@ -39,8 +39,7 @@ export class ProfileComponent implements OnInit {
       .subscribe({
         next: (res) => {
           if (res.responseStatus === 'success') {
-            const { fullName, email, mobile, role } = res.responseData;
-            this.profileForm.setValue({ fullName, email, mobile, role });
+            this.profileForm.setValue(res.responseData);
           } else {
             this.messageService.add({
               severity: 'error',
@@ -49,7 +48,7 @@ export class ProfileComponent implements OnInit {
             });
           }
         },
-        error: (err) => {
+        error: () => {
           this.messageService.add({
             severity: 'error',
             summary: 'Server Error',
@@ -61,11 +60,7 @@ export class ProfileComponent implements OnInit {
 
   toggleEdit(): void {
     this.isEditing = !this.isEditing;
-    if (this.isEditing) {
-      this.profileForm.enable();
-    } else {
-      this.profileForm.disable();
-    }
+    this.isEditing ? this.profileForm.enable() : this.profileForm.disable();
   }
 
   onSubmit(): void {
@@ -89,7 +84,7 @@ export class ProfileComponent implements OnInit {
               });
             }
           },
-          error: (err) => {
+          error: () => {
             this.messageService.add({
               severity: 'error',
               summary: 'Server Error',

@@ -9,7 +9,7 @@
                 routerLink="/dcr/ack-nck" />
         </ng-template>
     </p-toolbar>
-    <p-table #dt1 dataKey="code" [value]="this.getAllDcrFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
+    <p-table #dt1 dataKey="code" [value]="getAllDcrFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
         [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}"
         [(selection)]="selectedProducts" dataKey="dcrFileName">
         <ng-template pTemplate="header">
@@ -38,8 +38,6 @@
                         badgeClass="p-badge-contrast" [outlined]="true" (click)="viewDcrDetail(data)" />
                     <p-button pRipple class="m-2" icon="pi pi-eye" severity="info" label="ACK/NAK"
                         badgeClass="p-badge-contrast" [outlined]="true" (click)="viewAckNakDetail(data)" />
-                    <!-- <p-button icon="pi pi-trash" severity="danger" (click)="onDelete(data)" label="Delete"
-                        badgeClass="p-badge-contrast" [outlined]="true" /> -->
                 </td>
             </tr>
         </ng-template>

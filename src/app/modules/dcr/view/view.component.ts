@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DcrService } from '../dcr.service';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-view',
@@ -8,28 +9,38 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./view.component.scss']
 })
 export class ViewComponent implements OnInit {
-  itemId: any;
-  dcrDetail: any;
-  constructor(private dcrService: DcrService,
-    private route: ActivatedRoute) { }
+  itemId: string | null = null;  // Explicit type definition
+  dcrDetail: any;  // Consider defining a specific type for DCR details
+  private routeSub: Subscription = new Subscription();
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.itemId = params.get('id'); // The '+' operator converts the string to a number
-      // Fetch and display the item details using this.itemId
+  constructor(private dcrService: DcrService, private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    // Subscribe to route parameters
+    this.routeSub.add(this.route.paramMap.subscribe(params => {
+      this.itemId = params.get('id');
       if (this.itemId) {
-        this.getPafDetail(this.itemId)
+        this.getPafDetail(this.itemId);
+      }
+    }));
+  }
+
+  getPafDetail(id: string): void {
+    this.dcrService.getRecDcrById(id).subscribe({
+      next: (res: any) => {
+        if (res.responseStatus === 'success') {
+          this.dcrDetail = res.responseData;
+        } else {
+          console.error('Failed to fetch details:', res.responseMessage); // Log error message or handle accordingly
+        }
+      },
+      error: (err: any) => {
+        console.error('Error fetching DCR details:', err);  // Log error message or handle accordingly
       }
     });
   }
 
-  getPafDetail(id: any) {
-    this.dcrService.getRecDcrById(id)
-      .subscribe(res => {
-        if (res.responseStatus === 'success') {
-          this.dcrDetail = res.responseData;
-        }
-      })
+  ngOnDestroy(): void {
+    this.routeSub.unsubscribe();  // Clean up subscriptions
   }
-
 }

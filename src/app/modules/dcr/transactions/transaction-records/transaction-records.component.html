@@ -1,10 +1,18 @@
 <div class="card">
-    <div>
-        <p-dropdown [ngModel]="selectedStatus" [options]="statusList" (onChange)="onItemSelect($event)"
-            [showClear]="true" optionLabel="value" placeholder="Select" />
+    <div class="mb-4">
+        <p-dropdown 
+            [ngModel]="selectedStatus" 
+            [options]="statusList" 
+            (onChange)="onItemSelect($event)"
+            [showClear]="true" 
+            optionLabel="label" 
+            placeholder="Select Status" 
+            class="w-full"
+        />
     </div>
-    <p-table #dt1 dataKey="code" [value]="this.getAllDcrFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
-        [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
+
+    <p-table #dt1 [value]="getAllDcrFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50]" [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header">
             <tr>
                 <th style="min-width:200px">PAF File Name</th>
@@ -38,7 +46,7 @@
         </ng-template>
         <ng-template pTemplate="emptymessage">
             <tr>
-                <td class="text-center" [attr.colspan]="7">
+                <td class="text-center" [attr.colspan]="10">
                     No records found
                 </td>
             </tr>

@@ -1,152 +1,108 @@
 <div class="card">
     <div class="row m-2">
         <div class="col-3">
-            <label for="location" class="form-label">
-                PAF File Name
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.pafDetail?.pafFileName"
-                pInputText>
+            <label for="pafFileName" class="form-label">PAF File Name</label>
+            <input id="pafFileName" class="form-control" readonly type="text" [value]="pafDetail?.pafFileName" pInputText>
         </div>
         <div class="col-3">
-            <label for="location" class="form-label">
-                File Reason
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.pafDetail?.fileReason"
-                pInputText>
+            <label for="fileReason" class="form-label">File Reason</label>
+            <input id="fileReason" class="form-control" readonly type="text" [value]="pafDetail?.fileReason" pInputText>
         </div>
         <div class="col-3">
-            <label for="location" class="form-label">
-                File Creation Date
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.pafDetail?.fileCreationDate"
-                pInputText>
+            <label for="fileCreationDate" class="form-label">File Creation Date</label>
+            <input id="fileCreationDate" class="form-control" readonly type="text" [value]="pafDetail?.fileCreationDate" pInputText>
         </div>
         <div class="col-3">
-            <label for="location" class="form-label">
-                File Status
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.pafDetail?.fileStatus"
-                pInputText>
+            <label for="fileStatus" class="form-label">File Status</label>
+            <input id="fileStatus" class="form-control" readonly type="text" [value]="pafDetail?.fileStatus" pInputText>
         </div>
     </div>
+
     <br>
+
     <div class="row m-2">
-        <!-- <div class="col-3">
-            <label for="location" class="form-label">
-                Optional 1
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.pafDetail?.optional1"
-                pInputText>
-        </div> -->
         <div class="col-3">
-            <label for="location" class="form-label">
-                Makker Date
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.pafDetail?.makerDate"
-                pInputText>
+            <label for="makerDate" class="form-label">Maker Date</label>
+            <input id="makerDate" class="form-control" readonly type="text" [value]="pafDetail?.makerDate" pInputText>
         </div>
     </div>
-    <br *ngIf="this.pafDetail?.pafpcrrecords !== null">
-    <hr *ngIf="this.pafDetail?.pafpcrrecords !== null">
-    <div class="m-2" *ngIf="this.pafDetail?.pafpcrrecords !== null">
-        <h6>Paf Pcr Records
-        </h6>
+
+    <br *ngIf="pafDetail?.pafpcrrecords?.length > 0">
+    <hr *ngIf="pafDetail?.pafpcrrecords?.length > 0">
+    <div class="m-2" *ngIf="pafDetail?.pafpcrrecords?.length > 0">
+        <h6>PAF PCR Records</h6>
         <div class="row m-2">
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Employee ID
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.pafDetail?.pafpcrrecords[0]?.empId" pInputText>
+                <label for="empId" class="form-label">Employee ID</label>
+                <input id="empId" class="form-control" readonly type="text" [value]="pafDetail?.pafpcrrecords[0]?.empId" pInputText>
             </div>
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Record Type
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.pafDetail?.pafpcrrecords[0]?.recordType" pInputText>
+                <label for="recordType" class="form-label">Record Type</label>
+                <input id="recordType" class="form-control" readonly type="text" [value]="pafDetail?.pafpcrrecords[0]?.recordType" pInputText>
             </div>
             <div class="col-3">
-                <label for="location" class="form-label">
-                    File Creation Date
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.pafDetail?.pafpcrrecords[0]?.fileCreationDate" pInputText>
+                <label for="fileCreationDatePcr" class="form-label">File Creation Date</label>
+                <input id="fileCreationDatePcr" class="form-control" readonly type="text" [value]="pafDetail?.pafpcrrecords[0]?.fileCreationDate" pInputText>
             </div>
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Agent Routing Code With Bank
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.pafDetail?.pafpcrrecords[0]?.agentroutingCodewithBank" pInputText>
+                <label for="agentRoutingCode" class="form-label">Agent Routing Code With Bank</label>
+                <input id="agentRoutingCode" class="form-control" readonly type="text" [value]="pafDetail?.pafpcrrecords[0]?.agentroutingCodewithBank" pInputText>
             </div>
         </div>
+
         <br>
+
         <div class="row m-2">
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Salary Month
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.pafDetail?.pafpcrrecords[0]?.salaryMonth" pInputText>
+                <label for="salaryMonth" class="form-label">Salary Month</label>
+                <input id="salaryMonth" class="form-control" readonly type="text" [value]="pafDetail?.pafpcrrecords[0]?.salaryMonth" pInputText>
             </div>
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Total Salary
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.pafDetail?.pafpcrrecords[0]?.totalSalry" pInputText>
+                <label for="totalSalary" class="form-label">Total Salary</label>
+                <input id="totalSalary" class="form-control" readonly type="text" [value]="pafDetail?.pafpcrrecords[0]?.totalSalry" pInputText>
             </div>
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Total Varibale Pay
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.pafDetail?.pafpcrrecords[0]?.totalVarPay" pInputText>
+                <label for="totalVariablePay" class="form-label">Total Variable Pay</label>
+                <input id="totalVariablePay" class="form-control" readonly type="text" [value]="pafDetail?.pafpcrrecords[0]?.totalVarPay" pInputText>
             </div>
         </div>
+
         <br>
+
         <div class="row m-2">
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Total Fix Pay
-                </label>
-                <input id="location" class="form-control" readonly type="text" [ngModel]="this.pafDetail?.pafpcrrecords[0]?.totalfixpay
-            " pInputText>
+                <label for="totalFixPay" class="form-label">Total Fix Pay</label>
+                <input id="totalFixPay" class="form-control" readonly type="text" [value]="pafDetail?.pafpcrrecords[0]?.totalfixpay" pInputText>
             </div>
         </div>
     </div>
+
     <br>
     <hr>
     <div class="m-2">
-        <h6>Paf Edr Records
-        </h6>
+        <h6>PAF EDR Records</h6>
         <div class="m-2">
-            <p-table #dt1 dataKey="code" [value]="this.pafDetail?.pafedrrecords" [scrollable]="true" [paginator]="true"
+            <p-table #dt1 dataKey="code" [value]="pafDetail?.pafedrrecords" [scrollable]="true" [paginator]="true"
                 [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true"
                 [tableStyle]="{'min-width': '50rem'}">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="min-width:200px">Employee Id</th>
-                        <th style="min-width:200px">Record Type</th>
-                        <!-- <th style="min-width:200px">Optional 1</th> -->
-                        <!-- <th style="min-width:200px">Optional 2</th> -->
-                        <th style="min-width:200px">Agent Routing Code</th>
-                        <th style="min-width:200px">Days In Period</th>
-                        <th style="min-width:200px">Days Leave Period</th>
-                        <th style="min-width:200px">Employee Account With Agent</th>
-                        <th style="min-width:200px">Income Fix Comp</th>
-                        <th style="min-width:200px">Income Var Comp</th>
-                        <th style="min-width:200px">Pay End Date</th>
-                        <th style="min-width:200px">Pay Start Date</th>
+                        <th class="min-width-200px">Employee Id</th>
+                        <th class="min-width-200px">Record Type</th>
+                        <th class="min-width-200px">Agent Routing Code</th>
+                        <th class="min-width-200px">Days In Period</th>
+                        <th class="min-width-200px">Days Leave Period</th>
+                        <th class="min-width-200px">Employee Account With Agent</th>
+                        <th class="min-width-200px">Income Fix Comp</th>
+                        <th class="min-width-200px">Income Var Comp</th>
+                        <th class="min-width-200px">Pay End Date</th>
+                        <th class="min-width-200px">Pay Start Date</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-data>
                     <tr>
                         <td>{{data.empId}}</td>
                         <td>{{data.recordType}}</td>
-                        <!-- <td>{{data.optiona1}}</td> -->
-                        <!-- <td>{{data.optiona2}}</td> -->
                         <td>{{data.agentroutingCode}}</td>
                         <td>{{data.daysInPeriod}}</td>
                         <td>{{data.daysLeavePeriod}}</td>
@@ -159,13 +115,10 @@
                 </ng-template>
                 <ng-template pTemplate="emptymessage">
                     <tr>
-                        <td class="text-center" [attr.colspan]="7">
-                            No records found
-                        </td>
+                        <td class="text-center" [attr.colspan]="10">No records found</td>
                     </tr>
                 </ng-template>
             </p-table>
         </div>
-
     </div>
 </div>

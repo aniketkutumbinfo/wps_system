@@ -1,97 +1,63 @@
 <div class="card">
     <div class="row m-2">
         <div class="col-3">
-            <label for="location" class="form-label">
-                RFA File Name
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.rfaDetail?.rfaFileName"
-                pInputText>
+            <label for="rfaFileName" class="form-label">RFA File Name</label>
+            <input id="rfaFileName" class="form-control" readonly type="text" [ngModel]="rfaDetail?.rfaFileName" pInputText>
         </div>
         <div class="col-3">
-            <label for="location" class="form-label">
-                File Reason
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.rfaDetail?.fileReason"
-                pInputText>
+            <label for="fileReason" class="form-label">File Reason</label>
+            <input id="fileReason" class="form-control" readonly type="text" [ngModel]="rfaDetail?.fileReason" pInputText>
         </div>
         <div class="col-3">
-            <label for="location" class="form-label">
-                File Creation Date
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.rfaDetail?.fileCreationDate"
-                pInputText>
+            <label for="fileCreationDate" class="form-label">File Creation Date</label>
+            <input id="fileCreationDate" class="form-control" readonly type="text" [ngModel]="rfaDetail?.fileCreationDate" pInputText>
         </div>
         <div class="col-3">
-            <label for="location" class="form-label">
-                File Status
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.rfaDetail?.fileStatus"
-                pInputText>
+            <label for="fileStatus" class="form-label">File Status</label>
+            <input id="fileStatus" class="form-control" readonly type="text" [ngModel]="rfaDetail?.fileStatus" pInputText>
         </div>
     </div>
-    <br>
-    <div class="row m-2">
-        <!-- <div class="col-3">
-            <label for="location" class="form-label">
-                Optional 1
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.rfaDetail?.optional1"
-                pInputText>
-        </div> -->
+    <br *ngIf="rfaDetail?.makerDate">
+    <div class="row m-2" *ngIf="rfaDetail?.makerDate">
         <div class="col-3">
-            <label for="location" class="form-label">
-                Makker Date
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.rfaDetail?.makerDate"
-                pInputText>
+            <label for="makerDate" class="form-label">Maker Date</label>
+            <input id="makerDate" class="form-control" readonly type="text" [ngModel]="rfaDetail?.makerDate" pInputText>
         </div>
     </div>
-    <br *ngIf="this.rfaDetail?.rfaarcrecords !== null">
-    <hr *ngIf="this.rfaDetail?.rfaarcrecords !== null">
-    <div class="m-2" *ngIf="this.rfaDetail?.rfaarcrecords !== null">
-        <h6>Rfa Arc Records
-        </h6>
+    <br *ngIf="rfaDetail?.rfaarcrecords?.length > 0">
+    <hr *ngIf="rfaDetail?.rfaarcrecords?.length > 0">
+    <div class="m-2" *ngIf="rfaDetail?.rfaarcrecords?.length > 0">
+        <h6>RFA Arc Records</h6>
         <div class="row m-2">
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Agent Ref
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.rfaDetail?.rfaarcrecords[0]?.agentRef" pInputText>
+                <label for="agentRef" class="form-label">Agent Ref</label>
+                <input id="agentRef" class="form-control" readonly type="text" [ngModel]="rfaDetail?.rfaarcrecords[0]?.agentRef" pInputText>
             </div>
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Record Type
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.rfaDetail?.rfaarcrecords[0]?.recordType" pInputText>
+                <label for="recordType" class="form-label">Record Type</label>
+                <input id="recordType" class="form-control" readonly type="text" [ngModel]="rfaDetail?.rfaarcrecords[0]?.recordType" pInputText>
             </div>
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Return Amt
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.rfaDetail?.rfaarcrecords[0]?.returnAmt" pInputText>
+                <label for="returnAmt" class="form-label">Return Amt</label>
+                <input id="returnAmt" class="form-control" readonly type="text" [ngModel]="rfaDetail?.rfaarcrecords[0]?.returnAmt" pInputText>
             </div>
         </div>
     </div>
     <br>
     <hr>
     <div class="m-2">
-        <h6>
-            Rfa Ari Records
-        </h6>
+        <h6>RFA Ari Records</h6>
         <div class="m-2">
-            <p-table #dt1 dataKey="code" [value]="this.rfaDetail?.rfaarirecords" [scrollable]="true" [paginator]="true"
+            <p-table #dt1 dataKey="code" [value]="rfaDetail?.rfaarirecords" [scrollable]="true" [paginator]="true"
                 [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true"
-                [tableStyle]="{'min-width': '50rem'}">
+                [tableStyle]="{'min-width': '50rem'}" aria-label="RFA Ari Records Table">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="min-width:200px">Employee Id</th>
-                        <th style="min-width:200px">Record Type</th>
-                        <th style="min-width:200px">Amt Return</th>
-                        <th style="min-width:200px">Corp Employer Id</th>
-                        <th style="min-width:200px">Return Reason Code</th>
+                        <th class="min-width-200px">Employee Id</th>
+                        <th class="min-width-200px">Record Type</th>
+                        <th class="min-width-200px">Amt Return</th>
+                        <th class="min-width-200px">Corp Employer Id</th>
+                        <th class="min-width-200px">Return Reason Code</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-data>
@@ -105,13 +71,10 @@
                 </ng-template>
                 <ng-template pTemplate="emptymessage">
                     <tr>
-                        <td class="text-center" [attr.colspan]="7">
-                            No records found
-                        </td>
+                        <td class="text-center" [attr.colspan]="5">No records found</td>
                     </tr>
                 </ng-template>
             </p-table>
         </div>
-
     </div>
 </div>

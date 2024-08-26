@@ -1,15 +1,16 @@
 <div class="card">
+    <!-- Display Table -->
     <div *ngIf="!edit">
-        <p-table #dt1 dataKey="code" [value]="this.getConfigDetail" [scrollable]="true" [paginator]="true" [rows]="10"
+        <p-table #dt1 dataKey="code" [value]="getConfigDetail" [scrollable]="true" [paginator]="true" [rows]="10"
             [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
             <ng-template pTemplate="header">
                 <tr>
-                    <th style="min-width:200px">Api Enable Disable</th>
+                    <th style="min-width:200px">API Enable/Disable</th>
                     <th style="min-width:200px">Count Days</th>
                     <th style="min-width:200px">Count In Day</th>
-                    <th style="min-width:200px">Date For Days Count</th>
+                    <th style="min-width:200px">Date for Days Count</th>
                     <th style="min-width:200px">Record Count</th>
-                    <th style="min-width:200px">Shedular Time</th>
+                    <th style="min-width:200px">Scheduler Time</th>
                     <th style="min-width:200px">Updated Date</th>
                     <th style="min-width:200px">Action</th>
                 </tr>
@@ -31,46 +32,48 @@
             </ng-template>
             <ng-template pTemplate="emptymessage">
                 <tr>
-                    <td class="text-center" [attr.colspan]="7">
+                    <td class="text-center" [attr.colspan]="8">
                         No records found
                     </td>
                 </tr>
             </ng-template>
         </p-table>
     </div>
+    
+    <!-- Display Form -->
     <div *ngIf="edit">
         <form [formGroup]="difConfigForm" (ngSubmit)="onSubmit()">
             <div class="row m-2">
                 <div class="col-3">
-                    <label class="form-label">Api Enable Disable</label>
-                    <p-dropdown class="form-control" formControlName="apiEnableDisable" [options]="apiList"
-                        [showClear]="true" placeholder="Select" />
+                    <label for="apiEnableDisable" class="form-label">API Enable/Disable</label>
+                    <p-dropdown id="apiEnableDisable" class="form-control" formControlName="apiEnableDisable" 
+                        [options]="apiList" [showClear]="true" placeholder="Select" />
                 </div>
                 <div class="col-3">
-                    <label class="form-label">Count Days</label>
-                    <input pInputText class="form-control" type="number" formControlName="countDays" />
+                    <label for="countDays" class="form-label">Count Days</label>
+                    <input id="countDays" pInputText class="form-control" type="number" formControlName="countDays" />
                 </div>
                 <div class="col-3">
-                    <label class="form-label">Count In Day</label>
-                    <input pInputText class="form-control" type="number" formControlName="countInDay" />
+                    <label for="countInDay" class="form-label">Count In Day</label>
+                    <input id="countInDay" pInputText class="form-control" type="number" formControlName="countInDay" />
                 </div>
                 <div class="col-3">
-                    <label class="form-label">Date For Days Count</label>
-                    <input pInputText class="form-control" type="date" formControlName="dateForDaysCount" />
+                    <label for="dateForDaysCount" class="form-label">Date for Days Count</label>
+                    <input id="dateForDaysCount" pInputText class="form-control" type="date" formControlName="dateForDaysCount" />
                 </div>
             </div>
             <div class="row m-2">
                 <div class="col-3">
-                    <label class="form-label">Record Count</label>
-                    <input pInputText class="form-control" type="number" formControlName="recordCount" />
+                    <label for="recordCount" class="form-label">Record Count</label>
+                    <input id="recordCount" pInputText class="form-control" type="number" formControlName="recordCount" />
                 </div>
                 <div class="col-3">
-                    <label class="form-label">Shedular Time</label>
-                    <input pInputText class="form-control" type="text" formControlName="shedularTime" />
+                    <label for="shedularTime" class="form-label">Scheduler Time</label>
+                    <input id="shedularTime" pInputText class="form-control" type="text" formControlName="shedularTime" />
                 </div>
                 <div class="col-3">
-                    <label class="form-label">Updated Date</label>
-                    <input pInputText class="form-control" type="text" formControlName="updatedDate" readonly />
+                    <label for="updatedDate" class="form-label">Updated Date</label>
+                    <input id="updatedDate" pInputText class="form-control" type="text" formControlName="updatedDate" readonly />
                 </div>
             </div>
             <div class="container">

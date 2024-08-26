@@ -10,70 +10,72 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./update-transaction.component.scss']
 })
 export class UpdateTransactionComponent implements OnInit {
-  itemId: any;
-  txnDetail: any = {};
-  constructor(private commonService: CommonService,
+  itemId: string | null = null;
+  txnDetail: any | null = null;
+
+  constructor(
+    private commonService: CommonService,
     private route: ActivatedRoute,
     private messageService: MessageService,
-    public router: Router) {
+    public router: Router
+  ) {}
+
+  ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.itemId = params.get('id'); // The '+' operator converts the string to a number
-      // Fetch and display the item details using this.itemId
+      this.itemId = params.get('id'); 
       if (this.itemId) {
-        this.getTxnDetail(this.itemId)
+        this.getTxnDetail(this.itemId);
       }
     });
   }
 
-  ngOnInit() {
-    console.log(this.txnDetail)
-  }
-
-  getTxnDetail(id: any) {
+  getTxnDetail(id: string): void {
     this.commonService.getTranscationsRecords(id)
-      .subscribe(res => {
-        if (res.responseStatus === 'success') {
-          this.txnDetail = res.responseData;
-          console.log(this.txnDetail)
-        }
-      })
-  }
-
-  updateCase(): void {
-    this.commonService.updateTransaction(this.txnDetail)
       .subscribe({
         next: (res) => {
           if (res.responseStatus === 'success') {
-            // Optionally show a success message
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: 'Transaction updated successfully!'
-            });
-
-            // Navigate to the transaction overview page
-            this.router.navigate(['/dif/transaction']);
+            this.txnDetail = res.responseData;
           } else {
-            // Show an error message if response status is not success
-            this.handleError('Transaction update failed. Please try again.');
+            this.handleError('Failed to load transaction details.');
           }
         },
         error: (err) => {
-          // Handle any errors that occurred during the request
-          this.handleError('An error occurred while updating the transaction.');
+          this.handleError('An error occurred while fetching transaction details.');
         }
       });
   }
 
+  updateCase(): void {
+    if (this.txnDetail) {
+      this.commonService.updateTransaction(this.txnDetail)
+        .subscribe({
+          next: (res) => {
+            if (res.responseStatus === 'success') {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Transaction updated successfully!'
+              });
+              this.router.navigate(['/dif/transaction']);
+            } else {
+              this.handleError('Transaction update failed. Please try again.');
+            }
+          },
+          error: (err) => {
+            this.handleError('An error occurred while updating the transaction.');
+          }
+        });
+    } else {
+      this.handleError('Transaction details are missing.');
+    }
+  }
+
   private handleError(message: string): void {
     console.error(message);
-    // Show a user-friendly error message using a message service or a notification system
     this.messageService.add({
       severity: 'error',
       summary: 'Error',
       detail: message
     });
   }
-
-
 }

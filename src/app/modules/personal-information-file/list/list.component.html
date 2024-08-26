@@ -1,6 +1,6 @@
 <div class="card">
-    <p-table #dt1 dataKey="code" [value]="this.getAllPafFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
-        [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
+    <p-table #dt1 dataKey="code" [value]="getAllPafFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
+             [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header">
             <tr>
                 <th style="min-width:200px">PAF File Name</th>
@@ -21,13 +21,13 @@
                 <td>{{data.makerDate}}</td>
                 <!-- <td>{{data.optional1}}</td> -->
                 <td>
-                    <p-button pRipple badgeClass="p-badge-contrast" [outlined]="true" label="View" (click)="viewPrcDetail(data)" icon="pi pi-eye" />
+                    <p-button pRipple [outlined]="true" label="View" (click)="viewPrcDetail(data)" icon="pi pi-eye" />
                 </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
             <tr>
-                <td class="text-center" [attr.colspan]="7">
+                <td class="text-center" [attr.colspan]="6"> <!-- Adjust colspan to match the number of columns -->
                     No records found
                 </td>
             </tr>

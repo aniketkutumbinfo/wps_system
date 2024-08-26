@@ -1,6 +1,14 @@
 <div class="card">
-    <p-table #dt1 dataKey="code" [value]="this.getAllPrcFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
-        [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
+    <p-table #dt1 
+             dataKey="id" 
+             [value]="getAllPrcFilesList" 
+             [scrollable]="true" 
+             [paginator]="true" 
+             [rows]="10" 
+             [rowsPerPageOptions]="[10, 25, 50]" 
+             [selectionPageOnly]="true" 
+             [tableStyle]="{'min-width': '50rem'}">
+
         <ng-template pTemplate="header">
             <tr>
                 <th style="min-width:200px">PRC File Name</th>
@@ -12,6 +20,7 @@
                 <th style="min-width:200px">Action</th>
             </tr>
         </ng-template>
+
         <ng-template pTemplate="body" let-data>
             <tr>
                 <td>{{data.prcFileName}}</td>
@@ -21,13 +30,19 @@
                 <td>{{data.makerDate}}</td>
                 <!-- <td>{{data.optional1}}</td> -->
                 <td>
-                    <p-button pRipple badgeClass="p-badge-contrast" [outlined]="true" (click)="viewPrcDetail(data)" label="View" icon="pi pi-eye" />
+                    <p-button pRipple 
+                              badgeClass="p-badge-contrast" 
+                              [outlined]="true" 
+                              (click)="viewPrcDetail(data)" 
+                              label="View" 
+                              icon="pi pi-eye" />
                 </td>
             </tr>
         </ng-template>
+
         <ng-template pTemplate="emptymessage">
             <tr>
-                <td class="text-center" [attr.colspan]="7">
+                <td class="text-center" [attr.colspan]="6"> <!-- Adjust colspan based on the number of columns -->
                     No records found
                 </td>
             </tr>

@@ -1,10 +1,23 @@
 <div class="card">
-    <div>
-        <p-dropdown [ngModel]="selectedStatus" [options]="statusList" (onChange)="onItemSelect($event)"
-            [showClear]="true" optionLabel="value" placeholder="Select" />
+    <div class="mb-4">
+        <p-dropdown 
+            [ngModel]="selectedStatus" 
+            [options]="statusList" 
+            (onChange)="onItemSelect($event)"
+            [showClear]="true" 
+            optionLabel="value" 
+            placeholder="Select Status" />
     </div>
-    <p-table #dt1 dataKey="code" [value]="this.getAllDifFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
-        [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
+    <p-table 
+        #dt1 
+        dataKey="code" 
+        [value]="getAllDifFilesList" 
+        [scrollable]="true" 
+        [paginator]="true" 
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50]" 
+        [selectionPageOnly]="true" 
+        [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header">
             <tr>
                 <th style="min-width:200px">PAF File Name</th>
@@ -31,14 +44,20 @@
                 <td>{{data.txnDate}}</td>
                 <td>{{data.txnRefNo}}</td>
                 <td>
-                    <p-button pRipple icon="pi pi-pencil" [rounded]="true" [outlined]="true" label="Edit"
-                        severity="info" (click)="viewTranscation(data)" />
+                    <p-button 
+                        pRipple 
+                        icon="pi pi-pencil" 
+                        [rounded]="true" 
+                        [outlined]="true" 
+                        label="Edit"
+                        severity="info" 
+                        (click)="viewTranscation(data)" />
                 </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
             <tr>
-                <td class="text-center" [attr.colspan]="7">
+                <td class="text-center" [attr.colspan]="10">
                     No records found
                 </td>
             </tr>

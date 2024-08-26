@@ -8,8 +8,8 @@
                 <div class="card-body">
                     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" class="form-control" formControlName="fullName"
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" class="form-control" formControlName="fullName"
                                 [readonly]="!isEditing">
                         </div>
 
@@ -25,7 +25,6 @@
                                 [readonly]="!isEditing">
                         </div>
 
-                        <!-- Role Dropdown -->
                         <div class="form-group mt-3">
                             <label for="role">Role</label>
                             <select id="role" class="form-control" formControlName="role" [disabled]="!isEditing">

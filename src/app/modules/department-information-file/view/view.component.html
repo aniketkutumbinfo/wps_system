@@ -1,124 +1,97 @@
 <div class="card">
+    <!-- General File Details -->
     <div class="row m-2">
         <div class="col-3">
-            <label for="location" class="form-label">
-                Dif File Name
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.difDetail?.difFileName"
-                pInputText>
+            <label for="difFileName" class="form-label">Dif File Name</label>
+            <input id="difFileName" class="form-control" readonly type="text" [ngModel]="this.difDetail?.difFileName" pInputText>
         </div>
         <div class="col-3">
-            <label for="location" class="form-label">
-                File Reason
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.difDetail?.fileReason"
-                pInputText>
+            <label for="fileReason" class="form-label">File Reason</label>
+            <input id="fileReason" class="form-control" readonly type="text" [ngModel]="this.difDetail?.fileReason" pInputText>
         </div>
         <div class="col-3">
-            <label for="location" class="form-label">
-                File Creation Date
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.difDetail?.fileCreationDate"
-                pInputText>
+            <label for="fileCreationDate" class="form-label">File Creation Date</label>
+            <input id="fileCreationDate" class="form-control" readonly type="text" [ngModel]="this.difDetail?.fileCreationDate" pInputText>
         </div>
         <div class="col-3">
-            <label for="location" class="form-label">
-                File Status
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.difDetail?.fileStatus"
-                pInputText>
+            <label for="fileStatus" class="form-label">File Status</label>
+            <input id="fileStatus" class="form-control" readonly type="text" [ngModel]="this.difDetail?.fileStatus" pInputText>
         </div>
     </div>
-    <br>
-    <div class="row m-2">
-        <!-- <div class="col-3">
-            <label for="location" class="form-label">
-                Optional 1
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.difDetail?.optional1"
-                pInputText>
-        </div> -->
-        <div class="col-3">
-            <label for="location" class="form-label">
-                Makker Date
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.difDetail?.makerDate"
-                pInputText>
-        </div>
-    </div>
-    <br>
-    <hr>
-    <div class="m-2">
-        <h6>Dif Dcr Records
-        </h6>
-        <div class="row m-2">
-            <div class="col-3">
-                <label for="location" class="form-label">
-                    Record Type
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.difDetail?.difdcrrecords[0]?.recordType" pInputText>
-            </div>
-            <div class="col-3">
-                <label for="location" class="form-label">
-                    File Creation Date
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.difDetail?.difdcrrecords[0]?.fileCreationDate" pInputText>
-            </div>
-            <div class="col-3">
-                <label for="location" class="form-label">
-                    Agent Disbus Ref For File
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.difDetail?.difdcrrecords[0]?.agentDisbusRefForFile" pInputText>
-            </div>
-            <div class="col-3">
-                <label for="location" class="form-label">
-                    Agent Routing Code
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.difDetail?.difdcrrecords[0]?.agentroutingCode" pInputText>
-            </div>
-        </div>
-        <br>
-        <div class="row m-2">
 
+    <br>
+
+    <!-- Optional Fields (Commented Out) -->
+    <div class="row m-2">
+        <!-- Uncomment if needed -->
+        <!--
+        <div class="col-3">
+            <label for="optional1" class="form-label">Optional 1</label>
+            <input id="optional1" class="form-control" readonly type="text" [ngModel]="this.difDetail?.optional1" pInputText>
+        </div>
+        -->
+        <div class="col-3">
+            <label for="makerDate" class="form-label">Maker Date</label>
+            <input id="makerDate" class="form-control" readonly type="text" [ngModel]="this.difDetail?.makerDate" pInputText>
+        </div>
+    </div>
+
+    <br>
+    <hr>
+
+    <!-- Dif Dcr Records -->
+    <div class="m-2">
+        <h6>Dif Dcr Records</h6>
+        <div class="row m-2">
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Cash Dispensed
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.difDetail?.difdcrrecords[0]?.cashDispensed" pInputText>
+                <label for="recordType" class="form-label">Record Type</label>
+                <input id="recordType" class="form-control" readonly type="text" [ngModel]="this.difDetail?.difdcrrecords[0]?.recordType" pInputText>
             </div>
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Remmited Out
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.difDetail?.difdcrrecords[0]?.remmitedOut" pInputText>
+                <label for="dcrFileCreationDate" class="form-label">File Creation Date</label>
+                <input id="dcrFileCreationDate" class="form-control" readonly type="text" [ngModel]="this.difDetail?.difdcrrecords[0]?.fileCreationDate" pInputText>
             </div>
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Total Disbursed
-                </label>
-                <input id="location" class="form-control" readonly type="text" [ngModel]="this.difDetail?.difdcrrecords[0]?.totalDisbursed
-            " pInputText>
+                <label for="agentDisbusRefForFile" class="form-label">Agent Disbus Ref For File</label>
+                <input id="agentDisbusRefForFile" class="form-control" readonly type="text" [ngModel]="this.difDetail?.difdcrrecords[0]?.agentDisbusRefForFile" pInputText>
+            </div>
+            <div class="col-3">
+                <label for="agentRoutingCode" class="form-label">Agent Routing Code</label>
+                <input id="agentRoutingCode" class="form-control" readonly type="text" [ngModel]="this.difDetail?.difdcrrecords[0]?.agentroutingCode" pInputText>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row m-2">
+            <div class="col-3">
+                <label for="cashDispensed" class="form-label">Cash Dispensed</label>
+                <input id="cashDispensed" class="form-control" readonly type="text" [ngModel]="this.difDetail?.difdcrrecords[0]?.cashDispensed" pInputText>
+            </div>
+            <div class="col-3">
+                <label for="remmitedOut" class="form-label">Remmited Out</label>
+                <input id="remmitedOut" class="form-control" readonly type="text" [ngModel]="this.difDetail?.difdcrrecords[0]?.remmitedOut" pInputText>
+            </div>
+            <div class="col-3">
+                <label for="totalDisbursed" class="form-label">Total Disbursed</label>
+                <input id="totalDisbursed" class="form-control" readonly type="text" [ngModel]="this.difDetail?.difdcrrecords[0]?.totalDisbursed" pInputText>
             </div>
         </div>
     </div>
+
     <br>
     <hr>
+
+    <!-- Dif Dir Records -->
     <div class="m-2">
-        <h6>Dif Dir Records
-        </h6>
+        <h6>Dif Dir Records</h6>
         <div class="m-2">
             <p-table #dt1 dataKey="code" [value]="this.difDetail?.difdirrecords" [scrollable]="true" [paginator]="true"
                 [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true"
                 [tableStyle]="{'min-width': '50rem'}">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="min-width:200px">fileCreationDate</th>
+                        <th style="min-width:200px">File Creation Date</th>
                         <th style="min-width:200px">Record Type</th>
                         <th style="min-width:200px">Remmit Amt</th>
                         <th style="min-width:200px">Withdrawal Amt</th>
@@ -129,7 +102,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-data>
                     <tr>
-                        <td>{{data.empId}}</td>
+                        <td>{{data.fileCreationDate}}</td>
                         <td>{{data.recordType}}</td>
                         <td>{{data.remmitAmt}}</td>
                         <td>{{data.withdrawalAmt}}</td>
@@ -140,13 +113,10 @@
                 </ng-template>
                 <ng-template pTemplate="emptymessage">
                     <tr>
-                        <td class="text-center" [attr.colspan]="7">
-                            No records found
-                        </td>
+                        <td class="text-center" [attr.colspan]="7">No records found</td>
                     </tr>
                 </ng-template>
             </p-table>
         </div>
-
     </div>
 </div>

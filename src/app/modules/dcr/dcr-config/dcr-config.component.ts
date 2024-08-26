@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DcrService } from '../dcr.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -9,24 +9,24 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./dcr-config.component.scss']
 })
 export class DcrConfigComponent implements OnInit {
-  edit = false
+  edit = false;
 
   difConfigForm: FormGroup;
   getConfigDetail: any;
   apiList: string[];
+
   constructor(private dcrService: DcrService,
     private fb: FormBuilder,
-    private messageService: MessageService
-  ) {
+    private messageService: MessageService) {
     this.difConfigForm = this.fb.group({
-      apiEnableDisable: "",
-      countDays: "",
-      countInDay: "",
-      dateForDaysCount: "",
-      recordCount: "",
-      shedularTime: "",
-      updatedDate: ""
-    })
+      apiEnableDisable: ['', Validators.required],
+      countDays: ['', [Validators.required, Validators.min(0)]],
+      countInDay: ['', [Validators.required, Validators.min(0)]],
+      dateForDaysCount: ['', Validators.required],
+      recordCount: ['', [Validators.required, Validators.min(0)]],
+      shedularTime: ['', Validators.required],
+      updatedDate: [{ value: '', disabled: true }]
+    });
     this.apiList = ["D", "E"];
   }
 
@@ -36,15 +36,31 @@ export class DcrConfigComponent implements OnInit {
 
   getConfigDetails() {
     this.dcrService.dcrConfigDisplay()
-      .subscribe(res => {
-        if (res.responseStatus === 'success') {
-          this.getConfigDetail = [res.responseData];
+      .subscribe({
+        next: res => {
+          if (res.responseStatus === 'success') {
+            this.getConfigDetail = [res.responseData];
+          } else {
+            this.messageService.add({
+              severity: 'warn',
+              summary: 'Warning',
+              detail: 'No configuration data found.'
+            });
+          }
+        },
+        error: err => {
+          console.error('Error fetching configuration details:', err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Server Error',
+            detail: 'An error occurred while fetching configuration details. Please try again later.'
+          });
         }
-      })
+      });
   }
 
   editConfig(data: any) {
-    this.edit = true
+    this.edit = true;
     this.difConfigForm.patchValue({
       apiEnableDisable: data.apiEnableDisable,
       countDays: +data.countDays,
@@ -53,33 +69,25 @@ export class DcrConfigComponent implements OnInit {
       recordCount: +data.recordCount,
       shedularTime: data.shedularTime,
       updatedDate: data.updatedDate
-    })
+    });
   }
 
   onSubmit() {
-    // Check if the form is valid
     if (this.difConfigForm.valid) {
-      // Extract form values
       const formData = this.difConfigForm.value;
 
-      // Call the service method to submit the configuration
       this.dcrService.dcrConfigSetup(formData)
         .subscribe({
-          next: (res) => {
-            // Check if the response is successful
+          next: res => {
             if (res && res.responseStatus === 'success') {
-              // Set edit mode to false and refresh the configuration details
               this.edit = false;
               this.getConfigDetails();
-
-              // Notify user of successful configuration
               this.messageService.add({
                 severity: 'success',
                 summary: 'Success',
                 detail: 'Configuration saved successfully.'
               });
             } else {
-              // Handle cases where the response indicates failure
               this.messageService.add({
                 severity: 'error',
                 summary: 'Error',
@@ -87,8 +95,7 @@ export class DcrConfigComponent implements OnInit {
               });
             }
           },
-          error: (err) => {
-            // Handle any errors from the server
+          error: err => {
             console.error('Configuration setup error:', err);
             this.messageService.add({
               severity: 'error',
@@ -98,7 +105,6 @@ export class DcrConfigComponent implements OnInit {
           }
         });
     } else {
-      // Notify user if the form is invalid
       this.messageService.add({
         severity: 'warn',
         summary: 'Validation Error',
@@ -107,9 +113,7 @@ export class DcrConfigComponent implements OnInit {
     }
   }
 
-
   backToList() {
-    this.edit = false
+    this.edit = false;
   }
-
 }

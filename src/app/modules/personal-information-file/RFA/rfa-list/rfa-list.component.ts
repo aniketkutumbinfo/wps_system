@@ -3,6 +3,21 @@ import { Router } from '@angular/router';
 import { PersonalInformationService } from '../../personal-information.service';
 import { MessageService } from 'primeng/api';
 
+// Define interfaces for better type safety
+interface RfaFile {
+  rfaFileId: number;
+  rfaFileName: string;
+  fileReason: string;
+  fileStatus: string;
+  fileCreationDate: string;
+  makerDate: string;
+}
+
+interface RfaFilesResponse {
+  responseStatus: string;
+  responseData: RfaFile[];
+}
+
 @Component({
   selector: 'app-rfa-list',
   templateUrl: './rfa-list.component.html',
@@ -10,9 +25,11 @@ import { MessageService } from 'primeng/api';
 })
 export class RfaListComponent implements OnInit {
 
-  getAllRfaFilesList: any;
+  getAllRfaFilesList: RfaFile[] = [];
+  isLoading: boolean = false;
 
-  constructor(private pifService: PersonalInformationService,
+  constructor(
+    private pifService: PersonalInformationService,
     private router: Router,
     private messageService: MessageService
   ) { }
@@ -22,44 +39,56 @@ export class RfaListComponent implements OnInit {
   }
 
   getAllRfa() {
-    this.pifService.getAllRfaFiles().subscribe(res => {
-      if (res.responseStatus === 'success') {
-        this.getAllRfaFilesList = res.responseData;
+    this.isLoading = true;
+    this.pifService.getAllRfaFiles().subscribe({
+      next: (res: RfaFilesResponse) => {
+        if (res.responseStatus === 'success') {
+          this.getAllRfaFilesList = res.responseData;
+        } else {
+          this.handleError('Failed to load RFA files.');
+        }
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.handleError('An error occurred while fetching RFA files.');
       }
     });
   }
 
-  viewPrcDetail(data: any) {
+  viewPrcDetail(data: RfaFile) {
     this.router.navigate(['/pif/rfa-view', data.rfaFileId]);
   }
 
   SyncData(): void {
+    this.isLoading = true;
     this.pifService.getRfaData().subscribe({
-      next: (res) => {
+      next: (res: RfaFilesResponse) => {
         if (res.responseStatus === 'success') {
-          // Call method to handle the successful retrieval of data
-          this.getAllRfa();
+          this.getAllRfa(); // Refresh the list after successful sync
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Data synchronized successfully.'
+          });
         } else {
-          // Handle the case where the response status is not 'success'
           this.handleError('Failed to synchronize data. Please try again.');
         }
+        this.isLoading = false;
       },
       error: (err) => {
-        // Handle any errors that occur during the HTTP request
+        this.isLoading = false;
         this.handleError('An error occurred while syncing data.');
       }
     });
   }
 
   private handleError(message: string): void {
-    console.error(message);
-    // Show a user-friendly error message
+    console.error(message); // Log the error for debugging
     this.messageService.add({
       severity: 'error',
       summary: 'Error',
       detail: message
     });
   }
-
-
 }

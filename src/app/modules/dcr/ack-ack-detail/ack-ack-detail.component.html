@@ -1,143 +1,93 @@
 <div class="card">
     <div class="row m-2">
         <div class="col-3">
-            <label for="location" class="form-label">
-                ACK NAK File Name
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.ackNakDetail?.ackNakFileName"
-                pInputText>
+            <label for="ackNakFileName" class="form-label">ACK NAK File Name</label>
+            <input id="ackNakFileName" class="form-control" readonly type="text" [ngModel]="ackNakDetail?.ackNakFileName" pInputText>
         </div>
         <div class="col-3">
-            <label for="location" class="form-label">
-                ACK NAK For File Reason
-            </label>
-            <input id="location" class="form-control" readonly type="text"
-                [ngModel]="this.ackNakDetail?.acknakForFileName" pInputText>
+            <label for="acknakForFileName" class="form-label">ACK NAK For File Reason</label>
+            <input id="acknakForFileName" class="form-control" readonly type="text" [ngModel]="ackNakDetail?.acknakForFileName" pInputText>
         </div>
         <div class="col-3">
-            <label for="location" class="form-label">
-                ACK NAK File Status
-            </label>
-            <input id="location" class="form-control" readonly type="text"
-                [ngModel]="this.ackNakDetail?.ackNakFileStatus" pInputText>
+            <label for="ackNakFileStatus" class="form-label">ACK NAK File Status</label>
+            <input id="ackNakFileStatus" class="form-control" readonly type="text" [ngModel]="ackNakDetail?.ackNakFileStatus" pInputText>
         </div>
         <div class="col-3">
-            <label for="location" class="form-label">
-                ACK NAK File Remarks
-            </label>
-            <input id="location" class="form-control" readonly type="text"
-                [ngModel]="this.ackNakDetail?.ackNakfileRemarks" pInputText>
+            <label for="ackNakfileRemarks" class="form-label">ACK NAK File Remarks</label>
+            <input id="ackNakfileRemarks" class="form-control" readonly type="text" [ngModel]="ackNakDetail?.ackNakfileRemarks" pInputText>
         </div>
     </div>
     <br>
     <div class="row m-2">
         <div class="col-3">
-            <label for="location" class="form-label">
-                ACK NAK For File Type
-            </label>
-            <input id="location" class="form-control" readonly type="text"
-                [ngModel]="this.ackNakDetail?.acknakForFileType" pInputText>
+            <label for="acknakForFileType" class="form-label">ACK NAK For File Type</label>
+            <input id="acknakForFileType" class="form-control" readonly type="text" [ngModel]="ackNakDetail?.acknakForFileType" pInputText>
         </div>
         <div class="col-3">
-            <label for="location" class="form-label">
-                ACK NAK File Date
-            </label>
-            <input id="location" class="form-control" readonly type="text" [ngModel]="this.ackNakDetail?.acknakFileDate"
-                pInputText>
+            <label for="acknakFileDate" class="form-label">ACK NAK File Date</label>
+            <input id="acknakFileDate" class="form-control" readonly type="text" [ngModel]="ackNakDetail?.acknakFileDate" pInputText>
         </div>
     </div>
-    <br *ngIf="this.ackNakDetail?.acknakAhrRecords.length>0">
-    <hr *ngIf="this.ackNakDetail?.acknakAhrRecords.length>0">
-    <div class="m-2" *ngIf="this.ackNakDetail?.acknakAhrRecords.length>0">
-        <h6>ACK NAK AHR Records
-        </h6>
-        <div class="row m-2">
-            <div class="col-3">
-                <label for="location" class="form-label">
-                    Proceed File Name
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.ackNakDetail?.acknakAhrRecords[0]?.proceedFileName" pInputText>
-            </div>
-            <div class="col-3">
-                <label for="location" class="form-label">
-                    Rec Type
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.ackNakDetail?.acknakAhrRecords[0]?.recType" pInputText>
-            </div>
-            <div class="col-3">
-                <label for="location" class="form-label">
-                    Rec Data
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.ackNakDetail?.acknakAhrRecords[0]?.recData" pInputText>
-            </div>
-            <div class="col-3">
-                <label for="location" class="form-label">
-                    File Status
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.ackNakDetail?.acknakAhrRecords[0]?.fileStatus" pInputText>
-            </div>
-        </div>
-        <br>
-        <div class="row m-2">
 
-            <div class="col-3">
-                <label for="location" class="form-label">
-                    Error Remarks
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.ackNakDetail?.acknakAhrRecords[0]?.errorRemarks" pInputText>
-            </div>
-        </div>
-    </div>
-    <br *ngIf="this.ackNakDetail?.acknakAtrRecords.length>0">
-    <hr *ngIf="this.ackNakDetail?.acknakAtrRecords.length>0">
-    <div class="m-2" *ngIf="this.ackNakDetail?.acknakAtrRecords.length>0">
-        <h6>ACK NAK ATR Records
-        </h6>
+    <br *ngIf="ackNakDetail?.acknakAhrRecords?.length > 0">
+    <hr *ngIf="ackNakDetail?.acknakAhrRecords?.length > 0">
+    <div class="m-2" *ngIf="ackNakDetail?.acknakAhrRecords?.length > 0">
+        <h6>ACK NAK AHR Records</h6>
         <div class="row m-2">
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Error Remarks
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.ackNakDetail?.acknakAtrRecords[0]?.errorRemarks" pInputText>
+                <label for="proceedFileName" class="form-label">Proceed File Name</label>
+                <input id="proceedFileName" class="form-control" readonly type="text" [ngModel]="ackNakDetail?.acknakAhrRecords[0]?.proceedFileName" pInputText>
             </div>
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Rec Type
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.ackNakDetail?.acknakAtrRecords[0]?.recType" pInputText>
+                <label for="ahrRecType" class="form-label">Rec Type</label>
+                <input id="ahrRecType" class="form-control" readonly type="text" [ngModel]="ackNakDetail?.acknakAhrRecords[0]?.recType" pInputText>
             </div>
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Rec Data
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.ackNakDetail?.acknakAtrRecords[0]?.recData" pInputText>
+                <label for="ahrRecData" class="form-label">Rec Data</label>
+                <input id="ahrRecData" class="form-control" readonly type="text" [ngModel]="ackNakDetail?.acknakAhrRecords[0]?.recData" pInputText>
             </div>
             <div class="col-3">
-                <label for="location" class="form-label">
-                    File Status
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.ackNakDetail?.acknakAtrRecords[0]?.fileStatus" pInputText>
+                <label for="ahrFileStatus" class="form-label">File Status</label>
+                <input id="ahrFileStatus" class="form-control" readonly type="text" [ngModel]="ackNakDetail?.acknakAhrRecords[0]?.fileStatus" pInputText>
             </div>
         </div>
         <br>
         <div class="row m-2">
             <div class="col-3">
-                <label for="location" class="form-label">
-                    Number Of Lines
-                </label>
-                <input id="location" class="form-control" readonly type="text"
-                    [ngModel]="this.ackNakDetail?.acknakAtrRecords[0]?.numberOfLines" pInputText>
+                <label for="ahrErrorRemarks" class="form-label">Error Remarks</label>
+                <input id="ahrErrorRemarks" class="form-control" readonly type="text" [ngModel]="ackNakDetail?.acknakAhrRecords[0]?.errorRemarks" pInputText>
             </div>
+        </div>
+    </div>
 
+    <br *ngIf="ackNakDetail?.acknakAtrRecords?.length > 0">
+    <hr *ngIf="ackNakDetail?.acknakAtrRecords?.length > 0">
+    <div class="m-2" *ngIf="ackNakDetail?.acknakAtrRecords?.length > 0">
+        <h6>ACK NAK ATR Records</h6>
+        <div class="row m-2">
+            <div class="col-3">
+                <label for="atrErrorRemarks" class="form-label">Error Remarks</label>
+                <input id="atrErrorRemarks" class="form-control" readonly type="text" [ngModel]="ackNakDetail?.acknakAtrRecords[0]?.errorRemarks" pInputText>
+            </div>
+            <div class="col-3">
+                <label for="atrRecType" class="form-label">Rec Type</label>
+                <input id="atrRecType" class="form-control" readonly type="text" [ngModel]="ackNakDetail?.acknakAtrRecords[0]?.recType" pInputText>
+            </div>
+            <div class="col-3">
+                <label for="atrRecData" class="form-label">Rec Data</label>
+                <input id="atrRecData" class="form-control" readonly type="text" [ngModel]="ackNakDetail?.acknakAtrRecords[0]?.recData" pInputText>
+            </div>
+            <div class="col-3">
+                <label for="atrFileStatus" class="form-label">File Status</label>
+                <input id="atrFileStatus" class="form-control" readonly type="text" [ngModel]="ackNakDetail?.acknakAtrRecords[0]?.fileStatus" pInputText>
+            </div>
+        </div>
+        <br>
+        <div class="row m-2">
+            <div class="col-3">
+                <label for="atrNumberOfLines" class="form-label">Number Of Lines</label>
+                <input id="atrNumberOfLines" class="form-control" readonly type="text" [ngModel]="ackNakDetail?.acknakAtrRecords[0]?.numberOfLines" pInputText>
+            </div>
         </div>
     </div>
 </div>

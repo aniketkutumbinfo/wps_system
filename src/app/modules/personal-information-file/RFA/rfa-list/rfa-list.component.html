@@ -1,8 +1,8 @@
 <div class="card">
     <div>
-        <p-button severity="primary" label="Sync" (onClick)="SyncData()" />
+        <p-button severity="primary" label="Sync" (click)="SyncData()" />
     </div>
-    <p-table #dt1 dataKey="code" [value]="this.getAllRfaFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
+    <p-table #dt1 dataKey="code" [value]="getAllRfaFilesList" [scrollable]="true" [paginator]="true" [rows]="10"
         [rowsPerPageOptions]="[10, 25, 50]" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header">
             <tr>
@@ -11,18 +11,16 @@
                 <th style="min-width:200px">File Status</th>
                 <th style="min-width:200px">File Creation Date</th>
                 <th style="min-width:200px">Maker Date</th>
-                <!-- <th style="min-width:200px">Optional 1</th> -->
                 <th style="min-width:200px">Action</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-data>
             <tr>
-                <td>{{data.rfaFileName}}</td>
-                <td>{{data.fileReason}}</td>
-                <td>{{data.fileStatus}}</td>
-                <td>{{data.fileCreationDate}}</td>
-                <td>{{data.makerDate}}</td>
-                <!-- <td>{{data.optional1}}</td> -->
+                <td>{{ data.rfaFileName }}</td>
+                <td>{{ data.fileReason }}</td>
+                <td>{{ data.fileStatus }}</td>
+                <td>{{ data.fileCreationDate | date }}</td>
+                <td>{{ data.makerDate | date }}</td>
                 <td>
                     <p-button pRipple badgeClass="p-badge-contrast" [outlined]="true" label="View" (click)="viewPrcDetail(data)" icon="pi pi-eye" />
                 </td>
@@ -30,7 +28,7 @@
         </ng-template>
         <ng-template pTemplate="emptymessage">
             <tr>
-                <td class="text-center" [attr.colspan]="7">
+                <td class="text-center" [attr.colspan]="6">
                     No records found
                 </td>
             </tr>

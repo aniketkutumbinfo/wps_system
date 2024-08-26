@@ -10,22 +10,40 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class ListComponent implements OnInit {
 
-  getAllDifFilesList!: any[];
-  selectedProducts!: any[];
-  constructor(private difService: DepartmentService,
+  getAllDifFilesList: any[] = [];  // Initialize as an empty array
+  selectedProducts: any[] = [];    // Initialize as an empty array
+
+  constructor(
+    private difService: DepartmentService,
     private router: Router,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService,
-  ) { }
+    private messageService: MessageService
+  ) {}
 
   ngOnInit() {
     this.getAllDifFiles();
   }
 
   getAllDifFiles() {
-    this.difService.getAllDifFiles().subscribe(res => {
-      if (res.responseStatus === 'success') {
-        this.getAllDifFilesList = res.responseData;
+    this.difService.getAllDifFiles().subscribe({
+      next: (res) => {
+        if (res.responseStatus === 'success') {
+          this.getAllDifFilesList = res.responseData;
+        } else {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: res.responseMessage || 'Failed to load files. Please try again.'
+          });
+        }
+      },
+      error: (err) => {
+        console.error('Fetching files error:', err);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Server Error',
+          detail: 'An error occurred while fetching files. Please try again later.'
+        });
       }
     });
   }
@@ -38,27 +56,16 @@ export class ListComponent implements OnInit {
     this.router.navigate(['/dif/ack-nak', data.difFileId]);
   }
 
-  // onDelete(data: any) {
-  //   let item =
-  //   {
-  //     "diffilenames": this.selectedProducts
-  //   }
-  //   this.confirmationService.confirm({
-  //     message: 'Are you sure that you want to delete?',
-  //     accept: () => {
-  //       this.difService.deleteByDifId(item).subscribe(res => {
-  //         if (res) {
-  //           this.messageService.add({
-  //             severity: 'success', detail: res.responsemassage
-  //           });
-  //           this.getAllDifFiles();
-  //         }
-  //       });
-  //     }
-  //   });
-  // }
-
   allDelete() {
+    if (this.selectedProducts.length === 0) {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'No Selection',
+        detail: 'No items selected for deletion.'
+      });
+      return;
+    }
+
     // Prepare the payload with filenames of the selected products
     const payload = {
       filenames: this.selectedProducts.map(product => product.difFileName)
@@ -73,7 +80,7 @@ export class ListComponent implements OnInit {
           .subscribe({
             next: (res) => {
               // Check if the response is successful
-              if (res && res.responseStatus === 'success') {
+              if (res.responseStatus === 'success') {
                 // Notify the user of successful deletion
                 this.messageService.add({
                   severity: 'success',
@@ -104,5 +111,4 @@ export class ListComponent implements OnInit {
       }
     });
   }
-
 }

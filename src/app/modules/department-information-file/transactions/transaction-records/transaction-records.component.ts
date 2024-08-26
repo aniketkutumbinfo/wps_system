@@ -2,51 +2,72 @@ import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from '../../department.service';
 import { Router } from '@angular/router';
 
+// Define types for clarity
+interface StatusOption {
+  label: string;
+  value: string;
+}
+
+interface DifFile {
+  txnRefNo: string;
+  [key: string]: any; // Replace with actual properties if known
+}
+
 @Component({
   selector: 'app-transaction-records',
   templateUrl: './transaction-records.component.html',
   styleUrls: ['./transaction-records.component.scss']
 })
 export class TransactionRecordsComponent implements OnInit {
-  getAllDifFilesList: any = [];
-  selectedStatus: any;
-  statusList: any
-  constructor(private difService: DepartmentService,
+  getAllDifFilesList: DifFile[] = [];
+  selectedStatus: string = 'All';
+  statusList: StatusOption[] = [
+    { label: "All", value: "All" },
+    { label: "Pending", value: "Pending" },
+    { label: "Send", value: "Send" },
+    { label: "Reversal", value: "Reversal" }
+  ];
+
+  constructor(
+    private difService: DepartmentService,
     private router: Router
-  ) {
-    this.statusList = [
-      { label: "All", value: "All" },
-      { label: "Pending", value: "Pending" },
-      { label: "Send", value: "Send" },
-      { label: "Reversal", value: "Reversal" }
-    ]
+  ) {}
+
+  ngOnInit(): void {
+    this.loadRecords(this.selectedStatus);
   }
 
-  ngOnInit() {
-    this.getAllRecirdsOfPendingTxOfDif('C');
-  }
+  loadRecords(status: string): void {
+    // Map status values to service query parameters
+    const statusMap: { [key: string]: string } = {
+      'All': '',
+      'Pending': 'P',
+      'Send': 'S',
+      'Reversal': 'R'
+    };
 
-  getAllRecirdsOfPendingTxOfDif(data: any) {
-    this.difService.getAllRecirdsOfPendingTxOfDif(data).subscribe(res => {
-      if (res.responseStatus === 'success') {
-        this.getAllDifFilesList = res.responseData;
+    const queryParam = statusMap[status] || '';
+
+    this.difService.getAllRecirdsOfPendingTxOfDif(queryParam).subscribe({
+      next: (res) => {
+        if (res.responseStatus === 'success') {
+          this.getAllDifFilesList = res.responseData;
+        } else {
+          console.error('Failed to load records:', res.responseMessage);
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching records:', err);
       }
     });
   }
 
-  onItemSelect(event: any) {
-    if (event.value.value === 'All') {
-      this.getAllRecirdsOfPendingTxOfDif('');
-    } else if (event.value.value === 'Pending') {
-      this.getAllRecirdsOfPendingTxOfDif('P');
-    } else if (event.value.value === 'Send') {
-      this.getAllRecirdsOfPendingTxOfDif('S');
-    } else if (event.value.value === 'Reversal') {
-      this.getAllRecirdsOfPendingTxOfDif('R');
-    }
+  onItemSelect(event: any): void {
+    this.selectedStatus = event.value;
+    this.loadRecords(this.selectedStatus);
   }
 
-  viewTranscation(data: any) {
+  viewTranscation(data: DifFile): void {
     this.router.navigate(['/dif/transaction', data.txnRefNo]);
   }
 }
