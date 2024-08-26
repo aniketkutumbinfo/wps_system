@@ -21,7 +21,7 @@
                 <td>{{data.makerDate}}</td>
                 <!-- <td>{{data.optional1}}</td> -->
                 <td>
-                    <p-button (click)="viewPrcDetail(data)" icon="pi pi-eye" />
+                    <p-button pRipple badgeClass="p-badge-contrast" [outlined]="true" label="View" (click)="viewPrcDetail(data)" icon="pi pi-eye" />
                 </td>
             </tr>
         </ng-template>

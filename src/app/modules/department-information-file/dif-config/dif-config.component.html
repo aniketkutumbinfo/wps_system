@@ -24,8 +24,8 @@
                     <td>{{data.shedularTime}}</td>
                     <td>{{data.updatedDate}}</td>
                     <td>
-                        <p-button pRipple icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true"
-                            severity="success" (click)="editConfig(data)" />
+                        <p-button pRipple icon="pi pi-pencil" class="mr-2" label="Edit" [rounded]="true"
+                            [outlined]="true" severity="success" (click)="editConfig(data)" />
                     </td>
                 </tr>
             </ng-template>
@@ -73,9 +73,15 @@
                     <input pInputText class="form-control" type="text" formControlName="updatedDate" readonly />
                 </div>
             </div>
-            <div class="col m-2">
-                <p-button label="Update" type="Submit" />
-                <p-button severity="danger" label="Cancel" (onClick)="backToList()" />
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-start m-2">
+                        <p-button pRipple icon="pi pi-check" type="submit" [rounded]="true" [outlined]="true"
+                            label="Update" styleClass="p-button-primary me-2" />
+                        <p-button pRipple icon="pi pi-times" [rounded]="true" [outlined]="true" label="Cancel"
+                            styleClass="p-button-secondary" (click)="backToList()" />
+                    </div>
+                </div>
             </div>
         </form>
     </div>
