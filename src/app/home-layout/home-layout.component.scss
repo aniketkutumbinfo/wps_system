@@ -1,3 +1,27 @@
-.left-menu ul li.active {
-  background-color: red;
+// .left-menu ul li.active {
+//   background-color: red;
+// }
+
+.left-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.left-menu .submenu {
+  display: none;
+  padding-left: 20px;
+}
+
+.left-menu .menu-item.active .submenu {
+  display: block;
+}
+
+.left-menu .arrow {
+  float: right;
+  transition: transform 0.3s ease;
+}
+
+.left-menu .menu-item.active .arrow {
+  transform: rotate(180deg);
 }

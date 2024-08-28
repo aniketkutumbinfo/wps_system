@@ -1,122 +1,100 @@
 <div class="wrapper">
-  <div class="left-sidebar">
+  <aside class="left-sidebar">
     <div class="logo">
-      <img src="/assets/images/dummy-logo.png" />
+      <img src="/assets/images/dummy-logo.png" alt="Logo" />
     </div>
-    <!-- <div class="user-detail">
-      <div class="user-pic"><img src="/assets/images/profile-pic.png" alt="Profile Picture" /></div>
-      <div class="user-name">Adam Atkins</div>
-    </div> -->
-    <div class="left-menu">
+
+    <nav class="left-menu">
       <ul>
         <li>
           <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
-            <img src="/assets/images/sif-ico.png" class="ico" alt="Salary Information Icon" />Dashboard
+            <img src="/assets/images/sif-ico.png" class="ico" alt="Dashboard Icon" /> Dashboard
           </a>
         </li>
         <li>
           <a class="nav-link" routerLink="/sif" routerLinkActive="active">
-            <img src="/assets/images/sif-ico.png" class="ico" alt="Salary Information Icon" />Salary Information File
+            <img src="/assets/images/sif-ico.png" class="ico" alt="Salary Information File Icon" /> Salary Information
+            File
           </a>
         </li>
-        <li><a class="nav-link" routerLink="/pif" routerLinkActive="active">
-            <img src="/assets/images/pif-ico.png" class="ico" alt="Personal Information Icon" />Personal
-            Information File</a>
-          <ul class="submenu">
-            <li>
-              <a class="nav-link" routerLink="/pif/rfa-list" routerLinkActive="active">
-                RFA
-              </a>
-            </li>
+        <li class="menu-item">
+          <a class="nav-link" href="#" (click)="toggleSubmenu($event, 'pif-submenu')">
+            <img src="/assets/images/pif-ico.png" class="ico" alt="Personal Information File Icon" /> Personal
+            Information Data
+            <span class="arrow">&#9662;</span>
+          </a>
+          <ul class="submenu pif-submenu">
+            <li><a class="nav-link" routerLink="/pif" routerLinkActive="active">Personal Information File</a></li>
+            <li><a class="nav-link" routerLink="/pif/rfa-list" routerLinkActive="active">RFA</a></li>
           </ul>
         </li>
-        <li><a class="nav-link" routerLink="/ack-nck" routerLinkActive="active">
-            <img src="/assets/images/pif-ico.png" class="ico" alt="Ack & Nck" />Ack & Nck
+        <li>
+          <a class="nav-link" routerLink="/ack-nck" routerLinkActive="active">
+            <img src="/assets/images/pif-ico.png" class="ico" alt="Ack & Nck Icon" /> Ack & Nck
           </a>
         </li>
-        <li>
-          <a class="nav-link" routerLink="/prf" routerLinkActive="active">
-            <img src="/assets/images/prf-ico.png" class="ico" alt="Personal Relationship Icon" />Personal
-            Relationship File
+        <li class="menu-item">
+          <a class="nav-link" href="#" (click)="toggleSubmenu($event, 'dif-submenu')">
+            <img src="/assets/images/dif-ico.png" class="ico" alt="Department Information File Icon" /> Department
+            Information Data
+            <span class="arrow">&#9662;</span>
           </a>
-        </li>
-        <li>
-          <a class="nav-link" routerLink="/dif" routerLinkActive="active">
-            <img src="/assets/images/dif-ico.png" class="ico" alt="Department Information Icon" />Department
-            Information File
-          </a>
-          <ul class="submenu">
-            <li>
-              <a class="nav-link" routerLink="/dif/config" routerLinkActive="active">
-                Dif Config
-              </a>
-            </li>
-            <li>
-              <a class="nav-link" routerLink="/dif/transaction" routerLinkActive="active">
-                Transactions
-              </a>
-            </li>
+          <ul class="submenu dif-submenu">
+            <li><a class="nav-link" routerLink="/dif" routerLinkActive="active">Department Information File</a></li>
+            <li><a class="nav-link" routerLink="/dif/config" routerLinkActive="active">Dif Config</a></li>
+            <li><a class="nav-link" routerLink="/dif/transaction" routerLinkActive="active">Transactions</a></li>
           </ul>
         </li>
-        <li><a class="nav-link" routerLink="/dcr" routerLinkActive="active">
-            <img src="/assets/images/dif-ico.png" class="ico" alt="Disbursement Cancellation Request" />Disbursement
-            Cancellation Request</a>
-          <ul class="submenu">
-            <li>
-              <a class="nav-link" routerLink="/dcr/config" routerLinkActive="active">
-                Dif Config
-              </a>
+        <li class="menu-item">
+          <a class="nav-link" href="#" (click)="toggleSubmenu($event, 'dcr-submenu')">
+            <img src="/assets/images/dif-ico.png" class="ico" alt="Disbursement Cancellation Request Icon" />
+            Disbursement Cancellation Data
+            <span class="arrow">&#9662;</span>
+          </a>
+          <ul class="submenu dcr-submenu">
+            <li><a class="nav-link" routerLink="/dcr" routerLinkActive="active">Disbursement Cancellation Request</a>
             </li>
-            <li>
-              <a class="nav-link" routerLink="/dcr/transaction" routerLinkActive="active">
-                Transactions
-              </a>
-            </li>
+            <li><a class="nav-link" routerLink="/dcr/config" routerLinkActive="active">DCR Config</a></li>
+            <li><a class="nav-link" routerLink="/dcr/transaction" routerLinkActive="active">Transactions</a></li>
           </ul>
         </li>
         <li>
           <a class="nav-link" routerLink="/rfr" routerLinkActive="active">
-            <img src="/assets/images/pif-ico.png" class="ico" alt="Personal Information Icon" />Request For Refund
+            <img src="/assets/images/pif-ico.png" class="ico" alt="Request For Refund Icon" /> Request For Refund
           </a>
         </li>
       </ul>
-    </div>
-  </div>
-  <div class="right-panel">
-    <div class="header">
-      <div class="profile-detail">
-        <!-- <span class="user-name">Hello Adam!</span> -->
-        <!-- <span class="user-pic"><img src="/assets/images/profile-pic.png" /></span> -->
-        <!-- <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" (click)="toggleDropdown()" id="navbarDropdown" role="button"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="/assets/images/profile-pic.png" alt="Profile" class="rounded-circle"
-                style="width: 30px; height: 30px;">
-              {{ this.userName }}
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown" [class.show]="isDropdownOpen">
-              <a class="dropdown-item" href="javascript:void(0)" (click)="updateProfile()">Update Profile</a>
-              <a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Logout</a>
-            </div>
-          </li>
-        </ul> -->
+    </nav>
+  </aside>
 
-        <div class="dropdown" (click)="toggleDropdown()">
-          <button class="dropdown-toggle">
-            <img src="/assets/images/profile-pic.png" alt="Profile" class="rounded-circle" style="width: 30px; height: 30px;">
-            {{ this.userName }}
-          </button>
-          <div class="dropdown-menu" [class.show]="isDropdownOpen">
-            <a class="dropdown-item" (click)="updateProfile()">Update Profile</a>
-            <a class="dropdown-item" (click)="logout()">Logout</a>
+  <main class="right-panel">
+    <header class="header">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid"> <!-- Changed from container to container-fluid for full-width alignment -->
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto"> <!-- Changed ml-auto to ms-auto for right alignment -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="/assets/images/profile-pic.png" alt="Profile" class="rounded-circle" style="width: 30px; height: 30px;">
+                  {{ userName }}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                  <li><a class="dropdown-item" href="javascript:void(0)" (click)="updateProfile()">Update Profile</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="mid-container">
+      </nav>
+    </header>
+  </main>
+  
+
+  <main class="right-panel">
+    <section class="mid-container">
       <app-loader [showLoader]="commonService._isLoading$ | async"></app-loader>
       <router-outlet></router-outlet>
-    </div>
-  </div>
+    </section>
+  </main>
 </div>

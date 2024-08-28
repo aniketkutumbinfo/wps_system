@@ -45,4 +45,21 @@ export class HomeLayoutComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+
+  toggleSubmenu(event: Event, submenuClass: string): void {
+    event.preventDefault();
+    const target = event.currentTarget as HTMLElement;
+    const menuItem = target.parentElement as HTMLElement;
+
+    // Close all other submenus
+    document.querySelectorAll('.menu-item').forEach(item => {
+      if (item !== menuItem) {
+        item.classList.remove('active');
+      }
+    });
+
+    // Toggle the clicked submenu
+    menuItem.classList.toggle('active');
+  }
 }
