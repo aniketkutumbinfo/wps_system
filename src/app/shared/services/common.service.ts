@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, } from 'rxjs';
 import { HttpService } from './http.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -40,15 +41,28 @@ export class CommonService {
     return this.httpService.post(`auth/signup`, data);
   }
 
-  getProfileUser() {
-    return this.httpService.get(`users/by/token`);
-  }
-
-  updateProfile(data: any) {
-    return this.httpService.post(`profile/update`, data);
-  }
-
   forgotPassword(data: any) {
-    return this.httpService.get(`reset/link/send/to?email=${data.email}`);
+    return this.httpService.get(`auth/reset/link/send/to?email=${data.email}`);
+  }
+
+  changePassword(oldPassword: string, newPassword: string): Observable<any> {
+    return this.httpService.post(``, { oldPassword, newPassword });
+  }
+
+  resetPassword(token: string, data: any): Observable<any> {
+    console.log(token, data);
+    let body = {
+      token: token,
+      ...data
+    };
+    // Set the token in the headers
+    // let headers = new HttpHeaders({
+    //   'Authorization': `Bearer ${token}`,
+    //   'Content-Type': 'application/json'
+    // });
+
+    // Send the request with data in the body
+    // , { headers }
+    return this.httpService.post('forgot/password', body);
   }
 }

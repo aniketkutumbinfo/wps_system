@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonService } from '../shared/services/common.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
+import { ProfileService } from '../modules/profile/profile.service';
 
 @Component({
   selector: 'app-home-layout',
@@ -12,11 +13,12 @@ export class HomeLayoutComponent implements OnInit {
   userName: any
   isDropdownOpen = false;
   constructor(public commonService: CommonService,
+    public profileService: ProfileService,
     private cdr: ChangeDetectorRef,
     private authService: AuthService,
     private router: Router,
   ) {
-    this.commonService.getProfileUser()
+    this.profileService.getProfileUser()
       .subscribe(res => {
         if (res.responseStatus === 'success') {
           this.userName = res.responseData.fullName
@@ -61,5 +63,11 @@ export class HomeLayoutComponent implements OnInit {
 
     // Toggle the clicked submenu
     menuItem.classList.toggle('active');
+  }
+
+  changePassword() {
+    // Logic to change password
+    // For example, navigate to a password change form
+    this.router.navigate(['/profile/change-password']);
   }
 }

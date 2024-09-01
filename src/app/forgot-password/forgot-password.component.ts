@@ -30,7 +30,7 @@ export class ForgotPasswordComponent {
       this.commonService.forgotPassword(this.forgotPasswordForm.value)
         .subscribe({
           next: (res) => {
-            if (res.responseStatus === 'success') {
+            if (res.responseStatus === 'success' && res.responseData) {
               this.messageService.add({
                 severity: 'success',
                 summary: 'Success',
@@ -42,7 +42,7 @@ export class ForgotPasswordComponent {
               this.messageService.add({
                 severity: 'error',
                 summary: 'Error',
-                detail: 'Failed to send password reset link. Please try again.'
+                detail: 'The email is not registered with us.'
               });
             }
           },

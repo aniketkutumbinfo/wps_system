@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { CommonService } from 'src/app/shared/services/common.service';
+import { ProfileService } from './profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private commonService: CommonService,
+    private profileService: ProfileService,
     private messageService: MessageService
   ) {
     this.profileForm = this.fb.group({
@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
   }
 
   loadProfile(): void {
-    this.commonService.getProfileUser()
+    this.profileService.getProfileUser()
       .subscribe({
         next: (res) => {
           if (res.responseStatus === 'success') {
@@ -65,7 +65,7 @@ export class ProfileComponent implements OnInit {
 
   onSubmit(): void {
     if (this.profileForm.valid) {
-      this.commonService.updateProfile(this.profileForm.value)
+      this.profileService.updateProfile(this.profileForm.value)
         .subscribe({
           next: (res) => {
             if (res.responseStatus === 'success') {
