@@ -45,7 +45,7 @@ export class ChangePasswordComponent implements OnInit {
       this.passwordService.changePassword(oldPass, newPassword).subscribe({
         next: res => {
           // Handle response based on responseStatus or other data
-          if (res.responseStatus === 'success') {
+          if (res.responseStatus === 'success' && res.responseData) {
             this.messageService.add({
               severity: 'success',
               summary: 'Success',

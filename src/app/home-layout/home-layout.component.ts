@@ -1,8 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonService } from '../shared/services/common.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
 import { ProfileService } from '../modules/profile/profile.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home-layout',
@@ -12,12 +13,15 @@ import { ProfileService } from '../modules/profile/profile.service';
 export class HomeLayoutComponent implements OnInit {
   userName: any
   isDropdownOpen = false;
+  title: string = '';
   constructor(public commonService: CommonService,
     public profileService: ProfileService,
     private cdr: ChangeDetectorRef,
     private authService: AuthService,
     private router: Router,
+    private titleService: Title
   ) {
+    
     this.profileService.getProfileUser()
       .subscribe(res => {
         if (res.responseStatus === 'success') {
@@ -25,6 +29,7 @@ export class HomeLayoutComponent implements OnInit {
         }
       })
   }
+
   ngAfterViewChecked() {
     //your code to update the model
     this.cdr.detectChanges();
@@ -45,7 +50,9 @@ export class HomeLayoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.commonService.headerTitle$.subscribe(title => {
+      this.title = title;
+    });
   }
 
 

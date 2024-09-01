@@ -71,16 +71,21 @@
     <header class="header">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid"> <!-- Changed from container to container-fluid for full-width alignment -->
+          <strong>{{ title}}</strong>
           <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto"> <!-- Changed ml-auto to ms-auto for right alignment -->
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="/assets/images/profile-pic.png" alt="Profile" class="rounded-circle" style="width: 30px; height: 30px;">
+                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown"
+                  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="/assets/images/profile-pic.png" alt="Profile" class="rounded-circle"
+                    style="width: 30px; height: 30px;">
                   {{ userName }}
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                  <li><a class="dropdown-item" href="javascript:void(0)" (click)="updateProfile()">Update Profile</a></li>
-                  <li><a class="dropdown-item" href="javascript:void(0)" (click)="changePassword()">Change Password</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0)" (click)="updateProfile()">Update Profile</a>
+                  </li>
+                  <li><a class="dropdown-item" href="javascript:void(0)" (click)="changePassword()">Change Password</a>
+                  </li>
                   <li><a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Logout</a></li>
                 </ul>
               </li>
@@ -90,7 +95,7 @@
       </nav>
     </header>
   </main>
-  
+
 
   <main class="right-panel">
     <section class="mid-container">

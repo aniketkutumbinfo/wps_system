@@ -12,13 +12,13 @@ const routes: Routes = [
     path: '', redirectTo: 'list', pathMatch: 'full'
   },
   {
-    path: 'list', component: ListComponent
+    path: 'list', component: ListComponent, data: { headerTitle: 'RFR' }
   },
   {
-    path: 'files', component: RfrListComponent
+    path: 'files', component: RfrListComponent, data: { headerTitle: 'RFR' }
   },
   {
-    path: 'details/:fileName', component: RfrDetailsComponent
+    path: 'details/:fileName', component: RfrDetailsComponent, data: { headerTitle: 'RFR' }
   }
 ];
 

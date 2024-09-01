@@ -10,25 +10,25 @@ import { UpdateTransactionComponent } from './transactions/update-transaction/up
 
 const routes: Routes = [
   {
-    path: 'list', component: ListComponent
+    path: 'list', component: ListComponent, data: { headerTitle: 'DCR' }
   },
   {
-    path: 'view/:id', component: ViewComponent
+    path: 'view/:id', component: ViewComponent, data: { headerTitle: 'DCR' }
   },
   {
-    path: 'config', component: DcrConfigComponent
+    path: 'config', component: DcrConfigComponent, data: { headerTitle: 'DCR Config' }
   },
   {
-    path: 'transaction', component: TransactionRecordsComponent
+    path: 'transaction', component: TransactionRecordsComponent, data: { headerTitle: 'DCR Transcation' }
   },
   {
-    path: 'transaction/:id', component: UpdateTransactionComponent
+    path: 'transaction/:id', component: UpdateTransactionComponent, data: { headerTitle: 'DCR Transcation' }
   },
   {
-    path: 'ack-nck', component: AckAckListComponent
+    path: 'ack-nck', component: AckAckListComponent, data: { headerTitle: 'DCR ACK NAK' }
   },
   {
-    path: 'ack-nak/:id', component: AckAckDetailComponent
+    path: 'ack-nak/:id', component: AckAckDetailComponent, data: { headerTitle: 'DCR ACK NAK' }
   },
   {
     path: '', redirectTo: 'list', pathMatch: 'full'

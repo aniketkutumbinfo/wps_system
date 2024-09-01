@@ -6,10 +6,10 @@ import { RfaListComponent } from './RFA/rfa-list/rfa-list.component';
 import { RfaViewComponent } from './RFA/rfa-view/rfa-view.component';
 
 const routes: Routes = [
-  { path: 'list', component: ListComponent },
-  { path: 'view/:id', component: ViewComponent },
-  { path: 'rfa-list', component: RfaListComponent },
-  { path: 'rfa-view/:id', component: RfaViewComponent },
+  { path: 'list', component: ListComponent, data: { headerTitle: 'PIF' } },
+  { path: 'view/:id', component: ViewComponent, data: { headerTitle: 'PIF' } },
+  { path: 'rfa-list', component: RfaListComponent, data: { headerTitle: 'RFA' } },
+  { path: 'rfa-view/:id', component: RfaViewComponent, data: { headerTitle: 'RFA' } },
   { path: '', redirectTo: 'list', pathMatch: 'full' },
   { path: '**', redirectTo: 'list' }  // Use relative path
 ];

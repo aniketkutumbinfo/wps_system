@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'all',
-    component: ListComponent
+    component: ListComponent, data: { headerTitle: 'ACK NAK' }
   }
 ];
 

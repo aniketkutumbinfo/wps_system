@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, } from 'rxjs';
+import { BehaviorSubject, filter, Observable, } from 'rxjs';
 import { HttpService } from './http.service';
 import { HttpHeaders } from '@angular/common/http';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,27 @@ export class CommonService {
   private _isLoading = new BehaviorSubject<boolean>(false);
   public _isLoading$ = this._isLoading.asObservable();
 
-  constructor(private httpService: HttpService) { }
+  private headerTitleSubject = new BehaviorSubject<string>('Default Title');
+  headerTitle$ = this.headerTitleSubject.asObservable();
+  constructor(private httpService: HttpService,
+    private router: Router, private route: ActivatedRoute
+  ) {
+
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.updateHeaderTitle();
+    });
+   }
+
+   private updateHeaderTitle(): void {
+    let route = this.router.routerState.root;
+    while (route.firstChild) {
+      route = route.firstChild;
+    }
+    const title = route.snapshot.data['headerTitle'] || 'Default Title';
+    this.headerTitleSubject.next(title);
+  }
 
   toggleLoading(val: boolean) {
     this._isLoading.next(val);
@@ -56,13 +77,13 @@ export class CommonService {
       ...data
     };
     // Set the token in the headers
-    // let headers = new HttpHeaders({
-    //   'Authorization': `Bearer ${token}`,
-    //   'Content-Type': 'application/json'
-    // });
+    let headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
 
     // Send the request with data in the body
     // , { headers }
-    return this.httpService.post('forgot/password', body);
+    return this.httpService.post('forgot/password', body, { headers });
   }
 }

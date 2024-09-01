@@ -10,25 +10,25 @@ import { UpdateTransactionComponent } from './transactions/update-transaction/up
 
 const routes: Routes = [
   {
-    path: 'list', component: ListComponent
+    path: 'list', component: ListComponent, data: { headerTitle: 'DIF' }
   },
   {
-    path: 'view/:id', component: ViewComponent
+    path: 'view/:id', component: ViewComponent, data: { headerTitle: 'DIF' }
   },
   {
-    path: 'config', component: DifConfigComponent
+    path: 'config', component: DifConfigComponent, data: { headerTitle: 'DIF Config' }
   },
   {
-    path: 'transaction', component: TransactionRecordsComponent
+    path: 'transaction', component: TransactionRecordsComponent, data: { headerTitle: 'DIF Transcation' }
   },
   {
-    path: 'transaction/:id', component: UpdateTransactionComponent
+    path: 'transaction/:id', component: UpdateTransactionComponent, data: { headerTitle: 'DIF Transcation' }
   },
   {
-    path: 'ack-nck', component: AckNckListComponent
+    path: 'ack-nck', component: AckNckListComponent, data: { headerTitle: 'DIF ACK NAK' }
   },
   {
-    path: 'ack-nak/:id', component: AckNckDetailComponent
+    path: 'ack-nak/:id', component: AckNckDetailComponent, data: { headerTitle: 'DIF ACK NAK' }
   },
   {
     path: '', redirectTo: 'list', pathMatch: 'full'

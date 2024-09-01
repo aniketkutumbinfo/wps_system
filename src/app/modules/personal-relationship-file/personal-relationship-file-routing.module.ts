@@ -5,10 +5,10 @@ import { ViewComponent } from './view/view.component';
 
 const routes: Routes = [ 
   {
-    path: 'list', component: ListComponent
+    path: 'list', component: ListComponent, data: { headerTitle: 'PRF' }
   },
   {
-    path: 'view/:id', component: ViewComponent
+    path: 'view/:id', component: ViewComponent, data: { headerTitle: 'PRF' }
   },
   {
     path: '', redirectTo: 'list', pathMatch: 'full'

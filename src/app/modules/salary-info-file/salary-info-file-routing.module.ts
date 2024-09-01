@@ -9,13 +9,13 @@ const routes: Routes = [
     path: '', redirectTo: 'list', pathMatch: 'full'
   },
   {
-    path: 'list', component: ListComponent
+    path: 'list', component: ListComponent, data: { headerTitle: 'SIF' }
   },
   {
-    path: 'files', component: SifListComponent
+    path: 'files', component: SifListComponent, data: { headerTitle: 'SIF' }
   },
   {
-    path: 'details/:fileName', component: SifDetailsComponent
+    path: 'details/:fileName', component: SifDetailsComponent, data: { headerTitle: 'SIF' }
   }
 ];
 
