@@ -19,7 +19,11 @@ const routes: Routes = [
   },
   {
     path: 'details/:fileName', component: RfrDetailsComponent, data: { headerTitle: 'RFR' }
-  }
+  },
+  {
+    path: 'ack-nck',
+    loadChildren: () => import('./ack-nck/ack-nck.module').then(m => m.AckNckModule)
+  },
 ];
 
 @NgModule({

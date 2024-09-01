@@ -5,12 +5,12 @@ import { HttpService } from 'src/app/shared/services/http.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AckNckService {
+export class RFRAckNckService {
 
   constructor(private httpService: HttpService) { }
 
   getAllAckNck() {
-    return this.httpService.get(`get/sif/ackfile/details`);
+    return this.httpService.get(`rfr/ackfile/details`);
   }
 
   findAckNckByFileName(acknakfilename: string) {
