@@ -78,4 +78,47 @@
       <!-- Add more cards as needed -->
     </div>
   </div>
+
+
+  <div>
+    <h1>Dashboard</h1>
+    <div *ngIf="loading">Loading...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+  
+    <div *ngIf="!loading && !error">
+      <h2>DCR Status</h2>
+      <p>{{ dcrStatus | json }}</p>
+  
+      <h2>DIF Status</h2>
+      <p>{{ difStatus | json }}</p>
+  
+      <h2>PAF Status</h2>
+      <p>{{ pafStatus | json }}</p>
+  
+      <h2>PRC Status</h2>
+      <p>{{ prcStatus | json }}</p>
+  
+      <h2>RFA Status</h2>
+      <p>{{ rfaStatus | json }}</p>
+  
+      <h2>TXN Status</h2>
+      <p>{{ txnStatus | json }}</p>
+  
+      <h2>DCR Count</h2>
+      <p>{{ dcrCount | json }}</p>
+  
+      <h2>DIF Count</h2>
+      <p>{{ difCount | json }}</p>
+  
+      <h2>PAF Count</h2>
+      <p>{{ pafCount | json }}</p>
+  
+      <h2>PRC Count</h2>
+      <p>{{ prcCount | json }}</p>
+  
+      <h2>RFA Count</h2>
+      <p>{{ rfaCount | json }}</p>
+    </div>
+  </div>
+  
   
